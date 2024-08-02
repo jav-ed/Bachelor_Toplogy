@@ -4,6 +4,8 @@
 
 This repository contains the complete LaTeX source, figures, and compiled PDF of my bachelor thesis, submitted on 19.02.2019 to the Bergische Universität Wuppertal, Germany, in cooperation with BMW in Munich.
 
+![Gradient Model 28](path_Image/pngs/Aufgabe_1/3D_Ergebnisse/canti.png)
+
 ## Thesis Overview
 
 This bachelor thesis focuses on extending a 2D topology optimization method (Adapt) to 3D structures, enabling the optimization of complex 3D geometries for structural reinforcement.

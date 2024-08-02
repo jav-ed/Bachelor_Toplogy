@@ -49,6 +49,11 @@ Both types of files are included in the `path_Image/` directory for completeness
 
 To compile the thesis, ensure you have a LaTeX distribution installed on your system. Then, run the following command in the root directory of this repository:
 
+```
+pdflatex main.tex
+```
+
+
 You may need to run this command multiple times to resolve all references correctly. Also, ensure all necessary LaTeX packages are installed.
 
 ## License
@@ -67,6 +72,7 @@ For more information or to get in touch, please visit my website: [javedab.com](
 ## Note on README Creation
 
 This README was created with the assistance of an AI large language model, specifically the Claude 3.5 Sonnet model. While the content accurately reflects the thesis and repository structure, the wording and organization were enhanced through AI collaboration.
+
 ---
 
 Feel free to explore this repository and use it as a reference for your own work. If you have any questions or feedback, please don't hesitate to reach out.

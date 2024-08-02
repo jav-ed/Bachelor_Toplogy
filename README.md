@@ -42,8 +42,7 @@ Both types of files are included in the `path_Image/` directory for completeness
 
 1. This repository can be used as a template for similar projects.
 2. The PDF file in `100_Compiled/` is the original, unmodified version as submitted. Any mistakes found post-submission have not been corrected to maintain the integrity of the original work.
-3. We all learn and grow. I acknowledge that mistakes were made in the past, and inshallah, I will continue to learn from future experiences.
-4. Only the Acknowledgement section has been slightly modified in this version. This modification does not affect the academic content of the thesis.
+3. We all learn and grow. I acknowledge that mistakes were made in the past, and inshallah, I will continue to learn from future experiences. Only the Acknowledgement section has been slightly modified in this version. This modification does not affect the academic content of the thesis.
 
 ## Compilation
 
@@ -60,9 +59,6 @@ You may need to run this command multiple times to resolve all references correc
 
 Please refer to the `license.md` file in this repository for detailed licensing information.
 
-## Acknowledgements
-
-I would like to thank my supervisors at Bergische Universität Wuppertal and BMW for their guidance and support throughout this project.
 
 ## Contact
 

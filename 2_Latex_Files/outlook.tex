@@ -1,0 +1,34 @@
+\chapter{Summary and outlook}
+
+The aim of this work was
+to extend an existing Topology optimization method for
+the adaptation of structures in different
+ways. First it was extended for the optimization of 3D structures
+and the performance of the generated structures was analysed using FEA. Secondly the adaptation
+method was extended for slightly different and new load cases.
+Also the performance of these results were analysed using FEA.
+Finally the optimiser was extend to import an external Basis.
+The goals could all be achieved,
+a very powerful 2D and 3D post processor was found, which crucial for
+the development of the different methods.\\
+
+The Adapt has been improved in many places, but there is still a lot of room for improvement. It is particularly important to be able to count on large models when it comes to optimizing an entire vehicle. Not only with large models, but ideally also with a reasonable computing time. For this purpose a different programming language like C++ is better suited. But just changing the programming language is not enough for the big projects. It will be necessary
+to parallelize the Adapt.
+In \cite{Aage.2015} already a parallel version of a comparable version of the 88 lines or 169 lines of code is shown. \\
+
+Before parallelizing, it is even more important to extend the features to 3D and after this is done, it would make sense to  think about other features, which
+are desired to be implemented.
+If all the features are implemented, then
+the Adapt should be parallelized for a Cluster. Note Matlab offers a parallelization
+toolkit, which is probably easier to use than MPI, BLAS and LAPACK.\\
+
+Furthermore, it is advisable to use an iterative FEM-solver when it comes
+to big models, since they are faster. However this only counts
+for big models, as long as the model is not much greater than
+the used
+mesh resolutions in this work, a direct solver is much faster. The
+implementation of a 2D fem solver can be found in \cite{Amir.2014}. The
+FEM solver is the bottleneck of the computational time. Another
+suggestion is to use a different sensitivity filter. The standard
+sensitivity filter can be replaced by the conv2 in 2D or convn in 3D
+functions from Matlab as shown in \cite{Andreassen.2011}

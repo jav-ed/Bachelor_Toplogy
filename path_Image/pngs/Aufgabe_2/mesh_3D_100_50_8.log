@@ -1,0 +1,58 @@
+**************************************************************
+**                                                          **
+**                   OSSmooth 2017.2.0.16                   **
+**                                                          **
+**     Surface Reconstruction and Optimization Software     **
+**                                                          **
+**                                                          **
+**************************************************************
+**    COPYRIGHT (C) 1996-2016     Altair Engineering, Inc.  **
+**    All Rights Reserved. Copyright notice does not imply  **
+**    publication. Contains trade secrets of Altair         **
+**    Engineering, Inc. Decompilation or disassembly of     **
+**    this software is strictly prohibited                  **
+**************************************************************
+
+
+Input file: "C:/Users/q395478/C_ALL/FOLDERS/0690/mesh_3D_100_50_8.fem"
+Output file: "C:/Users/q395478/C_ALL/FOLDERS/0690/mesh_3D_100_50_8_oss.fem"
+Log file: "C:/Users/q395478/C_ALL/FOLDERS/0690/mesh_3D_100_50_8.log"
+
+Node(s): 46359
+Group(s): 1
+Element(s): 40000
+
+Reading Bulk file "C:/Users/q395478/C_ALL/FOLDERS/0690/mesh_3D_100_50_8.fem" ...
+Reading SH file "C:/Users/q395478/C_ALL/FOLDERS/0690/Z_Mbb_Ver2_100_50_8_0.3_2_1.5_1.5_2.sh" ...
+done.
+
+
+Creating isosurface ...
+done.
+
+Laplacian smoothing of topology optimization ...
+done.
+
+Writing Bulk file "C:/Users/q395478/C_ALL/FOLDERS/0690/mesh_3D_100_50_8_oss.fem" ...
+Node: 38518
+Group: 1
+Element: 40161
+done
+
+output file:                  C:/Users/q395478/C_ALL/FOLDERS/0690/mesh_3D_100_50_8_oss.fem
+type of surface:              smooth isosurface
+iso threshold:                0.505
+laplacian feature angle:      30
+maximum smoothing error:      0.569066
+average smoothing error:      0.0983257
+number of nodes:              38518
+number of elements:           40161
+average edge length:          0.507539
+
+End of OSSmooth Execution.
+---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+Jul 25 2017  16:43:06
+---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+
+
+

@@ -1,0 +1,58 @@
+This is BibTeX, Version 0.99d (TeX Live 2023)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: apacite.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: 2_Latex_Files/bib_tex.bib
+apacite.bst [2013/07/21 v6.03 APA bibliography style]
+Warning--No journal in Olason.2010
+You've used 22 entries,
+            6951 wiz_defined-function locations,
+            1426 strings with 14823 characters,
+and the built_in function-call counts, 40577 in all, are:
+= -- 4972
+> -- 287
+< -- 2019
++ -- 2011
+- -- 40
+* -- 2749
+:= -- 7638
+add.period$ -- 85
+call.type$ -- 22
+change.case$ -- 358
+chr.to.int$ -- 0
+cite$ -- 45
+duplicate$ -- 985
+empty$ -- 1655
+format.name$ -- 482
+if$ -- 7669
+int.to.chr$ -- 0
+int.to.str$ -- 66
+missing$ -- 0
+newline$ -- 555
+num.names$ -- 152
+pop$ -- 771
+preamble$ -- 1
+purify$ -- 84
+quote$ -- 0
+skip$ -- 2441
+stack$ -- 0
+substring$ -- 2152
+swap$ -- 616
+text.length$ -- 44
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 1832
+warning$ -- 1
+while$ -- 161
+width$ -- 0
+write$ -- 683
+(There was 1 warning)

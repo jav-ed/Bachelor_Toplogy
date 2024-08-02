@@ -1,0 +1,505 @@
+\chapter{State of art}
+Many researches
+in the area of optimization with compliance
+as objective function has been done. 
+ The first worthy contribution, which nowadays can bee seen as a pioneer contribution is \cite{Sigmund.2001}. Sigmunds 99 lines of code is often the basis of a more advanced topology optimisation code.\cite{Andreassen.2011} used Sigmund's 99 lines of code and extended it with some new filters with the modified SIMP by \cite{Sigmund.2007}, like the PDE-filter (Partial differential equation filter) by\cite{Lazarov.2011}. The greatest benefit of the 88 lines of code is that it is able to provide, the remarkable raise of computational time, for a
+ comparison see \cite{Andreassen.2011}. \cite{Amir.2014} presents a 2D-matlab-code, which offers a iterative FE solver (conjugated gradient) and a improved  precondition, in order to solve the equation-system fast and 
+ with low residuals. \cite{Duarte.2015} implemented 
+ the MGCG (MultiGrid Preconditioned Conjugate Gradient)-FE solver 
+ and also the\cite{Lazarov.2011} PDE-Filter (Partial differential equation filter) and with the usage of PETSC (Portable, Extensible Toolkit Scientific Computation) they provide a fully parallel topology optimiser. Polytop++ in 
+ \cite{Duarte.2015} also has been improved further in \cite{Aage.2015}. Because the research of the topology optimisation has the possibly to advance from parallelization, there also some optimiser introduced, which run on the GPU (Graphic Processing Unit). The best known
+ contribution for GPU-topology optimisation might be the 2589 lines
+ of code in\cite{Schmidt.2011}.\\
+
+However, this work will take the 88 lines of code in \cite{Andreassen.2011} as its basis. In the following a brief introduction about the 99- and 88-lines of code as well as into the 169 lines of code by \cite{Liu.2014} is provided.
+
+\section{99 and 88 lines of code overview}
+The 88 line of code \cite{Andreassen.2011} is based on the 99 lines of code \cite{Sigmund.2001}. 
+The goal of the 88 lines of code is to solve the objective function:
+\begin{align}
+\underset{x}{min} = c \;(x) =  U^TKU = & \sum_{e = 1}^N E_e(x_e)u_e^Tk_0u_e 
+\tag{\ref{equ_objective_function_88}}
+\\ \nonumber \\ \nonumber
+ \text{subject to}: \quad &\frac{V(x)}{V_0} = f \\ \nonumber
+& KU = F\\ \nonumber
+& 0\leq x_{min} \leq 1
+\end{align}
+and the equation of the objective function of the 99 lines of code can be found in \eqref{equ_objective_func_99}. The difference between both versions has been introduced in the subsection \ref{subsection_obj_SIMP} and also in the section
+\ref{section_OC}.
+The 99 lines of code, the 88 lines of code and also the 3D version of the 88 lines by \cite{Liu.2014} obey the progress shown in the flowchart \ref{fig_flowchart_88}.
+
+ \begin{figure} [!h]
+ \centering
+ \def\svgwidth{\textwidth}
+ \input{path_Image/88_lines_visio.pdf_tex}
+ \caption{Flowchart of topology optimisation using 88, 99 and the 169 (3D) lines of code. Note, that the 169 lines of code also requires \textbf{nelz}.}  
+ \label{fig_flowchart_88}          % Label für Verweise 
+\end{figure} 
+ 
+% 
+\newpage
+\section{Preconditions}
+The predefinitions have the purpose to initialise the optimizer, they are constituted of the following parameters: \textbf{nelx, nely, penal, r\textsubscript{min}, load-case}, \textbf{volfrac} and in case of the 3D code the additional parameter \textbf{nelz}, where \textbf{nelx} is denoted as the number of horizontally (\textbf{x}) discritized number of elements, respectively nely is the number of the vertically (\textbf{y}) discritized number of elements, \textbf{nelz} is the number of the elements, which are discrezied in the depth (\textbf{z}), \textbf{penal}
+is the the penalization exponent, \textbf{r\textsubscript{min}} determines the radius of the sensitivity filter (see figure \ref{fig_rmin}) and \textbf{volfrac} is the volume fraction.
+
+\subsection{Numbering elements, nodes and DOFs in 2D}
+Numerous simplifications are introduced in order to make the 2D Matlab code simple.
+First, the considered design domain is assumed to be square. 
+Therefore the domain can be discretized by square finite elements and the numbering of elements and nodes becomes easier. The numbering starts from the the upper left corner, it increases from up to down and afterwards from left to right.
+The upper left corner is located in the first row and the first column. The upper right corner is located in first the row
+and in the last column, the lower left corner can be found at the last  row and the first column and finally the lower corner can be find at the last row and the last column.\\
+%______________________________________________________________
+
+\begin{minipage}{0.5\textwidth}
+\captionof{table}[]{Element numbering in 2D, also compare with figure \ref{fig_2d_matlab}}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline 
+Left upper corner& [ r = 1, c = 1 ];\\
+\hline 
+ Right upper corner& [ r = 1, c = last ];\\
+\hline 
+Left lower corner& [ r = last, c = 1 ];\\
+\hline 
+ Right lower corner& [ r = last, c = last ];\\
+\hline 
+\end{tabular} 
+\end{center}
+\end{minipage}
+\begin{minipage}[t]{0.4\textwidth}
+ After reaching the lower left, the counting continues by jumping to the next column respectively moving along the x-axis.
+ The number of elements in x-direction (horizontal) is denoted as nelx, which stands for "number elements x" and the number of elements
+ in y direction (vertical) are denoted as nely, which analogously stands for "number elements y".\\
+\end{minipage}
+This work uses Matlab as the the coding language and its Editor. Matlab offers two ways for indexing a matrix respectively a vector. The linear indexing is identical to the element indexing in figure \ref{fig_element_nr_2D}, e.g. with the expression \textbf{A(5)}, where\textbf{ A} is matrix, Matlab is going to extract the 5 element inside the matrix. However, working with big meshes results is making the use of linear indexing unhandy, therefore this work is mostly going to use the subscript-numbering. The subscript takes two input parameter, the first is the number of the desired row and the second parameter is the number of the column, e.g. A(2,3). Compare the subscript numbering with figure \ref{fig_2d_matlab}
+and for more information visit \cite{.matlab_index_ref}.  \newpage
+
+\begin{figure} [!h]
+\begin{minipage}{0.4 \textwidth}
+\centering
+ \def\svgwidth{0.9\textwidth}
+ \input{path_Image/numerierung_2d.pdf_tex}
+ \caption{Element numbering in 2D.}    % Bildunterschrift 
+ \label{fig_element_nr_2D}          % Label für Verweise 
+\end{minipage}
+\hfill
+\begin{minipage}{0.4 \textwidth}
+\centering
+ \def\svgwidth{\textwidth}
+ \input{path_Image/Element_2D.pdf_tex}
+\repeatcaption{fig_2d_one_ele}{One 2D squared discretized element with 4 Nodes andDOFs}
+\end{minipage}\\
+
+\vspace{1.2cm}
+\begin{minipage}{\textwidth}
+   \centering
+% \def\svgwidth{0.6\textwidth}
+ \input{path_Image/numerierung_2d_2.pdf_tex}
+ \caption{Numbering in 2D by means of Matlab's array-index-declaration.}    % Bildunterschrift 
+ \label{fig_2d_matlab}   
+ \end{minipage}
+\end{figure}
+\newpage
+
+
+\begin{figure}[!h]
+\begin{minipage}{0.6\textwidth}
+   \centering
+% \def\svgwidth{0.6\textwidth}
+ \input{path_Image/numerierung_2d_nodes.pdf_tex}
+ \caption{Numbering Nodes of a 2D mesh.}    % Bildunterschrift 
+ \label{fig_2d_nr_nodes}    
+ \vspace{1cm}
+   % \def\svgwidth{\textwidth}
+ \input{path_Image/numerierung_2d_dofs.pdf_tex}
+ \caption{Numbering DOFs of a 2D mesh. Even Numbers are DOFs of the \textbf{y }axis and all the odd numbers represents the DOFs of the \textbf{x} axis}    % Bildunterschrift 
+ \label{fig_2d_nr_dofs}      
+   \end{minipage}
+   \hfill
+   \begin{minipage}[h]{0.35\textwidth}
+   Once the user has assigned all the parameters \textbf{nelx, nely, penal, r\textsubscript{min}} and \textbf{volfrac}, the next step, which also belongs to the preconditions (see flowchart \ref{fig_flowchart_88}), is to define a load-case. In order to be able to define a load-case, a mechanical structure needs to be discretized (obtaining a mesh).
+   The mesh consists of elements (figure \ref{fig_element_nr_2D}), nodes (figure \ref{fig_2d_nr_nodes}), which have DOFs (figure \ref{fig_2d_nr_dofs}). \\
+      
+ With FEA, the force is not applied on elements, but rather on nodes, and in order to select a node, it is necessary to be familiar with the elements numbering convention (figure\ref{fig_element_nr_2D}). Now to select a node from an
+  chosen element see figures \ref{fig_2d_one_ele} and \ref{fig_2d_nr_nodes}. 
+  After having selected the desired node or nodes the user may want to fix some
+  of the nodes DOF in the horizontally (\textbf{x}) direction or vertically \textbf{y} direction.
+  As figure \ref{fig_2d_nr_dofs} shows, the numbering of the DOFs starts with the horizontally DOF with the number \textbf{$1$} and all the DOFs in the horizontally direction \textbf{x} are defined with odd numbers, respectively all the vertically (\textbf{y}) DOFs have an even number.\\
+ 
+ Now the user is able to set Boundary Conditions (BC) as well as define load-cases. In the 88 lines of code the forces can be applied in the lines \textit{19-20} and the  Boundary Condition (BC) can be modified in the lines \textit{21-23}.
+   \end{minipage}
+\end{figure} 
+\newpage
+
+
+ \begin{figure} [!h]
+\begin{minipage}{0.6 \textwidth}
+ \centering
+ \def\svgwidth{0.6\textwidth}
+ \input{path_Image/Element_3D_xyz.pdf_tex}
+ \caption{Local node-numbering for one element.}  
+ \label{fig_3d_xyzl}          % Label für Verweise 
+ \vspace{1cm}
+  \def\svgwidth{0.8\textwidth}
+ \input{path_Image/3d_Elements_nr.pdf_tex}
+ \caption{Element numbering in 3D}  
+ \label{fig_3d_element_numberin}          % Label für Verweise 
+\end{minipage}
+\begin{minipage}{0.35 \textwidth}
+   \subsection{Numbering elements, nodes and DOFs in 3D}
+\cite{Liu.2014} uses voxels to discretize 
+(see figure \ref{fig_3d_discr})
+ the available construction space 
+ and therefore each element 
+ does not have 4 nodes any more 
+ like in 2D, but 8 nodes per element (figure \ref{fig_3d_xyzl}).\\
+
+The numbering of the elements can be described as follows: The first element is located in \textbf{$z=0$}. To understand where 
+these z-coordinates must be, see the coordinate system in figure \ref{fig_3d_element_numberin}. The 
+numbering starts by defining the \textbf{z}-axis, then the 
+numbering continues like in 2D, from up to bottom,
+then one element to the right, again up to bottom,
+ one element to the right, up to bottom until reaching
+  the last element in the current \textbf{z}-axis. In 2D it would be the location \textbf{x(nelx, nely)}( figure \ref{fig_2d_matlab}), where \textbf{x} is Matrix consisting of the discretized elements. Then the element numbering in 3D continues with \textbf{$z+1$}, the depth changes from
+  \textbf{$z = 0$} to \textbf{$z=1$} and the numbering
+  continues again with up to down and then one element to the right.
+\end{minipage}
+\end{figure}
+\newpage
+
+
+\begin{figure}[!htb]
+\begin{minipage}[!h]{0.65 \textwidth}
+%\centering
+  \def\svgwidth{\textwidth}
+ \input{path_Image/3d_nodes_nr.pdf_tex}
+ \caption{Global node IDs and node coordinates in 3D} 
+ \label{fig_3d_node_numberin} 
+ \vspace{1cm}
+\end{minipage}
+\hfill
+\begin{minipage}{0.3 \textwidth}
+In the FE method, to define a load-case, locating
+a node is required. The 169 lines of code \cite{Liu.2014} employs node-coordinates in order to target a node. \\
+The first step in order to locate a Node, is choosing an Element (see figure \ref{fig_3d_element_numberin}) then choosing a local node 
+number (see figure \ref{fig_3d_xyzl}). With the local 
+node number, a translation using
+the table \ref{table_nr_3d} is needed in order to obtain the
+ global Node-ID. Note that the force or the constraint is applied on 
+ the global Node-ID, the local Node-ID is only there to help the reader to navigate
+  through the mesh. In 3D there are 3 translatory
+   axes and the reader can define
+  the DOF with the table \ref{table_nr_3d}.\\   
+  \end{minipage}   
+     \end{figure} 
+\begin{table}[!h]
+    \begin{minipage}{0.65\textwidth}
+   For example, the reader wants to apply a force on the fourth element (figure \ref{fig_3d_element_numberin}). The current knowledge about
+   the element is, the element-coordinates are \textbf {x = 2, y = 3 } and \textbf{z = 1}.    
+   Since in FEM the forces are applied on nodes, the number
+   of the node needs to be found out. By taking the sixth node 
+   (figure \ref{fig_3d_node_numberin})
+   the first step is to
+    think locally (see figure \ref{fig_3d_xyzl}).
+     Locally the node-number of the fourth element is \emph{N1}
+     (globally Node-ID equals 6).
+     Because the local node-number is \emph{N1} the node coordinates can be
+     obtained with:
+     $x_{ni} = x_{e}-1 = 2-1 = 1$, $y_{ni} = y_{e}-1 = 3-1 = 2$,
+     $z_{ni} = z_{e}-1 = 1-1 = 0$, where the index \emph{n} stands for
+     \emph{node coordinates} (see figure \ref{fig_3d_node_numberin}), respectively
+     the index \emph{e} stands for the \emph{element coordinates}
+     (see figure \ref{fig_3d_element_numberin}) in x,y and z
+     direction.
+   \end{minipage}
+   \hfill
+   \begin{minipage}{0.3\textwidth}
+   \centering
+   \begin{tabular}{|c|c|}
+ \hline 
+ NID\textsubscript{1} &6 \\ 
+ \hline 
+ NID\textsubscript{2} & 10 \\ 
+ \hline 
+ NID\textsubscript{3} & 9 \\ 
+ \hline 
+ NID\textsubscript{4} & 5 \\ 
+ \hline 
+ NID\textsubscript{5}& 22 \\ 
+ \hline 
+ NID\textsubscript{6} & 26 \\ 
+ \hline 
+ NID\textsubscript{7} & 25 \\ 
+ \hline 
+ NID\textsubscript{8} & 21 \\ 
+ \hline 
+ \end{tabular} 
+ \caption{Example for global Node IDs.} 
+        \label{table_nID_example}
+   \end{minipage}
+            \end{table}
+               	 The subtraction with \emph{-1} is required, when the
+     chosen local node-number is on the left side in x-direction, at the bottom
+     in y-direction and away from the sheet level in z-direction, otherwise the node
+     coordinates are equal to the element coordinates.
+     In the case of the chosen local node-number \emph{6}, with a mesh size of
+     $3 \times 3 \times 1$, the node coordinates can be stated as:
+     $x_{ni} = x_{n1}$, $y_{ni} = y_{n2}$,
+     $z_{ni} = z_{n0}$, see figure \ref{fig_3d_node_numberin}.
+     Note that, even if it is obvious that the global
+   node ID of the desired node is 6, however,
+    in general, this information is not given and needs to be found out. 
+    The goal of this example was to demonstrate, how the reader can find the global node number of the desired node.\\  
+    
+ With all the informations obtained, it is possible to 
+ consider the table \ref{table_nr_3d}. The local node ID is N1, with
+ the section node coordinates in the table,
+  the node coordinated can be expressed as:
+ node coordinates = $(1,2,0)$ and the solution for NID\textsubscript{1} = 6, respectively all the other NID\textsubscript{i} can be obtained from table \ref{table_nID_example}.
+ 
+\begin{table}[!h]
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline 
+ LNN & Node coordinates & Global node ID &
+  \multicolumn{3}{c|}{Node DOF } \\ 
+  &  & & \cline{1-3}
+
+  &  & & x &y &z \\
+\hline 
+N\textsubscript{1} & (x\textsubscript{n1}, y\textsubscript{n1}, z\textsubscript{n1}) & NID\textsubscript{1} & 3*NID\textsubscript{1}-2 & 3*NID\textsubscript{1}-1 & 3*NID\textsubscript{1} \\ 
+\hline 
+N\textsubscript{2} & (x\textsubscript{n1}+1, y\textsubscript{n1}, z\textsubscript{n1}) &NID\textsubscript{2} = NID\textsubscript{1}+(nely +1) & 3*NID\textsubscript{2}-2 & 3*NID\textsubscript{2}-1 & 3*NID\textsubscript{2} \\ 
+\hline 
+N\textsubscript{3} & (x\textsubscript{n1}+1, y\textsubscript{n1}+1, z\textsubscript{n1}) & NID\textsubscript{3} = NID\textsubscript{1}+nely & 3*NID\textsubscript{3}-2 & 3*NID\textsubscript{3}-1 & 3*NID\textsubscript{3}\\ 
+\hline 
+N\textsubscript{4} & (x\textsubscript{n1}, y\textsubscript{n1}+1, z\textsubscript{n1}) & NID\textsubscript{4} = NID\textsubscript{1}-1 & 3*NID\textsubscript{4}-2 & 3*NID\textsubscript{4}-1 & 3*NID\textsubscript{4} \\ 
+\hline 
+N\textsubscript{5} & (x\textsubscript{n1}, y\textsubscript{n1}, z\textsubscript{n1}+1) & NID\textsubscript{5} = NID\textsubscript{1}+NID\textsubscript{z} & 3*NID\textsubscript{5}-2 & 3*NID\textsubscript{5}-1 & 3*NID\textsubscript{5} \\ 
+\hline 
+N\textsubscript{6} & (x\textsubscript{n1}+1, y\textsubscript{n1}, z\textsubscript{n1}+1) & NID\textsubscript{6} = NID\textsubscript{2}+NID\textsubscript{z} & 3*NID\textsubscript{6}-2 & 3*NID\textsubscript{6}-1 & 3*NID\textsubscript{6} \\ 
+\hline 
+N\textsubscript{7} & (x\textsubscript{n1}+1, y\textsubscript{n1}+1, z\textsubscript{n1}+1) & NID\textsubscript{7} = NID\textsubscript{3}+NID\textsubscript{z}& 3*NID\textsubscript{7}-2 & 3*NID\textsubscript{7}-1 & 3*NID\textsubscript{7} \\ 
+\hline 
+N\textsubscript{8} & (x\textsubscript{n1}, y\textsubscript{n1}+1, z\textsubscript{n1}+1) & NID\textsubscript{8} = NID\textsubscript{4} +NID\textsubscript{z}& 3*NID\textsubscript{8}-2 & 3*NID\textsubscript{8}-1 & 3*NID\textsubscript{8} \\ 
+\hline 
+\end{tabular} 
+\caption{
+Illustrates the the relationships between node number, node coordinates,node ID and node DOFs.\\
+LNN = Local Node Numbering,\\
+NID\textsubscript{1} = z\textsubscript{n1}*(nelx+1)*(nely+1)+x\textsubscript{n1}*(nely+1)+(nely+1-y\textsubscript{n1}),\\
+NID\textsubscript{z} = (nelx+1)*(nely+1).
+\label{table_nr_3d}
+}
+\end{table}
+
+ \chapter{Adapt in 2D}
+%%Welche Parameter gibt es und was machen sie - I am using Paraview as a Postprocessor
+%% later you will get more inos about Paraview
+ The Adapt is an optimisation code written in Matlab. The idea of the Adapt is to use topology optimisation algorithms to increase any given structures stiffness.\\
+ 
+ \begin{figure}[!h]
+ \begin{minipage}{0.45\textwidth}
+ The practical use of the adapt is shown in picture
+  \ref{fig_karos}. The purple car body is the structure, 
+  which the Adapt receives and should generate
+   the yellow struts. Through these newly added struts 
+   the stiffness of the
+  Basis structure, represented by the car body, is
+  increased. This is especially important, if motor sport
+  vehicles are to be obtained with a series car body. 
+  
+ \end{minipage}
+\hfill
+ \begin{minipage}{0.45\textwidth}
+  \centering
+    \includegraphics[ width =\textwidth]
+    {path_Image/pngs/Aufgabe_1/karos.png}
+  	\caption{Idea of the Adapt.\protect\footnotemark}  
+  	\label{fig_karos}
+ \end{minipage}
+    \end{figure}  
+\footnotetext{This picture is obtained by Saad Hafsa from BMW.}
+Since topology optimisation dedicates itself to minimize
+ functions, the original code attempts to minimize 
+ the compliance of the structure. Compliance is 
+ the inverse of stiffness, a small compliance \emph{c} results in a great stiffness.
+Before explaining some details about the work-flow it is essential to have a reasonable understanding about some basics, which are introduced in the upcoming section (see \ref{sec_basic_terminology_2d_adapt}).
+
+%Note that all the figures, which are provided in this chapter are generated with Paraview, which will be discussed in section \ref{section_paraview}.
+
+
+\section{Terminology of the 2D Adapt}
+\label{sec_basic_terminology_2d_adapt}
+The aim of the following section is to provide the reader with
+a brief explanation of some frequently used technical words with regard to the Adapt.\\
+
+{\large Basis:} 
+\vspace{0.18cm}
+\hrule 
+\vspace{0.18cm}
+
+ The Basis
+ (see figure \ref{fig_basis_exampl}) 
+ is the mechanical structure, which is given to the Adapt and can be seen as one
+ of the inputs to the optimiser. The Basis can have
+ any structure and is a matrix consisting of 0 and 1, where 0 means void and 1 stands for material. 
+ Up to now the basis was generated in Matlab with the 88 lines of code. 
+The adapt obtains the basis and treats it as the initial structure. Because 
+the Adapt obeys some restrictions,
+ it will not change the origin basis structure at all. Again,
+the Adapt will not change the Basis-structure, it will not change the basis-matrix and so the basis matrix value remains unchanged. \\
+
+\begin{figure}[!h]
+\centering
+ \includegraphics[width= 0.45 \textwidth]
+ {path_Image/pngs/Meet_Adapt/basis_example.png}
+	\caption{The green structure is representative for the Basis.} 
+	\label{fig_basis_exampl}
+\end{figure}
+
+\newpage
+{\large Boundary-Zone (BZ)}:
+\vspace{0.18cm}
+\hrule 
+\vspace{0.18cm}
+The Adapts needs to append the new generated material or
+  structure to the Basis in some way. 
+ The solution is to find the area, which surrounds the Basis.
+ This area is denoted as the Boundary-Zone, 
+(see figures \ref{fig_bz_alone} and
+ \ref{fig_bz_basis}). It is composed of elements, which are 
+ stored in a matrix. This BZ-matrix is a boolean-matrix, which only
+ contains the values \emph{0} or \emph{1}, where
+ \emph{1} means considered element
+ belongs to the BZ
+ and \emph{0} means the current element 
+ does not belong to the BZ. In order to 
+ get some  control over the BZ, the parameter "ep" is introduced.\\
+
+\begin{figure} [!h]
+\begin{minipage}{0.45\textwidth}
+ \includegraphics[width= \textwidth]
+ {path_Image/pngs/Meet_Adapt/BZ_alone_example.png}
+	\caption{Boundary Zone (BZ) without any other zones or structures.} 
+	\label{fig_bz_alone}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+ \includegraphics[width= \textwidth]
+ {path_Image/pngs/Meet_Adapt/BZ_example.png}
+	\caption{Basis (green) and BZ (yellow).} 
+	\label{fig_bz_basis}
+\end{minipage}
+
+\end{figure}
+
+{\large Parameter \emph{ep}: }
+\vspace{0.18cm}
+\hrule 
+\vspace{0.18cm}
+\emph{ep} shall define the normal length or the thickness of the BZ. 
+The ability to define the normal length of the BZ will be described in chapter \ref{chapter_prohibit_edge}.
+An example is given in figures \ref{fig_bz_alone} and
+ \ref{fig_bz_basis}, which have an \emph{ep} of 2 (\textbf{$ep = 2$}).\\
+
+\newpage
+{\large Remaining Elements (RE)}:
+\vspace{0.18cm}
+\hrule 
+\vspace{0.18cm}
+\textit{Available construction space - Basis - BZ}, see table \ref{tabel_basics} and figures \ref{fig_re_example_alone} and \ref{fig_re_bas}. 
+
+\begin{figure} [!h]
+\begin{minipage}{0.45\textwidth}
+ \includegraphics[width= \textwidth]
+ {path_Image/pngs/Meet_Adapt/re_only.png}
+	\caption{Remaining Elements (REs) without any other zones or structures.} 
+	\label{fig_re_example_alone}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+ \includegraphics[width= \textwidth]
+ {path_Image/pngs/Meet_Adapt/basis_re.png}
+	\caption{Basis (green) and REs (blue).} 
+	\label{fig_re_bas}
+\end{minipage}
+\end{figure}
+%%__________________________________
+%%DESIGN ELEMNTS
+%%_____________________________________
+{\large Design Elements (DE)}:
+\vspace{0.18cm}
+\hrule 
+\vspace{0.18cm}
+\textit{Available construction space - Basis} or \textit{RE+BZ}, see figures \ref{fig_de_example_alone} and \ref{fig_de_bas}.\\
+
+\begin{figure} [!h]
+\begin{minipage}{0.45\textwidth}
+ \includegraphics[width= \textwidth]
+ {path_Image/pngs/Meet_Adapt/de_only.png}
+	\caption{Design Elements (DE) without any other zones or structures.} 
+	\label{fig_de_example_alone}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+ \includegraphics[width= \textwidth]
+ {path_Image/pngs/Meet_Adapt/basis_de.png}
+	\caption{Basis (green) and DEs (turquoise).} 
+	\label{fig_de_bas}
+\end{minipage}
+\end{figure}
+
+{\large Adapt Member (AM)}:
+\vspace{0.18cm}
+\hrule 
+\vspace{0.18cm}
+The goal of the optimiser Adapt is to add material to the Basis.
+The added structures or members are called Adapt Members (AM) 
+(see figures \ref{fig_am_example_alone} and \ref{fig_am_bas}).
+The reason why the AMs are not generated around the Basis,
+which only would lead to a thicker Basis, is that the deployment
+of two different penalization exponents. The BZ is 
+penalized with the penalization exponent of
+$p = 3$ and the REs are penalized with $p = 2$.\\
+
+\begin{figure} [!h]
+\begin{minipage}{0.45\textwidth}
+ \includegraphics[width= \textwidth]
+ {path_Image/pngs/Meet_Adapt/only_adapt.png}
+	\caption{Adapt Members (AM) without any other zones or structures.} 
+	\label{fig_am_example_alone}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+ \includegraphics[width= \textwidth]
+ {path_Image/pngs/Meet_Adapt/adapt_basis.png}
+	\caption{Basis (green) and AMs (red).} 
+	\label{fig_am_bas}
+\end{minipage}
+\end{figure}
+
+\newpage
+{\large Parameter \emph{r\textsubscript{min}} and 
+\emph{r\textsubscript{b}}:}
+\vspace{0.18cm}
+\hrule 
+\vspace{0.18cm}
+ r\textsubscript{min} is sensitivity filter
+ radius  for the remaining 
+ elements.
+ It prohibits the occurrence of the checkerboard effect and also defines the minimum member size (number of
+ directly connected elements) of the REs. r\textsubscript{b} serves the same purpose with respect to the BZ. The difference between r\textsubscript{min} and r\textsubscript{b} is that r\textsubscript{min} is  going to filter the BZ and 
+ the REs and r\textsubscript{b} will filter only inside of the BZ (see figure
+\ref{fig_re_bz_filter}). 
+The figure \ref{adapt_basis_bz} shows a result with r\textsubscript{min} = 1.5 and r\textsubscript{b} = 1.5.\\
+
+
+%__________AM+BZ+Basis_________-
+\begin{figure}
+\centering
+ \includegraphics[width= \textwidth]
+ {path_Image/pngs/Meet_Adapt/all_ohne_wire.png}
+	\caption{Green Basis, red AMs and  yellow BZ,
+	 r\textsubscript{min} = 1.5 and r\textsubscript{b} = 1.5.} 
+	\label{adapt_basis_bz}
+\end{figure}

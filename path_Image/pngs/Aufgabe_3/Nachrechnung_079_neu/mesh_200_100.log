@@ -1,0 +1,58 @@
+**************************************************************
+**                                                          **
+**                   OSSmooth 2017.2.0.16                   **
+**                                                          **
+**     Surface Reconstruction and Optimization Software     **
+**                                                          **
+**                                                          **
+**************************************************************
+**    COPYRIGHT (C) 1996-2016     Altair Engineering, Inc.  **
+**    All Rights Reserved. Copyright notice does not imply  **
+**    publication. Contains trade secrets of Altair         **
+**    Engineering, Inc. Decompilation or disassembly of     **
+**    this software is strictly prohibited                  **
+**************************************************************
+
+
+Input file: "C:/Users/q395478/C_ALL/FOLDERS/0702/Nachrechnung/mesh_200_100.fem"
+Output file: "C:/Users/q395478/C_ALL/FOLDERS/0702/Nachrechnung/mesh_200_100_oss.fem"
+Log file: "C:/Users/q395478/C_ALL/FOLDERS/0702/Nachrechnung/mesh_200_100.log"
+
+Node(s): 20301
+Group(s): 1
+Element(s): 20000
+
+Reading Bulk file "C:/Users/q395478/C_ALL/FOLDERS/0702/Nachrechnung/mesh_200_100.fem" ...
+Reading SH file "C:/Users/q395478/C_ALL/FOLDERS/0702/Nachrechnung/densities.sh" ...
+done.
+
+
+Creating isosurface ...
+done.
+
+Laplacian smoothing of topology optimization ...
+done.
+
+Writing Bulk file "C:/Users/q395478/C_ALL/FOLDERS/0702/Nachrechnung/mesh_200_100_oss.fem" ...
+Node: 24543
+Group: 1
+Element: 23350
+done
+
+output file:                  C:/Users/q395478/C_ALL/FOLDERS/0702/Nachrechnung/mesh_200_100_oss.fem
+type of surface:              smooth isosurface
+iso threshold:                0.505
+laplacian feature angle:      30
+maximum smoothing error:      0.398429
+average smoothing error:      0.0169157
+number of nodes:              24543
+number of elements:           23350
+average edge length:          0.510821
+
+End of OSSmooth Execution.
+---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+Jul 25 2017  16:43:06
+---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+
+
+

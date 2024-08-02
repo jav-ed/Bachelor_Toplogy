@@ -1,0 +1,28 @@
+\documentclass[11 pt]{article}
+
+\begin{document}
+Beschreibug der Einzelnen Lastäflle, die in der Arbei vorkommen werden.
+
+1) MBB
+2) Cantilever
+3)  Mitchell
+
+Before explaining how the 3d-code works, it is necessary to understand how the 2d code works. A number of simplifications are itrodcued to simplify the  2d Matlab code. First, the  considered design domain is not assumed to be triangularly, but square. Therefore the the domain can be discretized by square finite elements.\\
+A short explanation of the term "discretize": Imagine having any  mechanical structure, for example a desk. Now it is possible to disassemble the desk into multiple small components. And instead of disassembling  the desk in a geometricaly random manner, the components are all disassemblembled square.\\
+%Picture of a rectangular Discretizion
+
+Back to the topic, since the finite elemnts are discretized by square, the numbering of elements and nodes becomes simpler. To see that by yourself, please see Pic
+%Picture of numbering the elements
+
+
+The numbering starts from the upper left corner, it increases from left to right and afterwards from top to down. The upper left corner is located in the first row and th first column. The  upper right corner is located in  first row and last column, the lower left corner can be find at  last row and first coulm and finally the lower corner ca be find at last row and last colum.
+
+
+Upper left corner [ r = 1, c = 1 ];
+Upper right corner [ r = 1, c = last ];
+Lower left corner [ r = last, c = 1 ];
+Lower right corner [ r = last, c = last ];
+
+ After reaching the right upper corner, the counting continues  by jumping to the next column respectilvey jumping in  negative y-direction. 
+
+\end{document}

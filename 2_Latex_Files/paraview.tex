@@ -1,0 +1,268 @@
+\chapter{Appendix}
+
+%______________matlab 2d BZ_____________
+\begin{lstlisting}[
+style=Matlab-editor,
+basicstyle=\mlttfamily,
+escapechar=`,
+label=lst_finding_BZ,
+caption={2D Matlab code to find the Boundary Zone}
+]
+% Main Step 1 - Find neighbour-elements
+BZ = zeros (nely,nelx);  % Boundary-Zone-matrix
+for i = 1:nelx
+    for j = 1:nely
+        if Basis (j,i) > Basis_recognise_threshold              
+            if i-ep > 0                     % Previous el in x
+                BZ (j,i-ep) = 1;
+            end
+            if i+ep < nelx                  % Next el in x
+                BZ (j,i+ep) = 1;
+            end
+            if j-ep > 0                     % Previous in y
+                BZ (j-ep,i) = 1;      
+            end
+            if j+ep < nely                  % Next el in y
+                BZ (j+ep,i) = 1;
+            end
+        end
+    end
+end
+
+% Main Step 2 - Remove Basis entries
+for j = 1:nely              %Number of elements in y
+    for i = 1:nelx          %Number of elements in x
+        if Basis (j,i) > Basis_recognise_threshold
+            BZ(j,i) = 0;
+        end
+    end
+end
+\end{lstlisting}~\\
+
+\newpage
+
+%______________matlab 3d BZ_____________
+\begin{lstlisting}[
+style=Matlab-editor,
+basicstyle=\mlttfamily,
+escapechar=`,
+label=lst_finding_BZ_3D,
+caption={3D Matlab code to find the Boundary Zone}
+]
+% Main Step 1 - Find neighbour-elements in 3D
+    BZ = zeros (nely,nelx,nelz);                % Boundary-Zone-matrix
+    for i = 1:nelx
+       for j = 1:nely
+           for k = 1:nelz
+            if Basis(j,i,k) > Basis_recognise_threshold        
+                if i-ep > 0                     % Previous element in x
+                    BZ (j,i-ep,k) = 1;
+                end
+                if i+ep < nelx                  % Next element in x
+                    BZ (j,i+ep,k) = 1;
+                end
+                if j-ep > 0                     % Previous element in y
+                    BZ (j-ep,i,k) = 1;      
+                end
+                if j+ep < nely                  % Next element in y
+                    BZ (j+ep,i,k) = 1;
+                end
+                if k-ep > 0                    % Previous element in z
+                    BZ (j,i,k-ep) = 1;
+                end
+                if k+ep < nelz                 % Next element in z
+                    BZ (j,i,k+ep) = 1;
+                end 
+               end
+           end
+        end
+    end
+    
+% Main Step 2 - Remove Basis entries
+    for j = 1:nely
+        for i = 1:nelx
+            for k = 1:nelz
+             if basis (j,i,k) > Basis_recognise_threshold   
+                BZ(j,i,k) = 0;
+             end
+            end
+        end
+    end
+\end{lstlisting} ~\\
+
+
+%
+%______RE 2D Matlab____________-
+
+\begin{lstlisting}[
+style=Matlab-editor,
+basicstyle=\mlttfamily,
+escapechar=`,
+label=lst_2d_RE,
+caption={2D Matlab code to find the Remaining Elements (RE)}
+]
+% As we know: RE = DS -BZ
+RE = DE;
+% Set overlapping elements to 0
+for i = 1:nelx
+    for j = 1:nely
+        if BE(j,i) == 1
+         RE (j,i)= 0; 
+        end
+    end
+end
+\end{lstlisting}~\\
+%______________matlab 3d RE_____________
+\begin{lstlisting}[
+style=Matlab-editor,
+basicstyle=\mlttfamily,
+escapechar=`,
+label=lst_3d_RE,
+caption={3D Matlab code to find the Remaining Elements (RE)}
+]
+% As we know: RE = DS -BZ
+RE = DE;
+% Set overlapping elements to 0
+for i = 1:nelx
+    for j = 1:nely
+%         Taking the third axis into account
+        for k = 1:nelz
+            if BE(j,i,k) == 1
+             RE (j,i,k)= 0; 
+            end
+        end
+    end
+end
+\end{lstlisting} ~\\
+
+
+
+\section{Matlab and 3D displaying}
+\label{section_paraview}
+Matlab is a very powerful commercial software and for 2D topology results it is equipped with a lot of features. However, for 3D topology optimisation Matlab often meets its limits, because
+it has difficulties in rotating a 3D object.
+Matlab is capable of rotating and zooming in and out, but
+as the number of the elements increases, Matlab needs
+up to minutes to perform one rotation. Any 3D object is meant to be rotated, zoomed in and out, instantly, therefore as an alternative Post-processor ParaView is introduced.
+
+\section{ParaView as postprocessor}   
+%supported formats
+ParaView is an application for interactive and scientific visualization, is available for Windows, Linux and Macos and is mostly used for CFD-solutions (Computer Fluid Dynamics). It is often said, that ParaView wound be the most powerful open-source post-processor. And compared to Matlab this was already the first big advantage which Praview brings along, it is free. ParaView's size is beyond the scope of this bachelor thesis, nevertheless,
+some beneficial features regarding 3D topology optimisation are presented.
+
+%You can roate, zoom in, zoom out, overlapp all fluently
+\subsection{ParaView General Features }
+Features, e.g.  Rotation and Zooming in real time, working with big models, the possibility of a portable installation (especially helpful, if admin-rights are missing) and the numerous of supported File-Readers. However, there are other function, which demands a bit of explanation. Note, all the explanations are based on the Version 5.6.0.
+
+\subsection{Load a .vtk in ParaView}
+Run ParaView (inside the bin folder, click on paraview) click on File/Open and choose a .vtk-file, or simply use Drag and Drop into the Pipeline Browser (see figure \ref{fig_para_thres}). Search for the Properties Tab, which is located beneath the Pipeline Browser and click on 'Apply'. Now the default  colormap is set to 'solid' (see the blue framed color-map in figure \ref{fig_Para_solid_color} and  in figure\ref{fig_para_thres} the colormap is set to adapt). Change the solid to your predefined colormap (see subsection \ref{subsection_generate_vtk}) and finally change \emph{Outline} (see the yellow framed view-option in figure \ref{subsection_generate_vtk}) to Surface or Surface with Edges.
+
+\begin{figure}[!h]
+\begin{minipage}{0.55 \textwidth}
+\subsection{ParaView feature 1:  Make use of the threshold-filter}
+\label{subsection_paraview_threshold}
+SIMP aims to penalize intermediate densities, in such a manner, that the low densities are penalized stronger than high densities (see subsection  \ref{subsection_SIMP}), in order to improve the convergence behaviour. However, SIMP still cannot prohibit intermediate densities completely. Therefore a tool, which obeys a threshold-restriction.
+ This restriction enables it to only plot, e.g. after reaching a trigger point $\rho \geq 0.1$ or  inside an interval  $0.2 \leq \rho \leq 0.7$ (see figures \ref{fig_threshold_05} and \ref{thres_hold_02_07}.) \\
+
+\textit{Instruction:} In order to apply the threshold-filter, load any .vtk-file with Drag and Drop or by File/Open, make sure that the eye-icon in the Pipeline Browser is checked (see figure \ref{fig_para_thres}), click on the red framed (see figure \ref{fig_para_thres}) threshold-icon. Now, beneath the Pipeline Browser in the Properties Tab, the user can choose between the Scalars and a minimum and maximum value and has to confirm by clicking on\emph{ Apply}.
+\end{minipage}
+\hfill
+\begin{minipage}{0.4 \textwidth}
+  \includegraphics[scale = 1]
+  {path_Image/pngs/Paraview/thres_hold.png}
+	\caption{ParaView - blue framed eye-icon and red framed threshold.} 
+	\label{fig_para_thres}
+\end{minipage}
+
+\end{figure}
+
+\begin{figure}[!h]
+\begin{minipage}{0.45\textwidth}
+\centering
+  \includegraphics[width = \textwidth]
+  {path_Image/pngs/Paraview/paraview_thr_01.png}
+	\caption{Threshold between 0.2 and 0.7} 
+	\label{thres_hold_02_07}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+  \includegraphics[width = \textwidth]{path_Image/pngs/Paraview/paraview_thr_02.png}
+	\caption{Threshold between 0.1 and 1} 
+	\label{fig_threshold_05}
+\end{minipage}
+\end{figure}~\\
+
+
+\begin{figure}[!h]
+\begin{minipage}{0.55 \textwidth}
+\subsection{ParaView feature 2: Colormaps}
+Since the Adapt results are composed of intermediate densities a colourful highlighting of different densities can be benefaction,in order to study the  Adapt results precisely or stress specific regions. Therefore ParaView provides a completely adjustable colorbar. \\
+
+\textbf{Instructions:} Assuming having loaded a .vtk file, click on the desired .vtk file, make certain the blue eye-icon is set to visible (see figure \ref{fig_para_thres}) then beneath the Pipeline Browser, click in the in Properties/Coloring at the Edit-button (see figure \ref{fig_Para_edit_color}).
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+ \centering
+   \includegraphics[width = 0.85 \textwidth]{path_Image/pngs/Paraview/ParaV_edit_col.png}
+ 	\caption{ParaView - red framed colorbar edit button.} 
+ 	\label{fig_Para_edit_color}
+\end{minipage}
+ \end{figure} 
+ 
+ 
+
+\subsection{ParaView feature 3: Progress-Animation-View}
+Topology optimisation is a numerically progress, it performs many tasks in order to obtain the first solution and because the first solution has to satisfy a abort-criterion (see flowchart \ref{fig_flowchart_88}), otherwise the progress revise all the steps. Topology optimisation is based on iterations and each iteration exhibits results. For the purpose of understanding the decisions, which were made by the Adapt, a animation can be helpful. This animation is meant to store  all the information about each iteration and show them like animation.\\
+
+\textbf{Instructions:} The user has to generate for each iteration a .vtk-file. This can  be done by implementing the code, presented in Listing \ref{lst_vtk}, in a loop. it is necessary to follow a certain naming pattern  \cite{.29.11.2018b}. After having generated all the needed vtk-files, the series should be moved to a empty folder. In contrast to a single .vtk-file a series of .vtk-files cannot be loaded into ParaView by Drag and Drop, in order to play the the .vtk-animation, the user has to click on File/Open and search the .vtk-series (the .vtk-series is going to be showed as a group). 
+
+\begin{figure}[!h]
+ \centering
+   \includegraphics[width =  \textwidth]{path_Image/pngs/Paraview/ParaV_play.png}
+ 	\caption{ParaView - red framed colorbar play button and blue framed  solid-colormap.} 
+ 	\label{fig_Para_solid_color}
+ \end{figure} 
+ 
+% ::::::::::::::::::::::::::____________________________
+
+\subsection{ParaView feature 4: Seeing inner structures,  CT-Scan, Cut and Volume}
+In 3D Topology optimisation  the structure is able to be filled with holes and since these holes can be at surface, as well as inside the structure, these holes may not be identified. In the following, three method are presented, in order to get a look at the inner structure.\\
+
+After having loaded a .vtk-file the user can click on the yellow framed
+\emph{Outline} arrow (figure \ref{fig_Para_solid_color},
+then select \emph{Volume}. The second method is to chose \emph{clip}, press
+\textit{SHIFT+CTRL+ENTER} and then type \textit{clip}. This function enables
+a cut-view in a desired axes. A similar function is called \emph{slice}, press
+\textit{SHIFT+CTRL+ENTER} and then type \textit{slice}. With this function it is possible to get
+a 2D insight of a 3D model. In order to have a better control of
+the a slice-view, to see
+the 3D results like in a CT-scan, open a new layout by clicking
+on the plus symbol (at the bottom of the fgure \ref{fig_Para_solid_color}), then
+scroll down and click on slice view. 
+ 
+% ::::::::::::______________________________________
+
+\subsection{Matlab implementation: Generate .vtk-files}
+\label{subsection_generate_vtk}
+After having explained, why ParaView can bee seen as a reasonable post-processor, the reader
+ probably would like to know, how to convert a matrix from Matlab to a readable ParaView-file. According to \cite{.29.11.2018}, ParaView has 73 different file-Reader and one of these file-Reader can read .stl-files. However, for the aim to export a Matlab 3D figure into ParaView, the data format .vtk is required.\\
+
+There are a lot of ways to obtain a vtk-writer and in the following, one method is introduced. Every reader, free of charge, can download a vtk-writer from \cite{.}. After having said that, two  modifications in the vtk-writer.m file needs to be done. \\
+
+The first one is at line 105, the 'nx, ny, nz' needs to be replaced with 'nx+1, ny+1, nz+1' and the second adjustment is located at line 11, the expression \emph{POINT}\_DATA must be replaced with \emph{CELL}\_DATA.
+With the command in the Listing \ref{lst_vtk} the vtkwriter.m-file will generate a .vtk-file. The first input parameter is a string, it must end with a .vtk-file-extension, the second parameter needs to be set as shown in  the Listing \ref{lst_vtk}, the third parameter  defines the name of the ParaView scalars and also the name of the colormap. It is recommended to name is like the matrix and the last parameter is the matrix from Matlab, which is desired to be plotted in ParaView. The described procedure is valid for 2D and 3D matrices.
+
+\begin{lstlisting}[
+style=Matlab-editor,
+basicstyle=\mlttfamily,
+escapechar=`,
+label=lst_vtk,
+caption={Code to run the vtkwriter.m-file, for 2D and 3D.}
+]
+vtkwrite_basis('save_name_DE.vtk','structured_points','DE',DE_matrix);
+\end{lstlisting}
+ 
+ ParaView is able to store multiple set of scalars respectively Matlab matrices, in one .vtk-file. This comes handy, when it is necessary to have the Basis and the Adapt in one file.
+
+

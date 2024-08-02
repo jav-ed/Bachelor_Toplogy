@@ -1,0 +1,155 @@
+%% Creator: Inkscape inkscape 0.92.3, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file '88_lines_adapt_visio.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{332.56895088bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.36584333)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{88_lines_adapt_visio.pdf}}%
+    \put(0.10089154,1.32509208){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Adapt\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{88_lines_adapt_visio.pdf}}%
+    \put(0.82360303,1.34001849){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}88 lines of \end{tabular}}}}%
+    \put(0.85094575,1.31016506){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}code\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{88_lines_adapt_visio.pdf}}%
+    \put(0.26371591,1.02901434){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Initialisation\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{88_lines_adapt_visio.pdf}}%
+    \put(0.10056985,1.2018966){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Input\end{tabular}}}}%
+    \put(0.15438194,1.2018966){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}-\end{tabular}}}}%
+    \put(0.10754855,1.17204317){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Data\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{88_lines_adapt_visio.pdf}}%
+    \put(0.42884477,1.2648848){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}nelx, nely, rmin\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{88_lines_adapt_visio.pdf}}%
+    \put(0.49564171,1.16751964){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}rb\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{88_lines_adapt_visio.pdf}}%
+    \put(0.84477521,1.2018966){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Input\end{tabular}}}}%
+    \put(0.8985873,1.2018966){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}-\end{tabular}}}}%
+    \put(0.85175393,1.17204317){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Data\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{88_lines_adapt_visio.pdf}}%
+    \put(0.51252807,1.07685462){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Find BZ\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{88_lines_adapt_visio.pdf}}%
+    \put(0.0569895,1.03081383){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Find DE\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{88_lines_adapt_visio.pdf}}%
+    \put(0.51229141,1.03081383){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Find RE\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{88_lines_adapt_visio.pdf}}%
+    \put(0.0454074,1.07685462){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Find Basis\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{88_lines_adapt_visio.pdf}}%
+    \put(0.49559036,0.98477304){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Prepare FEM\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{88_lines_adapt_visio.pdf}}%
+    \put(0.81333842,1.02901434){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Initialisation\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{88_lines_adapt_visio.pdf}}%
+    \put(0.27639038,0.85508075){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Prepare\end{tabular}}}}%
+    \put(0.29024467,0.82522733){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Filter\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{88_lines_adapt_visio.pdf}}%
+    \put(0.82601286,0.85411134){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Prepare\end{tabular}}}}%
+    \put(0.83986715,0.8242579){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Filter\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=16]{88_lines_adapt_visio.pdf}}%
+    \put(0.01479051,0.94027379){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensitivity Filter \end{tabular}}}}%
+    \put(0.06483651,0.91042035){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}for RE\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=17]{88_lines_adapt_visio.pdf}}%
+    \put(0.01479051,0.85257816){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensitivity Filter \end{tabular}}}}%
+    \put(0.06507318,0.82272472){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}for BZ\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=18]{88_lines_adapt_visio.pdf}}%
+    \put(0.48411609,0.87382778){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensitivity Filter for  \end{tabular}}}}%
+    \put(0.47077238,0.84397436){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}available construction \end{tabular}}}}%
+    \put(0.55318998,0.81412092){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}space\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=19]{88_lines_adapt_visio.pdf}}%
+    \put(0.14210051,0.46759776){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensitivty \end{tabular}}}}%
+    \put(0.12878104,0.43774434){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}penalization\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=20]{88_lines_adapt_visio.pdf}}%
+    \put(0.69840965,0.46759776){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensitivty \end{tabular}}}}%
+    \put(0.68509018,0.43774434){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}penalization\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=21]{88_lines_adapt_visio.pdf}}%
+    \put(0.05544303,0.32461878){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Penalization \end{tabular}}}}%
+    \put(0.05426531,0.29476537){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}factor for BZ\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=22]{88_lines_adapt_visio.pdf}}%
+    \put(0.03508292,0.60557167){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Penalization \end{tabular}}}}%
+    \put(0.03366792,0.57571823){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}factor for RE\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=23]{88_lines_adapt_visio.pdf}}%
+    \put(0.788544,0.68682705){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Penalization \end{tabular}}}}%
+    \put(0.8027685,0.65697361){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}factor for \end{tabular}}}}%
+    \put(0.80556868,0.62712017){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}available \end{tabular}}}}%
+    \put(0.7801565,0.59726675){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}coonstruction \end{tabular}}}}%
+    \put(0.82154172,0.56741331){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}space\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=24]{88_lines_adapt_visio.pdf}}%
+    \put(0.4117418,0.67784139){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Deploy FEM\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=25]{88_lines_adapt_visio.pdf}}%
+    \put(0.35712906,0.58737363){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Calculate the objective \end{tabular}}}}%
+    \put(0.43015726,0.55752019){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}function\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=26]{88_lines_adapt_visio.pdf}}%
+    \put(0.37737838,0.47572003){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensitivity Analysis\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=27]{88_lines_adapt_visio.pdf}}%
+    \put(0.41565788,0.33774611){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Optimality \end{tabular}}}}%
+    \put(0.43152161,0.30789267){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Criteria\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=28]{88_lines_adapt_visio.pdf}}%
+    \put(0.43169806,0.17566428){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Statisfy\end{tabular}}}}%
+    \put(0.39565729,0.14581084){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Cancel\end{tabular}}}}%
+    \put(0.46251489,0.14581084){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}-\end{tabular}}}}%
+    \put(0.47013089,0.14581084){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}criteria\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=29]{88_lines_adapt_visio.pdf}}%
+    \put(0.08246895,0.20863498){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}End\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=30]{88_lines_adapt_visio.pdf}}%
+    \put(0.26885806,0.20863489){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Yes\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=31]{88_lines_adapt_visio.pdf}}%
+    \put(0.96964748,0.47308714){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}No\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=32]{88_lines_adapt_visio.pdf}}%
+    \put(0.63882633,0.01958074){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}New in Adapt\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=33]{88_lines_adapt_visio.pdf}}%
+    \put(0.86172188,0.07100478){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}88 \end{tabular}}}}%
+    \put(0.89256354,0.07100478){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}-\end{tabular}}}}%
+    \put(0.90017954,0.07100478){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l} \end{tabular}}}}%
+    \put(0.90580349,0.07100478){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}lines\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=34]{88_lines_adapt_visio.pdf}}%
+    \put(0.87910429,0.01958074){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Equal\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=35]{88_lines_adapt_visio.pdf}}%
+    \put(0.67694987,0.07100478){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Adapt\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=36]{88_lines_adapt_visio.pdf}}%
+  \end{picture}%
+\endgroup%

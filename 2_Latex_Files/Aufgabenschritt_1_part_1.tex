@@ -1,0 +1,168 @@
+\chapter{Expand a existing 2D-adapt code on 3D}
+\section{Why expanding the Adapt on 3D?}
+In order to be able to make use of a topology optimiser in practice, 
+it is necessary to be able to optimise in three dimensions. A \textit{2.5 D}alternative solution would be, to extrude the 2D Adapt- results into the third axis. However, this work 
+will present a optimiser, which is going to consider all the three axes at the beginning of the topology optimisation as an 3D optimiser.
+
+\section{Expanding the Adapt on 3D}
+\cite{Liu.2014} already provide a Matlab code, which is used as a 3D topology optimiser. This 3D topology optimiser is based on the 88 lines of code by \cite{Andreassen.2011}, which
+ means the 169 lines of code \cite{Liu.2014} can be taken as the basis code.
+This signifies that only the parts
+that make the differences between the Adapt 
+and the 88 lines of code need to be extended to 3D, which reduces the 
+effort of 3D extension.
+ The flowchart \ref{fig_flow_88_adal}  gives an overview about the difference in work flow between the Adapt and the 88 lines of code.
+ The deviations from the 88 lines respectivley the 169 lines of code will
+ be explained in this section. \\
+
+The first task in order to extend the Adapt on 3D would be discretizing
+ the mechanical structures in 3D, therefore the parameter \textbf{nelz} is introduced, which stands for the number of element in the depth-direction (\textbf{z}). Since the 169 lines \cite{Liu.2014} is taken as the
+ basis-code, the first task is only named, without any more informations.  \\
+
+\begin{figure}[!h]
+ \def\svgwidth{\textwidth}
+ \input{path_Image/88_lines_adapt_visio.pdf_tex}
+ \caption{The flowchart shows the difference between the Adapt and 88 lines of Code}  
+ \label{fig_flow_88_adal}          % Label für Verweise 
+ \end{figure}
+ 
+\subsection{ Adapt specific parameter }
+Since \textbf{r\textsubscript{b}, e\textsubscript{p} and  r\textsubscript{min}} (see subsection \ref{sec_basic_terminology_2d_adapt}) are  scalar
+values they do not need to be modified and furthermore 
+these parameters are independent of the number of dimensions. \\
+
+\subsection{Finding the \textbf{Basis}} 
+\label{subsection_finding_basis}
+
+In 2D, the optimiser, looped though the whole Basis-matrix (see figure \ref{fig_basis_exampl}) and verified whether the matrix-entry, which is a density value between 0 and 1, is greater than a predefined Basis-recognise-threshold. If the considered Basis-matrix-entry is greater than
+the Basis-recognise-threshold, then this entry
+ will be treated as an element, which actually belongs to the Basis.
+ Otherwise the element is not going to be treated as part of the Basis.
+ The Basis-recognise-threshold is required up to now, because, the Basis is generated with the 169 line of code in 3D or with the 88 lines of Code in 2D and both
+  matrix-results contain intermediate densities.
+  It is possible to generate any matrix by the Matlab user
+   and provide it to the Adapt as the Basis. 
+   Later on, in section \ref{chapter_external_basis} 
+   the ability of inclusion of any external Basis is provided.\\
+   
+In 3D the optimiser has to loop through the 3D-Basis-matrix and has to do the same verification, as explained for the 2D-Adapt (see Listing \ref{lst_finding_BZ} line 5 and \ref{lst_finding_BZ_3D} line 6).
+ The only difference is that the Basis-Matrix has a size of \textbf{$n \times m \times j$}, where  $(n , m,j) \in \mathbb{N} $ .\\
+
+
+\subsection{Finding the \textbf{Design Elements}}
+\label{subsection_finding_DEs}
+All the DEs are stored inside the DE-matrix (see figures  \ref{fig_de_example_alone} 
+and \ref{fig_de_bas}). 
+The difference between 
+the 2D- and 3D-DE-matrix is the same as explained
+in subsection \ref{subsection_finding_basis}. 
+After finding by means of 
+the Basis-recognise-threshold, which element
+ in the mesh belongs to the Basis and which not, 
+ the following task can be performed: all the elements,
+  which do not belong to the Basis must assigned 
+  to the DE-matrix. Therefore with respect to 
+  expending the Adapt to 3D, the main adjustment 
+  is not only to apply the Basis-recognise-threshold 
+  in two axes, but also in the third axis.\\
+
+\subsection{Finding the \textbf{Boundary Zone}}
+\label{subsectin_find_BZ}
+The BZ is a matrix, which
+is required to penalize the surrounding elements of the Basis with a higher
+penalization exponent. This is essential to prevent all AMs to be 
+applied around the Basis, which would only lead to a thickening of
+the Base. 
+In order to find the BZ in 2D with the assumption,
+ already knowing which elements belongs to the Basis and which not, 
+ two main steps need to be accomplished 
+ (see figures \ref{fig_bz_alone} and \ref{fig_bz_basis}). 
+The first step is, to loop over the Basis 
+elements and store all the neighbour 
+elements of the Basis in the BZ-matrix. 
+The neighbour elements are  composed of 
+the next and previous element in the horizontal 
+direction, and the next and previous elements in the vertically
+ direction. Since the parameter
+  \emph{ep} defined the thickness of the BZ,
+  the Adapt loops over Basis and stores the \emph{ep-th} neighbour
+   element inside the BZ-matrix. In other words,
+    if the current element belongs to the basis, then
+     the optimiser is going to the next \emph{ep}  
+     and to the previous \emph{ep} neighbour element 
+     in the horizontally and vertically direction and will store their density-values inside the BZ-matrix, see figure \ref{fig_find_BZ_2D}. \\
+
+\begin{figure}[!h]
+ \centering
+ \def\svgwidth{0.45\textwidth}
+ \input{path_Image/BZ_1_2d.pdf_tex}
+ \caption{The green element represents a Basis-element and the yellow elements with a distance of \emph{ep} are the neighbour elements. }  
+ \label{fig_find_BZ_2D}          % Label für Verweise 
+\end{figure}
+
+The next step is to overlap the BZ and the Basis and in case of an overlapping, 
+the overlapped elements inside the BZ are 
+getting a value of 0. The reason for that is, that 
+ only the identification of the Basis surrounding elements is desired. 
+ Therefore all
+ the elements which belongs to the Basis are not 
+ allowed to be inside the BZ-matrix (see Matlab code \ref{lst_finding_BZ} for a better understanding).\\
+
+In order to find the BZ in the third dimension, 
+a loop over the three dimensional Basis and the extension of the BZ search
+is required. Regarding extension of the BZ-search, the
+ neighbour elements by \emph{ep} next and \emph{ep}  previous 
+ elements in the depth-direction needs to be considered.
+(\textbf{z}). Note that, before verifying the
+ Basis has a neighbour, it is necessary to check, 
+ whether the running index does not exceed the 
+ matrix dimension. For example, if the matrix 
+ Basis have the dimensions $100 \times 50 \times 20$, a
+  neighbour at the position $A(100,51,21)$ is not going 
+  to exist (see the if condition in lines 6,9,12 and 
+  14 in the the Listing \ref{lst_finding_BZ}).
+  The 3D method for finding the BZ is presented in
+   Listing \ref{lst_finding_BZ_3D}. \\
+
+\subsection{Finding the \textbf{Remaining Elements}}
+\label{subsectin_find_REs}
+Since the BZ-matrix is already obtained,
+ the BZ-matrix and the DE-matrix, the RE-matrix can be obtained by 
+ overlapping the DE-matrix and the BZ-matrix.
+  The only difference between the REs and DEs is that the RE do not have any BZ-elements. This means each BZ-element needs to be removed from the RE-matrix, or, its density needs to be set to 0. The 3D  extension only requires to take the third axis into account. The 2D  code and the 3D code for obtaining the RE-matrix can be obtained in Listening \ref{lst_2d_RE} and \ref{lst_3d_RE}.
+  The set of elements can be seen on figures \ref{fig_re_example_alone} and \ref{fig_re_bas}.\\
+
+\subsection{Sensitivity filter for remaining elements and boundary zone }
+\label{subsection_SF_RE_BZ}
+
+In the 169 lines of code, the sensitivity filter is applied on all the element. Because the Adapt distinguish between the RE and the BZ, it is 
+required to have two different filter, which filters in their respective zones. The
+RE-filter considers all the REs and the BZ, whereas the BZ-filter only filters
+elements inside the BZ.
+The adjustment for the REs-filter can be achieved by a
+if-statement, which examines, whether the elements are part of the RE-matrix and the same apllies for the BZ-filter.
+By means of a if-condition, it can be examined, whether a element belongs to the BZ. In case the current considered element belongs to the BZ-matrix, it is going to be considered by the BZ-filter otherwise not (see figure \ref{fig_re_bz_filter}).
+
+\begin{figure} [!h]
+\centering
+ \def\svgwidth{0.85\textwidth}
+ \input{path_Image/re_bz_filter.pdf_tex} 
+ \caption{The procedure of the REs-filter and the BZ-filter in 2D, where the green squared elements are the Basis and the yellow elements represents the surrounding BZ.}    % Bildunterschrift 
+ \label{fig_re_bz_filter}  
+ \end{figure}
+ 
+\subsection{Sensitivity penalization of the BZ and the REs }
+This task can be performed with the explanations in the subsections \ref{subsectin_find_REs}
+respectively \ref{subsection_finding_DEs}. The penalization 
+exponent does not change by extending to 3D. 
+The REs are still penalized with an exponent, or 
+a value  of \textit{2} and the BZ is penalized with an exponent
+ of \textit{3}. According to the figure \ref{fig_SIMP_sceme_modified} factor \textit{3} is more severe in penalization.
+
+
+
+
+
+
+
+

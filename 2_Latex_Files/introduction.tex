@@ -1,0 +1,66 @@
+\chapter{Introduction}
+
+The construction of a mechanical component comes along with mechanical requirements, such as
+stiffness, solidity, mass-restrictions, costs and
+whether the desired component offers manufacturability.
+In order to meet these challenges, optimization algorithms are useful tools. 
+Most algorithms are deployed iteratively and affect the
+geometrical properties.\\
+
+The so called \emph{topology optimisation} is a well established method
+used by engineers,
+for example in the field of aeronautical, civil, materials and mechanical structural optimisation.
+One example for
+topology optimisation can be
+stated as, for a given mass-restriction and a 
+design domain, topology optimisation distributes
+ material in order to minimize an objective function.
+ The design domain can be an area  or a volume.
+The optimisation algorithms discretize
+the geometry and decide for each
+element whether it needs to be void (holes) or filled with material.\\
+
+The Adapt is a topology optimiser, written in Matlab and up to now,
+it can be used to increase the stiffness of a 2D structure.
+Therefore the optimiser obtains a
+structure, which is a matrix from Matlab.
+Each entry of the matrix represents a discretized element 
+containing values between 0 and 1.
+These values stand for the the density of each element.
+After having loaded a structure into
+the Adapt, the following tasks
+are performed, locating non design- and design-space,
+structural analysis, with a defined load-case, sensitivity analyse,
+sensitivity filtering and update of
+density distribution using the Optimality Criterion (OC). The Adapt serves
+to generate connection-zones on the Basis and connect
+multiple connection-zones with
+struts instead of thicken the loaded structure or Basis. \\
+
+The Adapt can be used in every discipline for which it is desired
+to increase the overall stiffness of a structure, e.g.
+the racing department at the company BMW would like to use the bodywork of an existing production
+car for motor sports. In order to make this possible
+the higher loads that occur during racing must
+be  absorbed by the body of the series car.
+To ensure that the existing body series does not fail,
+its stiffness needs to be increased.
+It would be conceivable to create a completely new
+body series, however, this would be inefficient for economic reasons.\\
+
+In order to be able to use the Adapt on a complete vehicle,
+the Adapt needs various modifications. First it needs
+to work in 3D, it should not only be able to load
+structures generated with Matlab, but any given 2D or
+3D structure from a CAD-software. It would also be
+conceivable to control the distance of the individual
+attached bindings, as well as the thickness of the individual bindings.\\
+
+The main aim of this work is to extend the Adapt for 3D load cases,
+verify whether the 3D Adapt ensures an increase
+of stiffness, load any 2D or 3D structure into the Adapt and enable
+the optimization of an Adapt load case, which is slightly different from
+the Basis load case.
+
+
+

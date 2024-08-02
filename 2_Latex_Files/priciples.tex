@@ -1,0 +1,796 @@
+\chapter{Principles of structural optimisation}
+ 
+%% Grundlagen der Struktur-Optimierung
+ \section{Term Definitions}
+ \label{subsection_term_princip}
+ The basic principle of optimisation is to find the best possible or at least improved solution under given conditions. In structure optimisation, these conditions are represented by parameters in mathematical functions. An example for optimisation, outside of the structure-optimisation-topic, can be, finding the fastest way to a location, with
+ the restriction to only use bicycle roads.
+ In the case of structural optimisation, optimisation means to fulfil the 
+ objective function with given restrictions, e.g. in case of
+ minimizing the compliance, the optimiser distributes material and
+ the restriction can be the volume fraction.\\
+ 
+ The objective of the optimisation problem is often maximization or minimization, this could be for example minimization of time consuming or maximizing stiffness. Note that maximization problems can easily be transformed to minimization problems by maximization the negative objective function. Mathematically the optimisation problem is most often formulated as minimisation of the objective functions. In order to make some modification, e.g. to the structure, among others sensitivities or heuristics can be used.\\
+ 
+The following table shall help the reader to understand the meaning of common topology optimisation technical terms.
+
+%_____________________TABELLE 1 ________________________________________
+\begingroup
+\renewcommand{\arraystretch}{2} % Default value: 1
+ \begin{longtable}{L{0.2\textwidth} L{0.8\textwidth}}
+ \hline 
+ \rowcolor{Green}
+ \multicolumn{1}{c}{Term} & \multicolumn{1}{c}{Explanation} \\ 
+ \hline
+ \rowcolor{Gray1} 
+ Structure & The word structure is always referred to a mechanical structures. This can be anything, which consist of
+ a solid material, e.g. a desk, a chair or a steal beam. \\ 
+\hline
+ Compliance & The compliance is equivalent to the strain energy and also it is the inverse is of stiffness, which basically means a high stiffness result in a small compliance. The compliance is abbreviated with the letter \textit{c}.\\
+ \hline 
+ \rowcolor{Gray1} 
+ Material distribution & Material distribution means, that the optimiser has to define at which places, inside of the available construction space, mass needs to be set.\\
+
+ \hline
+Mechanical property & A mathematical description of a property, which is going to be optimised, e.g. mass, displacement or compliance (strain energy).\\
+ \hline 
+ \rowcolor{Gray1} 
+Discretization & Any mechanical structure, for example a desk, fills an
+area or volume. This area or volume can be disassembled into smaller
+sub-areas or sub-volumes. Each sub-area or sub-volume is considered as
+an element.
+A high number of elements results in a fine mesh and analogously a small number results in a coarse mesh. See also figures \ref{fig_2d_discr} \ref{fig_3d_discr}. \\
+
+ \hline
+ Grids & Grids are mostly understand to be elements for a simulation, which are discretized in a squared or rectangular order. Because of this order, the structure is well defined. \\
+ \hline
+  \rowcolor{Gray1} 
+Mesh & The term mostly refers to a more general expression. In this case, the discretization does not have to be squared, it can be done by various shapes of elements and there is also the possibility to mix elements of different types in the same mesh.
+
+Note, there is no official distinction
+between the terms \textit{Grid} and
+ \textit{Mesh}. However, they might be used in practical in slightly different ways. "The following definitions are more guidelines of common usage than actual rules and you may hear people use them interchangeably in many cases"\footnotemark \\
+\hline
+Optimiser & The optimiser is the short term of optimisation algorithm or optimisation code.\\
+
+\hline
+ \rowcolor{Gray1} 
+Design variable & The optimiser follows the rules or instructions which were given through mathematical functions. These functions require parameters to perform their task. If a parameter contributes to obtain a structure, then the parameter is called design variable.
+A design variable is parameter, which is modified by the optimiser e.g. the density 
+is one of most common design variable in topology optimisation. \\
+ \hline
+ \footnotetext{https://scicomp.stackexchange.com/questions/17606/whats-the-difference-between-grid-based-and-mesh-based-methods-for-pdes, 29.11.2018 - 19:36}
+% 
+%\centering \def\arraystretch{1.5} \small
+%
+%%________________ZWEIITE TABELLE____________________________________________
+%
+% \begin{tabular}{|p {3cm}|p {12cm}|}
+Volume fraction & In topology optimisation milieu volume fraction is better known by its abbreviation \textit{volfrac}. In the case of this work, it defines how much volume of the initial volume is allowed to be used to generate a topology optimised structure.
+ \textit{Volfrac} is a value between 0 and 1, where 0 means, no material at all and 1 means, the optimiser must not act at all, because it has not reduce the initial volume.
+ 
+$$ volfrac = \frac{current \; Volume}{total \; Volume}$$\\
+
+\hline
+ \rowcolor{Gray1} 
+
+ %Hier eine Refernez einbauen zu einem Bild
+Design domain & The design domain is the construction space containing design variables. \\
+ \hline 
+
+Non design domain & The non design is the
+domain of the construction space containing structural elements,
+but no design variables. The non design can be
+e.g. the domain, which is restricted by initial 
+conditions like boundary conditions. \\
+\hline
+  \rowcolor{Gray1} 
+
+Available construction space & The available construction space is the complete domain, which can contain mass in order to generate a mechanical structure.
+
+\textit{available construction space = design domain + non design domain} \\
+
+\hline
+
+Objective function: & The objective function will be minimized
+by the optimiser. The definition of the objective
+function subjects to a mathematical function, e.g. f(x,u). 
+For structural optimisation issues the objective function is going to be a structure property or a mathematical expression of multiple structure properties. \\
+\hline
+ \rowcolor{Gray1} 
+
+Constraint & The constraint can be defined as a value of an output that has to be matched by the optimizer, e.g. \textit{volfrac = 0.3}.\\
+\hline
+
+Optimisation problem & Collection of the objective functions, constraints and the design variables as mathematical functions. An example for a complete optimisation problem could be for instance minimizing the mass of a structure by following the stiffness-constraints and also following the maximum wall thickness of a structure.\\
+\hline
+ \rowcolor{Gray1} 
+Sensitivity & The sensitivity is the derivative of a structure property with respect to a design variable, e.g. the derivation of compliance with respect to design
+variable (density).\\
+\hline
+\label{tabel_basics}
+\end{longtable}
+\endgroup
+
+ 
+% __________Types of structual optimisation______________________
+\section{Types of structual optimisation} 
+Figure \ref{fig_struc_arten} shows a classification of structural optimisation tasks based on the type of the design variable. \\
+
+{\large{\textbf{Construction:}} }
+The choice of the construction is the most general way of optimising. Therefore this method of optimising, mostly leads to the best results. Since
+generally the optimiser has no implementation for
+choosing a design type, the optimiser is not restricted to any kind of design type.
+The decision of the design type defines whether the loaded structure needs to be a metal profile,a truss or a composite.\\
+
+ {\large{\textbf{Topology optimisation:}}}
+ The design variables defines the position and order of the structure elements
+ \cite{Schumacher.2013}.
+ A doughnut and a ring have the same topology,
+ the same applies to a ring and a cup of tea. 
+ All the mentioned examples exhibits a hole. With topology optimisation the resulting shape or topology is not known, the number of holes and components like beams or
+ rods are not decided yet. From a given available construction space the purpose is to find the optimum distribution of material and voids. In
+ the case of this work, the solution of the problem can
+ be obtained, by discretization using the finite element method (FEM) (for more information see section \ref{section_FEA})
+ and dividing the available construction space into discrete elements (mesh or grid).
+ The upcoming task is then accomplished
+ by means of optimisation methods, which decide whether an
+ element is material
+ respectively mass, or not. This result is a 0 - 1 problem, the elements either exists or not,
+ which is basically an integer problem with two different possible outcomes for each element, a so called ISE topology (Isotropic Solid or Empty elements)
+ \cite{Olason.2010}.\\
+ 
+The number of different combinations is $2^N$, where N is devoted as the number of elements. For example, a model with $10 000$ elements
+ would result in $2^{10000}$ numbers of combinations.
+ With the
+ assumption an evaluation of
+ one million combinations per second,
+ testing all of the combinations would take about $3.17 \times 10^{2996}$ years 
+\cite{Olason.2010}.\\
+
+The two mainly used methods for solving optimisation
+ problems with respect to ISE topology (Isotropic Solid or Empty elements) 
+ are the homogenization and density method. 
+ Other methods, which will not be further explained, can make use of genetic algorithms or heuristic methods such 
+ as ESO (Evolutionary Structural Optimization) or BESO (Bi-directional Evolutionary Structural Optimisation). For a detailed compare of some optimisation
+  method see \cite{Sigmund.2013}.\\
+  
+   {\large{\textbf{Shape optimisation:}}}
+The design variables describe the shape of the components border.
+The geometry of the component can be changed, however an insertion of new
+structural elements such as cavities and struts are not allowed \cite{Schumacher.2013}.
+Shape optimisation does not affect or does not change the topology and
+thus the number of holes, beams and rods of the structure will not be changed
+\cite{Olason.2010}.\\
+
+{\large{\textbf{Sizing optimisation:}}}
+Sizing optimization is known for being the simplest form of structural optimization. The shape of the strcuture is
+known already and the objective is to optimize the strucutre. This optimisation is performed by adjusting
+sizes of the components. The design variable can be stated as the size of the structural elements, e.g.
+the diameter of a rod or the thickness of  a beam \cite{Olason.2010}. \\
+
+\begin{large}
+\textbf{Material:}
+\end{large}
+The choice of the material has a big impact on almost every mechanical property of the
+whole structure.\\
+
+\begin{figure} [!h]
+ \centering
+ \def\svgwidth{0.85\textwidth}
+ \input{path_Image/arten_struktur.pdf_tex}
+ \caption{Different types of structural optimisation. } % Bildunterschrift 
+ \label{fig_struc_arten}   % Label für Verweise 
+\end{figure} 
+
+
+%________________TOPOLOGY________________________________
+
+\subsection{Homogenization method}
+The desired result of topology optimization is
+to find  that the domain either contains material or exhibits void regions. Since it is difficult to work mathematically with integer variables, thus relaxation is usually applied, 
+like in the density method. Homogenisation is
+ to be applied on holey or 	porous material. The concept 
+ of homogenization is it to homogenize porous or 
+ holey material. In order to obtain informations about
+ material properties microscopic cells are evaluated. 
+ These microscopic cells are constituted of massive 
+ material and a domain without any material. 
+ This formulation serves to simulate porous material behaviour.
+ Some common types of micro-structure are solids with square or rectangular holes. 
+ Since the macroscopic properties of the microscopic cells are not isotropic an orientation angle is also introduced. 
+ The elasticity mostly needs to be calculated numerically, e.g. by means of finite elements method and then interpolating between these values. 
+ In order to obtain a structure, which is manufacturable, it is desired not to have any intermediate desensitise. This can be achieved by penalizing the intermediate densities. The homogenization methods brings by themselves a penalization along. Because the 'intern' penalization of the homogenisation method often does not suit the requirement, some addition penalization needs to be applied. For more information see \cite{Bendse.1988}\\
+
+The optimising is performed similarly to the density method then
+the problem is discretized with FEM (Finite element Method) with the design variables (hole sizes and rotation) assumed to be constant over each element
+\cite{Olason.2010}. The homogenisation method demands more than one design variable per element, which results in a disadvantage because it requires more optimising effort than the density method.
+ 
+\subsection{Density method}
+As mentioned topology optimisation can be defined, e.g.
+ as a binary (0-1) programming problem that has the goal to find the optimal material layout (solid and void) for minimizing an objective function. The density based method relaxes the integer-based topology optimisation problem on artificial continuous material densities. By applying relaxation, intermediate densities between 0 and 1 is allowed and as a consequence the objective and the constraint functions become continuous. Furthermore they become differentiable, this permits the usage of gradient solvers to find a minimum of the objective function. The density method is basically a simplification of the homogenisation method and in contrast to the homogenization method the density method only has one design variable, which can be, e.g. the density or elasticity. 
+ 
+\section{Material interpolation}
+Material interpolation schemes allow intermediate densities, but has the purpose to penalize the intermediate densities
+ at the same time in order to obtain the original binary requirement. The so called SIMP (Solid Isotropic Material with Penalization, \cite{Bendse.1988}) and RAMP (Rational Approximation of Material Properties) are two well known examples for material interpolations schemes, both methods supply a relation between (relative) elements density \textbf{$\rho_e$} and the stiffness
+ $E_e$.
+  For a detailed compare of these two material interpolation schemes see \cite{Hvejsel.2011}.\\
+
+\subsection{Solid Isotropic Material with Penalization (SIMP)}
+\label{subsection_SIMP}
+SIMP is a material interpolation scheme, which serves to penalize intermediate densities. Penalization of intermediate densities is necessary due to desired binary results (intermediate densities can not be manufactured). Since 2007 there are two available SIMP approaches, the classical SIMP by \cite{Bendse.1988} and the modified SIMP by \cite{Sigmund.2007}. The only mathematically difference between those two variants is the additional term $E_{min}$, see \eqref{eq_simp_1}.
+ SIMP attempts to eliminate intermediate densities, but it is not able to eliminate all of them. However, it still affects the convergence behaviour of the design variable $\rho$ in a beneficial way, the convergence becomes faster,
+ $x_e \approx 0 $ or $x_e = 1$.\\
+ 
+According to \cite{Bendse.1988} SIMP can be expressed as: 
+\begin{align}
+E_e(x_e) = x_{e}^p E_{0}, \quad x_e \in [0,1]
+\end{align}
+and according to \cite{Sigmund.2007} SIMP can be expressed (figure \ref{fig_SIMP_sceme_modified}) as:
+
+\begin{equation}
+\label{eq_simp_1}
+ E_e(x_e) = E_{min}+ x_e^p (E_0-E_{min}), \quad x_e \in [0,1]
+ \end{equation}\\
+ 
+Notation: The index \emph{e} shall define the current considered element, \textbf{$x$}
+ is the design variable, in the case of this work
+  it is the density \textbf{$\rho $}, \textbf{$p$} stands for 
+  the penalization exponent, \textbf{$E_{0}$} is the stiffness of the material, \textbf{$E_{min}$ }is a very small stiffness assigned
+   to void regions in order to prevent the stiffness matrix from becoming singular 
+  and \textbf{$E_e$} is the new calculated Young's modulus with the usage of SIMP. The penalty exponent \textbf{$p$}
+   is mostly chosen to be \textbf{$1<p \leq 3$}. The bigger \textbf{$p$} gets, the more intermediate densities are avoided or penalized. By defining \textbf{$p>>3$} the number of locally minima may increases that much, that the optimisation results getting worse \cite{Dienemann.2018}.\\
+
+The classical SIMP approach avoids the stiffness to be zero, thus the the densities has to be \textbf{$ 0 < x_{min} \leq x_{e} \leq 1 $}, where \textbf{$x_{min}> 0 $}. As mentioned\textbf{ $E_{e} = 0$} would cause a singular stiffness matrix. The modified SIMP allows a straight forward implementation of filters, e.g. the heaviside projection filter
+\cite{Andreassen.2011}. For more information about
+ different kinds of filter inclusive the mentioned heaviside filters see
+ \cite{Andreassen.2011} and to obtain a wider compare between the origin SIMP and the modified SIMP see \cite{Sigmund.2007}. \\
+
+%______________SIMP_TIKZ________________________
+\begin{figure}[!h]
+\centering
+\inputTikZ{1}{path_Image/SIMP_modified.tikz}
+\caption{Modified SIMP material-interpolation-scheme, with $E_{min} = 1 \times 10^{-4}$. }
+\label{fig_SIMP_sceme_modified}
+\end{figure}
+
+\subsection{RAMP- Rational Approximation of Material Properties}
+RAMP (RAMP- Rational Approximation of Material Properties, Stolpe und Svanberg 2001) also interpolates the Young's modulus and is defined as follow: 
+
+\begin{equation}
+E_e = \dfrac{x_e}{1+p \;(1-x_e)} \; E_{0e} \quad ,
+\label{math_equation}
+\end{equation}
+
+where\textbf{ $x$} is the design variable, in the case of this work it is the density $\rho $, \textbf{$p$} stands for the penalization exponent, \textbf{$E_{0e}$} is the given Young's modulus for the considered element\textsubscript{e} and\textbf{ $E_e$} is the new calculated Young's modulus with the usage of RAMP (see figure \ref{fig_RAMP_sceme}). In general RAMP is explicit restricted to convex material interpolation, for a more detail introduction please be referred to \cite{Stolpe.2001}.\\
+
+
+%TikZ Grafik
+\begin{figure}[!h]
+\centering
+\inputTikZ{1}{path_Image/RAMP.tikz}
+\caption{RAMP material-interpolation-scheme.}
+\label{fig_RAMP_sceme}
+\end{figure}
+%
+
+\section{Objective Function by using SIMP}
+\label{subsection_obj_SIMP}
+
+Each element is assigned a density \textbf{$\rho_{e}$ } that determines its Young's modulus. Since there are two known approaches of the SIMP, the objective function, where the objective is to minimize compliance, can be written in two ways.\\
+
+\cite{Sigmund.2001} defines the objective function by using the SIMP defined by \cite{Bendse.1988} as:
+
+\begin{align}
+\underset{x}{min} : c(x) = U^TKU =& \sum_{e = 1}^N (x_e)^pu_e^Tk_0u_e
+\label{equ_objective_func_99}
+\\ \nonumber \\
+\nonumber
+\text{subject to} \quad & \frac{V(x)}{V_0} = f \\
+\nonumber
+& KU = F \\
+\nonumber
+&0<x_{min} \leq x \leq1
+\end{align}
+\cite{Andreassen.2011} defines the objective function by using the modified SIMP created by \cite{Sigmund.2007} as:
+
+\begin{align}
+\underset{x}{min} = c (x) = U^TKU = \displaystyle &\sum_{e = 1}^N E_e(x_e)u_e^Tk_0u_e 
+\label{equ_objective_function_88} \\
+\nonumber \\ \nonumber 
+ \text{subject to}: \quad &\frac{V(x)}{V_0} = f \\\nonumber
+& KU = F\\\nonumber
+& 0\leq x_{min} \leq1, \nonumber
+\end{align}
+
+%\begin{align*}
+%\underset{x}{min} = c (x) = U^TKU = & \sum_{e = 1}^N E_e(x_e)u_e^Tk_0u_e \\\\
+% \text{subject to}: \quad &\frac{V(x)}{V_0} = f \\
+%& KU = F\\
+%& 0\leq x_{min} \leq1
+%\end{align*}
+
+% $$min_x: c({x}) = U^TKU = \sum_{e = 1}^N E_e(x_e)u_e^Tk_0u_e$$
+%subject to: $$ \frac{V(x)}{V_0} = f$$
+%$$:KU = F$$
+%$$:0\leq x_{min} \leq1$$
+
+where \textbf{$c$} is the compliance, \textbf{$U$} 
+and \textbf{$F$} are the global displacement- and force-vector, \textbf{K} is the global stiffness matrix, \textbf{$u_e$} 
+is the displacement vector for the considered element,
+ \textbf{$k_0$} is the stiffness matrix for the considered
+  element with unit Young's modulus,
+   \textbf{$x$} is the vector of the design variables, in case of this work
+   the design variable is the density, \textbf{$N (nelx*nely)$} is the number of elements used to discretize the available construction space, where \textbf{$nelx$} and \textbf{$nely$} are the number of elements in horizontal \textbf{(x)} and in vertical \textbf{(y)} direction. \textbf{$V(x)$} and \textbf{$V_0$} is the 
+   actual material volume and available construction space volume, respectively and \textbf{$f(volfrac)$} is the predefined volume fraction.
+%unit bedeutet Einheit - kg and m
+Furthermore, \textbf{$p$} is the penalization exponent and \textbf{$E_e(x_e)$} is given as in the equation \ref{eq_simp_1}
+
+
+ 
+\section{FEA - Finite Element Analysis}
+\label{section_FEA}
+Over the time the Finite Element Method (FEM) has proved to be a reliable method for obtaining informations about mechanical structures. And because it not always possible to collect information about mechanical structures by means of analytical methods, it is suggested using the numerically FEA (Finite Element Analysis). The basic progress of a FEA can be described as follow: 
+
+\begin{enumerate}
+\item{ Considering a (complex) problem},
+\item{ Breaking it into small pieces (a \textbf{finite} number of \textbf{elements})},
+\item{ Simplifying  each piece (simple relationships)}, 
+\item {Re-assembling the pieces (matrix equations)},
+\item {Solving the problem (matrix manipulation).}\\
+\end{enumerate}
+
+By talking about a (complex) problem, it is meant to choose any mechanical structure, then create a model (1D, 2D, 3D) of the desired structure, define material properties like (\textbf{$\rho$}) the densitiy, mass, the Young's modulus \textbf{$E$} and shear modulus \textbf{$G$}.\\
+The second step from the list is, to break the complex structure
+ into small pieces, which can be expressed as \textbf{discretization}
+ (see figures \ref{fig_2d_discr} \ref{fig_3d_discr}). The pieces are called \textbf{elements}, which can have any geometrical shape.
+ In most cases in 2D, triangles or squares, respectively in 3D tetrahedra or hexaeder, are used.
+ In figure \ref{fig_2d_discr} a object is discretized sqared with green nodes is presented. The pieces respectively the elements can be find in the figure \ref{fig_2d_discr} as integer numbers. \\
+
+\begin{figure} [!h]
+ \centering
+ \def\svgwidth{\textwidth}
+ \input{path_Image/2d_discrezisierung.pdf_tex}
+ \caption{2D squared discretized object with green nodes} % Bildunterschrift 
+ \label{fig_2d_discr}   % Label für Verweise 
+\end{figure} 
+
+ However, in this thesis the elements are discretized squared, or in 3D
+ with hexaeder (voxels). By increasing the number of elements, the results
+ converges to the reality, but as a drawback the computations-time and the storage place increases. Note, the number of the \textbf{elements} is \textbf{finite}. Discretization does not only come along with elements, but also with \textbf{nodes}, see figure \ref{fig_2d_discr} and figure \ref{fig_3d_discr}. 
+ 
+ \begin{figure} [!h]
+ \centering
+ \def\svgwidth{\textwidth}
+ \input{path_Image/3d_discrezisierung.pdf_tex}
+ \caption{3D squared discretized (voxels) object with green nodes} % Bildunterschrift 
+ \label{fig_3d_discr}   % Label für Verweise 
+\end{figure} 
+
+These nodes are points where elements attach or meet each other. Furthermore the nodes hold loads and constraints. Again, in FEM the loads and constraints are not applied on elements, rather they are applied on nodes. In 2D by means of squared discretziation each discretized element has 4 nodes, respectively in 3D by means of voxel discretied elements each element has 8 Nodes. In 2D there are two possible
+main translatory axes to apply a load on it. To choose a load
+axes, the so called 'Degree Of Freedom' (DOF) is introduced. \\
+
+This work uses the FEA for stress analysis, therefore the DOF can be interpreted as a displacement of a node that is resisted by the
+attached element(s). More general, a DOF is some property of a node, e.g. temperature or charge that relates to the attached element stiffness matrix.\\
+
+Each node has 2 translatory DOFs, one 
+for the horizontally (x) axis and one for the vertically (y) axis.
+ In 3D there are 3 available translatory 
+ axes and therefore each Node has 3 DOFs, in x,y, and z direction. In the figure \ref{fig_2d_one_ele} a graphical explanation is appended. The figure \ref{fig_2d_one_ele} only shows one discretized element, the green dots are the nodes, the turquoise arrows stand for the displacement in the horizontally (x) direction and the yellow arrows are representative for the displacement in the vertically (y) direction. Each Node has a x- and y-displacement. Anlaogusly to 2D, in 3D each Node has 3 displacement axes (x,y,z).
+
+\begin{figure} [!h]
+\begin{minipage}{0.5\textwidth}
+ \centering
+ \def\svgwidth{\textwidth}
+ \input{path_Image/Element_2D.pdf_tex}
+ \caption{One 2D squared discretized element with 4 Nodes and DOFs.} % Bildunterschrift 
+ \label{fig_2d_one_ele}   % Label für Verweise 
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\textwidth}
+In the third step, each element is considered and described. In this work a
+ a linear relationship between stress and strain or between force and displacement can be seen. The relation between all the elements need to be defined by e.g. using compatibility or continuity equations. With that having said, the relations are going to be linked together and this will result in a large system of equations, which are assembled then into a matrix form. In the case of this thesis, the matrix has the form of: 
+$$\mathbf{F = KU}$$
+Where $\textbf{F}$ is the force-vector, $\textbf{K}$ is the stiffness-matrix and $\textbf{U}$ is the displacement vector.\\
+\end{minipage}
+\end{figure} 
+
+The force vector $\textbf{F}$ is also known as the nodal load vector, it is a vector containing all the component loads at the nodes. The displacement vector $\textbf{U}$, or the nodal displacement vector is the vector which contains all the DOFs of a model.
+The last step is to solve the matrix system. In most cases the stiffness is known, because it is a material property and since the external forces are applied by the user they are also known.
+The only unknown is the displacement vector. In order to solve the problem, the inverse of the stiffness matrix \textbf{$K^{-1}$} is required. The stiffness matrix is always square ($n \times n$).\\
+
+Regarding general knowledge about stiffness matrices, a explanation of a singular matrix may be helpful.
+A matrix $A$, which cannot be inverted
+(\textbf{$A^{-1} $ is not possible}), because
+the determinant is $0$ and therefore \textbf{$A$} has no unique solution to the system of equations. This usually happens, when a the system is violated though incorrect or incomplete constraints.
+
+\subsection{What kind of problems can FEA solve}
+FEA can solve any kind of Boundary Value Problems (BVP). BVPs are mathematical problems in which the quantity of interest is defined by a differential equation throughout a region, with initial values only known in specific areas (the region's boundaries). Some common BVP's in Engineering:
+\begin{itemize}
+\item{Stress Analysis},
+\item{ Heat Transfer},
+\item{ Fluid Flow}, 
+\item {Electric or Magnetic Potential.}
+\end{itemize}
+ 
+ \subsection{3D finite element analysis}
+ In this section, an explanation of the 3D-FEA-task for solving the objective function (minimizing the the compliance), which is mostly based on \cite{Liu.2014}, is provided. Following \\
+ the modified SIMP (equation \ref{eq_simp_1}) and Hooke's law for (equation \ref{equ_hook_1} ) the three-dimensional constitutive matrix for an \textbf{isotropic} (equal material properties for every direction) element \textbf{$e$} is interpolated from void ($\rho = 0$) to solid ($\rho = 1$) as:
+ 
+ \begin{align} 
+ C_e(x_e) = C _e(x_e)C_e^0 ,\quad x_e \in [0,1]
+\end{align} 
+where \textbf{$C_e^0$} is the constitutive matrix with unit Young's modulus.
+The constitutive matrix can be found in the equation \eqref{equ_constit}.
+%unit = Einheit (kg)
+ \begin{align} 
+ E_e(x_e) = E_{min}+ x_e^p (E_0-E_{min}), \quad x_e \in [0,1]
+ \tag{\ref{eq_simp_1}} 
+\end{align}
+\begin{align} 
+\sigma = E \varepsilon
+\label{equ_hook_1}
+\end{align}
+where \textbf{$\sigma$} is denoted as stress, \textbf{$E$} is the Young's modulus, \textbf{$\varepsilon$} is the strain.\\
+
+\begin{align}
+C_e^0 = \frac{1}{(1+\nu)(1-\nu)}
+\begin{split}
+\begin{bmatrix}
+1-\nu & \nu & \nu & 0 & 0 & 0 \\ 
+\nu & 1-\nu & \nu & 0 & 0 & 0 \\ 
+\nu & \nu & 1-\nu & 0 & 0 & 0 \\ 
+0 & 0 & 0 & (1-2\nu)/2 & 0 & 0 \\ 
+0 & 0 & 0 & 0 & (1-2\nu)/2 & 0 \\ 
+0 & 0 & 0 & 0 & 0 & (1-2\nu)/2\\
+\end{bmatrix} 
+\end{split},
+\label{equ_constit}
+\end{align}
+where \textbf{$\nu$} is the Poisson's ratio of the \textbf{isotropic} material.\\
+
+\begin{figure}[!h]
+\begin{minipage}{0.45\textwidth}
+By applying the finite element method, the elastic solid element stiffness matrix, can be obtained as the volume integral of the elements constitutive matrix \textbf{$C_e(x_e)$} and of the strain-displacement matrix \textbf{$B$} (see equation \ref{equ_strain_displace_B_matrix}) in the form of:\\
+
+\begin{align*}
+k(x_e) = \int_{-1}^{+1} \int_{-1}^{+1}\int_{-1}^{+1} B^T C_e(x_e) B d  \xi_1 d \xi_2 d \xi_3 
+\end{align*}
+
+\begin{align*}
+k(x_e) = \int_{-1}^{+1} \int_{-1}^{+1}\int_{-1}^{+1} B^TC_e \quad , 
+\end{align*}
+where $\xi_i$ (i = 1,2,3) are the natural coordinates as shown in Fig. \ref{fig_3d_integral}, and the cube coordinates of the corners are
+shown in Table
+\ref{tab_cube}. The strain-displacement
+ matrix \textbf{$B$} related the strain \textbf{$\varepsilon$} and the nodal displacement \textbf{$u$}, \textbf{$\varepsilon = Bu$}. Using the SIMP method, the element stiffness matrix is interpolated as:\\
+
+\begin{align}
+k_e(x_e) = E_e(x_e)k_e^0 \quad , 
+\end{align} 
+where
+\begin{align}
+k_e^0 = \int_{-1}^{+1}\int_{-1}^{+1}\int_{-1}^{+1}B^TC^0Bd\xi_1 d \xi_2 d \xi_3
+\label{equ_stiffnes_matrix_2}
+\end{align}
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\textwidth}
+ \centering
+ \def\svgwidth{\textwidth}
+ \input{path_Image/Element_3D_integral.pdf_tex}
+ \caption{Green dots as nodes and the natrual coordinates $\xi_1,\xi_2,\xi_3$.} 
+ \label{fig_3d_integral}   % Label für Verweise 
+ \vspace{0.2cm}
+\captionof{table}[]{The eight-node hexahedral (cubic) with node numbering convention \cite{Andreassen.2011}}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline 
+Node & $\xi_1$ & $\xi_2$ & $\xi_3$ \\ 
+\hline 
+1 & -1 & -1 & -1 \\ 
+\hline 
+2 & +1 & -1 & -1 \\ 
+\hline 
+3 & +1 & +1 & -1 \\ 
+\hline 
+4 & -1 & +1 & -1 \\ 
+\hline 
+5 & -1 & -1 & +1 \\ 
+\hline 
+6 & +1 & -1 & +1 \\ 
+\hline 
+7 & +1 & +1 & +1 \\ 
+\hline 
+8 & -1 & +1 & +1 \\ 
+\hline 
+\end{tabular} 
+\label{tab_cube}
+\end{center}
+
+\end{minipage}
+\end{figure}
+
+Replacing values in \eqref{equ_stiffnes_matrix_2}, the $24 \times 24$ element stiffness matrix \textbf{$k_e^0$} for an eight-node hexahedral respectively a cubic element is:
+\begingroup
+\renewcommand*{\arraystretch}{1.6}
+\begin{align}
+k_e^0 = \frac{1}{(\nu +1)(1-\nu)}
+\begin{bmatrix}
+k_1 & k_2 & k_3 & k_4 \\ 
+k_2^T & k_5 & k_6 & k_4^T \\ 
+k_3^T & k_6^T & k_5^T & k_2^T \\ 
+k_4 & k_3 & k_2 & k_1^T
+\end{bmatrix} ,
+\end{align}
+\endgroup
+where $k_m$ (m = 1,...6) are $6 \times 6$ symmetric matrices and it can be noted that \textbf{$k_e^0$} is a positive definite matrix.\\
+
+
+\begingroup
+\renewcommand*{\arraystretch}{1.2}
+\begin{align*}
+k_1 =& \begin{bmatrix}
+k_1 & k_2 & k_2 & k_3 & k_5 & k_5 \\ 
+k_2 & k_1 & k_2 & k_4 & k_6 & k_7 \\ 
+k_2 & k_2 & k_1 & k_4 & k_7 & k_6 \\ 
+k_3 & k_3 & k_4 & k_1 & k_8 & k_8 \\ 
+k_5 & k_6 & k_7 & k_8 & k_1 & k_2 \\ 
+k_5 & k_7 & k_6 & k_8 & k_2 & k_1
+\end{bmatrix}
+&k_ 2 =& \begin{bmatrix}
+k_9 & k_8 & k_{12} & k_6 & k_4 & k_7 \\ 
+k_8 & k_9 & k_{12} & k_5 & k_3 & k_5 \\ 
+k_{10} & k_{10} & k_{13} & k_7 & k_4 & k_6 \\ 
+k_6 & k_5 & k_{11} & k_9 & k_2 & k_{10} \\ 
+k_4 & k_3 & k_5 & k_2 & k_9 & k_{12} \\ 
+k_{11} & k_4 & k_6 & k_{12} & k_{10} & k_{13}
+\end{bmatrix}\\ \nonumber \\
+k_3 =& \begin{bmatrix}
+k_6 & k_7 & k_4 & k_9 & k_{12} & k_8 \\ 
+k_7 & k_6 & k_4 & k_{10} & k_{13} & k_{10} \\ 
+k_5 & k_5 & k_3 & k_8 & k_{12} & k_9 \\ 
+k_9 & k_{10} & k_2 & k_6 & k_{11} & k_5 \\ 
+k_{12} & k_{13} & k_{10} & k_{11} & k_6 & k_4 \\ 
+k_2 & k_{12} & k_9 & k_4 & k_5 & k_3
+\end{bmatrix}
+&k_4 =& \begin{bmatrix}
+k_{14} &k_{ 11} & k_{11} & k_{13} & k_{10} & k_{10} \\ 
+k_{11} & k_{14} & k_{11} & k_{12} & k_9 & k_8 \\ 
+k_{11}& k_{11} & k_{14} & k_{12} & k_8 & k_9 \\ 
+k_{13} & k_{12} & k_{12} & k_{14} & k_7 & k_7 \\ 
+k_{10} & k_9 & k_8 & k_7 & k_ {14} & k_{11} \\ 
+k_{10}& k_8 & k_9 & k_7 & k_{11} & k_{14}
+\end{bmatrix}\\ \nonumber \\
+k_5 =& \begin{bmatrix}
+k_1 & k_2 & k_8 & k_3 & k_5 & k_4 \\ 
+k_2 & k_1 & k_8 & k_4 & k_6 & k_{11} \\ 
+k_8 & k_8 & k_1 & k_5 & k_{11} & k_6 \\ 
+k_3 & k_4 & k_5 & k_1 & k_8 & k_2 \\ 
+k_5 & k_6 & k_{11} & k_8 & k_1 & k_8 \\ 
+k_4 & k_{11} & k_6 & k_2 & k_8 & k_1
+\end{bmatrix}
+&k_6 =& \begin{bmatrix}
+k_{14} & k_{11} & k_7 & k_{13} & k_{10} & k_{12} \\ 
+k_{11} & k_{14} & k_7 & k_{12} & k_9 & k_2 \\ 
+k_7 & k_7 & k_{14} & k_{10} & k_2 & k_9 \\ 
+k_{13} & k_{12} & k_{10} & k_{14} & k_7 & k_{11} \\ 
+k_{10} & k_9 & k_2 & k_7 & k_{14} & k_7 \\ 
+k_{12} & k_2 & k_9 & k_{11} & k_7 & k_{14}
+\end{bmatrix} 
+\end{align*}
+\endgroup
+ 
+and
+\begin{align*}
+&k_1 = -(6\nu-4)/9 \quad && k_2 = 1/12\\
+&k_3 = -1/9 \quad && k_4 = -(4\nu-1)/12\\
+&k_5 = (4\nu-1)/12 \quad && k_6 = 1/18\\
+&k_7 = 1/24 \quad && k_8 = -1/12\\
+&k_9 = (6\nu-5)/36 \quad &&k_{10} = -(4\nu - 1)/24\\
+&k_{11} = -1/24 \quad &&k_{12} = (4\nu -1)/24\\
+&k_{13} = (3\nu -1)/18 \quad &&k_{14} = (3\nu -2)/18\\
+\end{align*}
+
+The global stiffness matrix \textbf{$K$} is obtained by the assembly of element-level counterparts $k_e$ \cite{Liu.2014}.
+$$K(x) = A_{e=1}^nk_e(x_e) = A_{e=1}^nE_e(x_e)k_e^0 \quad,$$
+where n is the total number of elements. Using the global versions of the element stiffness matrices \textbf{$K_e$} and \textbf{$K_e^0$}, is expressed as:
+
+$$\sum_{e=1}^n \; K_e(x_e) = \sum_{e=1}^nE_e(x_e)K_e^0 \quad,$$
+where \textbf{$K_e^0$} is a constant matrix. Using the interpolation function in \eqref{eq_simp_1}, it can be observed that
+$$K(x) = \sum_{e=1}^n  \; [E_{min}+x_e^p(E_0 -E_{min}] \; K_e^0$$
+Finally, the nodal displacement vector \textbf{$U(x)$} is the solution of the equilibrium equation \cite{Liu.2014}\\
+$$K(x)\;U(x) = F \quad,$$
+
+where \textbf{$F$} is the vector of the nodal forces.\\
+
+%strain ist die Dehung
+The strain-displacement matrix \textbf{$B$} is defined for an eight-node hexahedal element by:
+
+\begingroup
+\renewcommand*{\arraystretch}{1.6}
+\begin{align}
+B =\begin{bmatrix}
+\dfrac{\partial n_1(\xi_i)}{\partial\xi_1} & 0 & 0 & ... & \dfrac{\partial n_q(\xi_i)}{\partial\xi_1} & 0 & 0 \\ 
+0 & \dfrac{\partial n_1(\xi_i)}{\partial\xi_2} & 0 & ... & 0 & \dfrac{\partial n_q(\xi_i)}{\partial\xi_2} & 0 \\ 
+0 & 0 & \dfrac{\partial n_1(\xi_i)}{\partial\xi_3} & ... & 0 & 0 & \dfrac{\partial n_1(\xi_i)}{\partial\xi_3} \\ 
+\dfrac{\partial n_1(\xi_i)}{\partial\xi_2} & \dfrac{\partial n_1(\xi_i)}{\partial\xi_1} & 0 & ... & \dfrac{\partial n_q(\xi_i)}{\partial\xi_2} & \dfrac{\partial n_q(\xi_i)}{\partial\xi_1} & 0 \\ 
+0 & \dfrac{\partial n_1(\xi_i)}{\partial\xi_3} & \dfrac{\partial n_1(\xi_i)}{\partial\xi_2} & ... & 0 & \dfrac{\partial n_q(\xi_i)}{\partial\xi_3} & \dfrac{\partial n_q(\xi_i)}{\partial\xi_2} \\ 
+\dfrac{\partial n_1(\xi_i)}{\partial\xi_3} & 0 & \dfrac{\partial n_1(\xi_i)}{\partial\xi_1} & ... & \dfrac{\partial n_q(\xi_i)}{\partial\xi_3} & 0 & \dfrac{\partial n_q(\xi_i)}{\partial\xi_1} 
+\end{bmatrix} 
+\label{equ_strain_displace_B_matrix}
+\end{align}
+\endgroup
+
+for \textbf{$i = $}1,2,3 and q = 1,...8. The corresponding shape functions \textbf{$n_q$} in a natural coordinate systems $\xi_i$ are defined by
+\begin{align*}
+n_q(\xi_i) = \dfrac{1}{8}
+\begin{bmatrix}
+(1-\xi_1)(1-\xi_2)(1-\xi_3) \\ 
+(1+\xi_1)(1-\xi_2)(1-\xi_3) \\ 
+(1+\xi_1)(1+\xi_2)(1-\xi_3) \\ 
+(1-\xi_1)(1+\xi_2)(1-\xi_3) \\ 
+(1-\xi_1)(1-\xi_2)(1+\xi_3) \\ 
+(1+\xi_1)(1-\xi_2)(1+\xi_3) \\ 
+(1+\xi_1)(1+\xi_2)(1+\xi_3) \\ 
+(1-\xi_1)(1+\xi_2)(1+\xi_3)
+\end{bmatrix} 
+\end{align*}
+
+\section{Optimality Criteria}
+\label{section_OC}
+In order to solve the optimisation problem:
+\begin{align}
+\underset{x}{min} = c (x) = U^TKU = \displaystyle &\sum_{e = 1}^N E_e(x_e)u_e^Tk_0u_e 
+\tag{\ref{equ_objective_function_88}}\\
+\nonumber \\ \nonumber 
+ \text{subject to}: \quad &\frac{V(x)}{V_0} = f \\\nonumber
+& KU = F\\\nonumber
+& 0\leq x_{min} \leq1, \nonumber
+\end{align}
+some approaches, e.g. Optimality Criteria (OC), Sequential Linear Programming (SLP) (Wilson 1963) or the Method of Moving Asymptotes(MMA) (Svanberg 1987) and other could be employed.
+ In this bachelor thesis not all mentioned methods are
+  going to be explained, but some further readings will be offered. An
+   explanation as well a numerically implementation can be found in \cite{Liu.2014} for all the
+   mentioned solving-approaches.
+
+Due to its simplicity and its numerical efficiency, this work 
+uses the OC \cite{Bendse.2004} as the solver. 
+The updating scheme for the density \textbf{$\rho$} in OC is described as:
+
+\[ \rho_e^{new} =
+ \begin{cases}
+ max (0, \rho_e - m) & \quad \text{if } \rho_e B_e^{\eta} \leq max(0, \rho_e - m), \\
+ min (0, \rho_e \geq m) & \quad \text{if } \rho_e B_e^\eta \leq max(0, \rho_e - m), \\
+ \rho_e B_e^{\eta}&\quad \text{otherwise,}
+ \end{cases}
+\]
+where \textbf{$m$ }is a positive move-limit, and \textbf{$\eta$} is a numerical damping coefficient. The choice of $m = 0.2$ and $\eta = 0.5$ is a recommendation for minimum compliance problems \cite{Bendse.2004} in order not to face numerically instabilities. \textbf{$B_e$} is found from the optimality condition as :
+
+\begin{align}
+B_e = \dfrac{\dfrac{-\partial c}{\partial \rho_e}}{\displaystyle\lambda \dfrac{\partial V}{\partial\rho_e}} \quad,
+\label{equ_opti_condition}
+\end{align}
+
+where \textbf{$\lambda$} is the Lagrangian multiplier that can be found by a b-sectioning algorithm. \\
+The sensitivies of the objective function \textbf{$c$} and the material volume \textbf{$V$} with respect to the element densities $\rho_e$, which is also the design variable \textbf{$x_e$} and are given by:
+\begin{align}
+\dfrac{\partial c}{\partial \rho_e} =& -p x_e^{p-1} (E_0-E_{min})u_e^Tk_0u\\ \nonumber\\
+\dfrac{\partial V}{\partial \rho_e} =& 1
+\end{align}
+
+\subsection{Filtering}
+In order to ensure the existence of solutions to the topology optimisation problem and furthermore
+to avoid the appearance of \textbf{checkerboard patters
+ (elements are connected at their edges)} (see figure \ref{fig_checkerboard}), some restrictions on the design must
+  be imposed. A common approach is the application of 
+  a filter on the sensitivity or on the densities. In \cite{Sigmund.2007} and in \cite{Andreassen.2011} some filters were presented
+   with explanations and also results. Very popular filters
+    are, e.g. the standard convolution-filter, which is implemented in the 99-lines of code \cite{Sigmund.2001}, the Heaviside projection
+     filter, numerically implemented in \cite{Andreassen.2011}, the PDE (Partial Differentail Equation)-filter by\cite{Lazarov.2011}, 
+which is worth to be mentioned because of its 
+parallelize competence . The element by element filter (ebef) is also also very suitable for parallelization. 
+It operates matrix free, which means the filter does not require additionally memory space, and a Pseudo-implementation
+ code for the GPU can be found in \cite{MartinezFrutos.2017}.\\
+ 	
+ \begin{figure}[!h]
+ \begin{minipage}{0.6 \textwidth}
+   However, the main reasons to use a filter is, to avoid mesh 
+ dependence, which can declared as obtaining varying optimal solutions by varying mesh resolutions. The second main reason to deploy a filter is to avoid the checkerboard effect (see figure \ref{fig_checkerboard}). 
+ Furthermore, by means of the common filter from 99-lines of code \cite{Sigmund.2001} it is possible to 
+ control the minimum 
+ thickness of topology structure components, 
+ which is also known as \textbf{minimum member size control}. 
+ The components will consist of 
+ at least \textbf{$r_{min}$} connected elements, where \textbf{$r_{min}$} is the filter radius, otherwise these elements will become void. The 
+ figure \ref{fig_rmin} shows the filter with a chosen $r_{min}$ and
+ and a considered element called \textit{Center\textsubscript{e}}.
+ All the green elements are going to be considered as neighbour elements of the $center_e$ element. In order to be considered as a neighbour element
+ the distance between the \textbf{center} of $center_e$
+ and the \textbf{center} other elements need to 
+ be $dist(center_e, neigbourelements) \leq r_{min}$. The red marked elements are 
+ not treated as neighbour elements. \\
+ \end{minipage}
+ \hfill
+ \begin{minipage}{0.35 \textwidth}
+ 	\centering
+ \def\svgwidth{\textwidth}
+ \input{path_Image/filter_radius_rmin_1.pdf_tex} 
+ \caption{ Convolution filter as a sensitivity filter.} % Bildunterschrift 
+ \label{fig_rmin}   % Label für Verweise 
+ \end{minipage}
+  \end{figure}
+
+ \begin{figure}[!h]
+	\centering
+ \includegraphics[width=\textwidth, height=0.45\textheight]{path_Image/pngs/checkerboard.png}
+	\caption{An example for a checkerboard pattern caused by an inactive filter ($r_{min} = 1)$} or by the lack of a filter.
+	\label{fig_checkerboard}
+	\end{figure}
+	\vspace{0.7 cm}
+
+ 
+ In this work the modified filter from \cite{Andreassen.2011}, which is based on \cite{Sigmund.2001} and is modified by one single term.
+\subsection{99 lines of code filter} 
+\label{subsection_99_lines_of_code}
+ The unmodified sensitivity filter from \cite{Sigmund.2001} can be expressed as:
+ 
+ \begin{align}
+ \dfrac{\partial c}{\rho_e} = \dfrac{1}{\rho_e \displaystyle\sum_{f=1}^{N}H_f}\sum_{f=1}^{N}H_f \rho_f\dfrac{\partial c}{\partial \rho_f}
+ \label{equ_sigmund_99_SAfilter}
+ \end{align}
+ 
+The convolution operator (weight factor ) \textbf{$H_f$} is defined as:
+\begin{align}
+&H_f = r_{min} - dist(e,f) 
+\label{equ_convultion_99} \\ \nonumber
+&f \in \mathbb{N} \vert dist(e,f) \leq r_{min},\quad r= 1,...\mathbb{N} \quad ,
+\end{align}
+where the operator dist(e,f) represents the distance between the center of the considered element \textbf{$e$} and center of the surrounding element \textbf{$f$}. The convolution operator \textbf{$H_f$} decays linearly with he distance from the distance from element \textbf{$f$}. Instead of the original sensitivities, 
+\begin{align}
+\dfrac{\partial c}{\partial \rho_e} =& -p \;(x_e)  ^{p-1} \;u_e^Tk_0u_e
+\label{equ_sa_99_lines}
+\end{align}
+the modified sensitivies \eqref{equ_sigmund_99_SAfilter} are used in the Optimality Criteria update:
+\begin{align}
+B_e = \dfrac{\dfrac{-\partial c}{\partial \rho_e}}{\displaystyle\lambda \dfrac{\partial V}{\partial\rho_e}}
+\tag{\ref{equ_opti_condition}}
+\end{align}
+
+The equation \eqref{equ_sa_99_lines} is commonly known as the Sensitivity Analysis (SA) and represents only the SA of the 99 lines of code \cite{Sigmund.2001}. Note that the SA in \cite{Sigmund.2001}\eqref{equ_sa_99_lines} and the sensitivity of the objective function \cite{Andreassen.2011} \eqref{equ_sa_88} are \textbf{not} the same. \cite{Andreassen.2011} uses the modified SIMP and \cite{Sigmund.2001} uses the unmodified SIMP (for more Information see \ref{subsection_SIMP}).
+
+ \subsection{88 lines of code filter} 
+ As mentioned, the 88 lines of code sensitivity-filter is almost identical to the filter of \cite{Sigmund.2001}. The 88 lines of code filter by \cite{Andreassen.2011} is stated as:
+
+ \begin{align}
+ \dfrac{\partial c} {\rho_e} = \dfrac{1}{\displaystyle max(\rho_e,\gamma)\displaystyle\sum_{f=1}^{N}H_f}\sum_{f=1}^{N} H_f \rho_f \dfrac{\partial c}{\partial \rho_f}
+ \label{equ_Ander_88_SAfilter}
+ \end{align}
+ The convolution operator (weight factor) \textbf{$H_f$} is defined as (same as in equation \ref{equ_convultion_99})
+However, the new term \textbf{$\gamma = 10^{-3}$} is a small positive number, introduced in order not dividing by zero. This difference comes along though the deployment of the modified SIMP version \cite{Sigmund.2007}.
+And analogously to subsection \ref{subsection_99_lines_of_code}, the convolution operator \textbf{$H_f$} decays linearly with he distance from the distance from element \textbf{$f$}. Instead of the original sensitivities,
+
+\begin{align}
+\dfrac{\partial c}{\partial \rho_e} =& -p x_e^{p-1} (E_0-E_{min})u_e^Tk_0u
+\label{equ_sa_88}
+\end{align}
+
+the modified sensitivities \eqref{equ_Ander_88_SAfilter} are used in the Optimality Criteria update
+\begin{align}
+B_e = \dfrac{\dfrac{-\partial c}{\partial \rho_e}}{\displaystyle\lambda \dfrac{\partial V}{\partial\rho_e}}
+\tag{\ref{equ_opti_condition}}
+\end{align}
+ 
+ Analogously to equation \eqref{equ_sa_99_lines}, the equation \ref{equ_sa_88}
+  acts as the Sensitivity Analysis (SA) regarding the objective function \eqref{equ_objective_function_88}.
+ 
+	
+% \begin{figure} [!h]
+% \centering
+% \def\svgwidth{\textwidth}
+% \input{path_Image/88_lines_visio.pdf_tex}
+% \caption{Diffent types of structual optimisation} % Bildunterschrift 
+% \label{fig_struc_arten}   % Label für Verweise 
+%\end{figure} 
+ 

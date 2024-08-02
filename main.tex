@@ -1,0 +1,167 @@
+ \documentclass[a4paper 11 pt] {scrreprt}
+ \usepackage[left= 2.5cm,right = 2cm, bottom = 4 cm]{geometry}
+ \usepackage{fancyhdr}
+
+\usepackage[english]{babel} 
+\usepackage{amsmath} 
+\usepackage{amssymb}
+
+% for tables which needs more than one page
+\usepackage{longtable}
+
+%%Innerhalb von includegrpahics
+%\usepackage[export]{adjustbox}
+
+% Table colering
+\usepackage[table]{xcolor}
+\definecolor{lightgray}{gray}{0.9}
+\definecolor{lightblue}{rgb}{0.93,0.95,1.0}
+
+%\usepackage{tabu}
+\usepackage[table]{xcolor}
+
+\definecolor{tableHeader}{RGB}{211, 47, 47}
+\definecolor{tableLineOne}{RGB}{245, 245, 245}
+\definecolor{tableLineTwo}{RGB}{224, 224, 224}
+
+%________________
+
+%If you want to generate a caption without beeing inside of a flot object
+\usepackage{caption}
+\usepackage{subcaption}
+
+% float forces the graphics to be on the Postisiton [♦H]
+\usepackage{float}
+
+%Clickable Ref
+\usepackage{hyperref}
+
+%PDF.TEXT -Graphics
+\usepackage{pst-plot} 
+\usepackage{graphicx}
+
+% Code-implementation matlab
+\usepackage[numbered,framed]{matlab-prettifier}
+
+%Um Tikz einzuladen
+\usepackage{pgfplots}
+
+% Abkürzungsverzeichnis
+\usepackage{acronym}
+
+% Um den Namen des Autos aus Bibtex anzuzeigen
+%\usepackage[round, authoryear]{natbib}
+%\usepackage{natbib}
+%\usepackage[numbers]{natbib}
+%\usepackage[round, sort]{natbib}}
+\usepackage{apacite}
+
+%Zitationsstil
+%\bibliographystyle{unsrt}
+%\bibliographystyle{unsrtnat}
+%\bibliographystyle{plainnat}
+\bibliographystyle{apacite}
+
+% Tables coleriert
+\usepackage{xcolor,colortbl}
+
+\newcommand{\mc}[2]{\multicolumn{#1}{c}{#2}}
+
+\definecolor{Gray1}{gray}{0.85}
+\definecolor{Gray2}{gray}{0.3}
+\definecolor{Green}{HTML}{82FA58}
+\definecolor{LightCyan}{rgb}{0.88,1,1}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+\newcolumntype{a}{>{\columncolor{Gray1}}c}
+\newcolumntype{b}{>{\columncolor{Gray2}}c}
+
+%_______________Kopfzeile____________
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\rightmark}  % links kommt mit \rightmark die section
+\fancyhead[R]{\thepage}  % rechts kommt die Pagenr
+\renewcommand{\headrulewidth}{0pt}
+%:::::ENDE KOPFZEILE____________________
+
+%Für pdf_tex
+%_____Muss am Ende sein ______
+\usepackage{color}
+\usepackage{transparent}
+\graphicspath{{path_Image/}, {path_Image/pngs/Aufgabe_1/Parameter/},{path_Image/pngs/Aufgabe_1/3D_Ergebnisse},{path_Image/pngs/Aufgabe_1/Parameter/orig}, {path_Image/pngs/Aufgabe_2},
+{path_Image/pngs/Aufgabe_3}, {path_Image/pngs/Aufgabe_4},
+{path_Image/pngs/Meet_Adapt}, {path_Image/pngs/Paraview}}
+
+% Definiere hier einen eigenen Befehl, um die Größe der TIkz auszuwaehlen
+\newcommand{\inputTikZ}[2]{%  
+     \scalebox{#1}{\input{#2}}  
+}
+
+\newcommand{\repeatcaption}[2]{%
+  \renewcommand{\thefigure}{\ref{#1}}%
+  \captionsetup{list=no}%
+  \caption{#2 (repeated from page \pageref{#1})}%
+}
+
+
+
+\begin{document}
+
+%% Deckblatt
+\input{2_Latex_Files/deckblatt}
+
+%%Sperrvermerk
+% \input{2_Latex_Files/Restriction}
+
+\input{2_Latex_Files/abstract}
+%
+%%%Danksagung
+\input{2_Latex_Files/Acknowledgement}
+
+%%Inhaltsverzeichnis
+\tableofcontents
+%%Füge List of abbreviations zum INhaltsverzeichnis hinzu, ohne
+%% eine Zählung davor.
+\addcontentsline{toc}{chapter}{List of abbreviations}
+
+%%Abkurzungsverzeichnis
+\input{2_Latex_Files/abkurzungsverzeichnis}
+
+%%ABbildungs und Tabellen verzeichnis
+%\input{2_Latex_Files/figure_verzeichnis}
+
+%%
+\input{2_Latex_Files/introduction}
+\input{2_Latex_Files/priciples}
+\input{2_Latex_Files/starte_of_art}
+
+%%%1) _______________Erweiterung des Software-Codes für 3-dimensionale Problemstellungen____________________
+\input{2_Latex_Files/Aufgabenschritt_1_part_1}
+\input{2_Latex_Files/Aufgabenschritt_1_part_2}
+\input{2_Latex_Files/edge_connections}
+%
+%%%
+%%%2) Überprüfung der Leistungsfähigkeit anhand praktischer Beispiele mit vorgegebenen Basis-Strukturen bei erhöhten Lasten 
+\input{2_Latex_Files/Aufgabenschritt_2}
+%
+%%%%3) Erweiterung der Adaptierungs-Methode für leicht unterschiedliche Belastungen zwischen Basis und adaptierte Struktur.   4) Überprüfung der Leistungsfähigkeit der Erweiterung in Punkt 3 
+\input{2_Latex_Files/Aufgabenschritt_3}
+%
+%%%5) Bei vorgegebener Basis FE-Analyse
+\input{2_Latex_Files/vorgegebene_Basis}
+%%
+\input{2_Latex_Files/outlook}
+%
+%
+\input{2_Latex_Files/paraview}
+\bibliography{2_Latex_Files/bib_tex}
+%
+%%____STATUTORY_DECLARATION_________
+%%Eidestattliche Erklärung 
+\input{2_Latex_Files/STATUTORY_DECLARATION}
+
+\end{document}
+

@@ -1,0 +1,868 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="BZ_1_2d.svg">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#9c9595"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="458.61897"
+     inkscape:cy="944.55218"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer3"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1137"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       inkscape:color="rgb(0,0,255)"
+       inkscape:label=""
+       inkscape:locked="false"
+       id="guide6869"
+       orientation="1,0"
+       position="25,284.2381" />
+    <sodipodi:guide
+       inkscape:color="rgb(0,0,255)"
+       inkscape:label=""
+       inkscape:locked="false"
+       id="guide6871"
+       orientation="1,0"
+       position="190,263.07144" />
+    <sodipodi:guide
+       inkscape:color="rgb(0,0,255)"
+       inkscape:label=""
+       inkscape:locked="false"
+       id="guide6873"
+       orientation="0,1"
+       position="-34.395833,40" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipEmfPath1">
+      <path
+         d="M 0,0 L 443.0022,0 L 443.0022,527.99244 L 0,527.99244 z"
+         id="path6007" />
+    </clipPath>
+    <pattern
+       id="EMFhbasepattern"
+       patternUnits="userSpaceOnUse"
+       width="6"
+       height="6"
+       x="0"
+       y="0" />
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipEmfPath1-2">
+      <path
+         d="M 0,0 L 443.0022,0 L 443.0022,527.99244 L 0,527.99244 z"
+         id="path6438" />
+    </clipPath>
+    <pattern
+       id="EMFhbasepattern-4"
+       patternUnits="userSpaceOnUse"
+       width="6"
+       height="6"
+       x="0"
+       y="0" />
+    <marker
+       id="endMarker1"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5599" />
+    </marker>
+    <marker
+       id="endMarker2"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5606" />
+    </marker>
+    <marker
+       id="endMarker3"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5613" />
+    </marker>
+    <marker
+       id="endMarker4"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5620" />
+    </marker>
+    <marker
+       id="endMarker5"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5627" />
+    </marker>
+    <marker
+       id="endMarker6"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5684" />
+    </marker>
+    <marker
+       id="endMarker7"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5691" />
+    </marker>
+    <marker
+       id="endMarker8"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5698" />
+    </marker>
+    <marker
+       id="endMarker9"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5705" />
+    </marker>
+    <marker
+       id="endMarker10"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5712" />
+    </marker>
+    <marker
+       id="endMarker11"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5719" />
+    </marker>
+    <marker
+       id="endMarker12"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5736" />
+    </marker>
+    <marker
+       id="endMarker13"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5797" />
+    </marker>
+    <marker
+       id="endMarker14"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5804" />
+    </marker>
+    <marker
+       id="endMarker15"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5811" />
+    </marker>
+    <marker
+       id="endMarker16"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5818" />
+    </marker>
+    <marker
+       id="endMarker17"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5825" />
+    </marker>
+    <marker
+       id="endMarker18"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5832" />
+    </marker>
+    <marker
+       id="endMarker19"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5889" />
+    </marker>
+    <marker
+       id="endMarker20"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5896" />
+    </marker>
+    <marker
+       id="endMarker21"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5913" />
+    </marker>
+    <marker
+       id="endMarker22"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5930" />
+    </marker>
+    <marker
+       id="endMarker23"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5947" />
+    </marker>
+    <marker
+       id="endMarker24"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5954" />
+    </marker>
+    <marker
+       id="endMarker25"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5961" />
+    </marker>
+    <marker
+       id="endMarker26"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline5968" />
+    </marker>
+    <marker
+       id="endMarker27"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline6007" />
+    </marker>
+    <marker
+       id="endMarker28"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline6019" />
+    </marker>
+    <marker
+       id="endMarker29"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline6031" />
+    </marker>
+    <marker
+       id="endMarker30"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline6038" />
+    </marker>
+    <marker
+       id="endMarker31"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline6075" />
+    </marker>
+    <marker
+       id="endMarker32"
+       markerUnits="strokeWidth"
+       orient="auto"
+       markerWidth="8"
+       markerHeight="6"
+       viewBox="0 0 10 10"
+       refX="1"
+       refY="5">
+      <polyline
+         points="0,0 10,5 0,10 1,5"
+         fill="solid"
+         id="polyline6092" />
+    </marker>
+  </defs>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Ebene 1">
+    <rect
+       y="44.586536"
+       x="104.87888"
+       height="20"
+       width="20"
+       id="rect11628-8"
+       style="opacity:0.881;fill:#ffff00;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="24.586536"
+       x="84.878876"
+       height="20"
+       width="20"
+       id="rect11628-1"
+       style="opacity:0.881;fill:none;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="24.586536"
+       x="64.878876"
+       height="20"
+       width="20"
+       id="rect11628-0"
+       style="opacity:0.881;fill:none;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="44.586536"
+       x="144.87888"
+       height="20"
+       width="20"
+       id="rect11628-9"
+       style="opacity:0.881;fill:none;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="104.58654"
+       x="84.878876"
+       height="20"
+       width="20"
+       id="rect11628-7"
+       style="opacity:0.881;fill:none;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="104.58654"
+       x="64.878876"
+       height="20"
+       width="20"
+       id="rect11628-10"
+       style="opacity:0.881;fill:none;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="84.586533"
+       x="84.878876"
+       height="20"
+       width="20"
+       id="rect11628-2"
+       style="opacity:0.881;fill:none;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="44.586536"
+       x="64.878876"
+       height="20"
+       width="20"
+       id="rect11628-27"
+       style="opacity:0.881;fill:none;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="44.586536"
+       x="84.878876"
+       height="20"
+       width="20"
+       id="rect11628-96"
+       style="opacity:0.881;fill:none;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="44.586536"
+       x="124.87888"
+       height="20"
+       width="20"
+       id="rect11628-1-0"
+       style="opacity:0.881;fill:none;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="24.586536"
+       x="144.87888"
+       height="20"
+       width="20"
+       id="rect11628-0-5"
+       style="opacity:0.881;fill:none;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="104.58654"
+       x="144.87888"
+       height="20"
+       width="20"
+       id="rect11628-7-4"
+       style="opacity:0.881;fill:none;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="84.586533"
+       x="64.878876"
+       height="20"
+       width="20"
+       id="rect11628-27-6"
+       style="opacity:0.881;fill:none;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="24.586536"
+       x="104.87888"
+       height="20"
+       width="20"
+       id="rect11628-97"
+       style="opacity:0.881;fill:#ffff00;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="64.586533"
+       x="144.87888"
+       height="20"
+       width="20"
+       id="rect11628-8-4"
+       style="opacity:0.881;fill:#ffff00;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="24.586536"
+       x="124.87888"
+       height="20"
+       width="20"
+       id="rect11628-0-9"
+       style="opacity:0.881;fill:none;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="64.586533"
+       x="124.87888"
+       height="20"
+       width="20"
+       id="rect11628-9-5"
+       style="opacity:0.881;fill:#ffff00;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="104.58654"
+       x="124.87888"
+       height="20"
+       width="20"
+       id="rect11628-10-2"
+       style="opacity:0.881;fill:none;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="84.586533"
+       x="144.87888"
+       height="20"
+       width="20"
+       id="rect11628-2-5"
+       style="opacity:0.881;fill:none;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="64.586533"
+       x="84.878876"
+       height="20"
+       width="20"
+       id="rect11628-27-1"
+       style="opacity:0.881;fill:#ffff00;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="84.586533"
+       x="104.87888"
+       height="20"
+       width="20"
+       id="rect11628-8-0-5"
+       style="opacity:0.881;fill:#ffff00;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="64.586533"
+       x="64.878876"
+       height="20"
+       width="20"
+       id="rect11628-1-0-1"
+       style="opacity:0.881;fill:#ffff00;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="64.586533"
+       x="104.87888"
+       height="20"
+       width="20"
+       id="rect11628-0-5-6"
+       style="opacity:0.881;fill:#00ff00;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="104.58654"
+       x="104.87888"
+       height="20"
+       width="20"
+       id="rect11628-9-0-3"
+       style="opacity:0.881;fill:#ffff00;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="84.586533"
+       x="124.87888"
+       height="20"
+       width="20"
+       id="rect11628-27-6-6"
+       style="opacity:0.881;fill:none;fill-opacity:1;stroke:#1d1d1b;stroke-width:0.54799998;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+  </g>
+  <g
+     inkscape:label="pfeile"
+     id="layer2"
+     inkscape:groupmode="layer">
+    <g
+       id="g12030"
+       transform="translate(1.0690781,33.154321)">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.35184607px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 125.14615,57.637524 h 35.36799"
+         id="path11793"
+         inkscape:connector-curvature="0" />
+      <path
+         inkscape:connector-curvature="0"
+         d="m 161.08176,56.180943 v 2.84215 l 2.46137,-1.42108 z"
+         style="fill:none;stroke:#000000;stroke-width:0.05684291"
+         inkscape:label="Triangle"
+         id="path11909" />
+    </g>
+    <g
+       id="g12030-5"
+       transform="rotate(-90,121.58887,46.672214)">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.35371614px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 104.92442,63.118179 h 35.74496"
+         id="path11793-1"
+         inkscape:connector-curvature="0" />
+      <path
+         inkscape:connector-curvature="0"
+         d="m 140.56882,61.661598 v 2.84215 l 2.46137,-1.42108 z"
+         style="fill:none;stroke:#000000;stroke-width:0.05684291"
+         inkscape:label="Triangle"
+         id="path11909-4" />
+    </g>
+    <g
+       id="g12030-9"
+       transform="rotate(180,104.47244,59.050773)">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.35441676px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 104.78268,57.637524 h 35.8867"
+         id="path11793-7"
+         inkscape:connector-curvature="0" />
+      <path
+         inkscape:connector-curvature="0"
+         d="m 140.56882,56.180943 v 2.84215 l 2.46137,-1.42108 z"
+         style="fill:none;stroke:#000000;stroke-width:0.05684291"
+         inkscape:label="Triangle"
+         id="path11909-6" />
+    </g>
+    <g
+       id="g12030-56"
+       transform="rotate(90,98.598603,59.182469)">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.35418338px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 125.14615,57.637524 H 160.9856"
+         id="path11793-3"
+         inkscape:connector-curvature="0" />
+      <path
+         inkscape:connector-curvature="0"
+         d="m 161.26302,56.180943 v 2.84215 l 2.46137,-1.42108 z"
+         style="fill:none;stroke:#000000;stroke-width:0.05684291"
+         inkscape:label="Triangle"
+         id="path11909-47" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88055563px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="131.7247"
+       y="68.513382"
+       id="text12075"><tspan
+         sodipodi:role="line"
+         id="tspan12073"
+         x="131.7247"
+         y="71.908867"
+         style="stroke-width:0.26458332" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88055563px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="112.5938"
+       y="75.683624"
+       id="text6375"><tspan
+         sodipodi:role="line"
+         id="tspan6373"
+         x="112.5938"
+         y="75.683624"
+         style="stroke-width:0.26458332">$\rho_e$</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="text_ep">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88055563px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="145.83029"
+       y="89.488144"
+       id="text12084"><tspan
+         sodipodi:role="line"
+         id="tspan12082"
+         x="145.83029"
+         y="89.488144"
+         style="stroke-width:0.26458332">ep</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88055563px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="130.93867"
+       y="42.495548"
+       id="text12084-1"><tspan
+         sodipodi:role="line"
+         id="tspan12082-7"
+         x="130.93867"
+         y="42.495548"
+         style="stroke-width:0.26458332">ep</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88055563px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="78.656532"
+       y="58.017155"
+       id="text12084-8"><tspan
+         sodipodi:role="line"
+         id="tspan12082-9"
+         x="78.656532"
+         y="58.017155"
+         style="stroke-width:0.26458332">ep</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88055563px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="95.055534"
+       y="107.46432"
+       id="text12084-82"><tspan
+         sodipodi:role="line"
+         id="tspan12082-4"
+         x="95.055534"
+         y="107.46432"
+         style="stroke-width:0.26458332">ep</tspan></text>
+  </g>
+</svg>

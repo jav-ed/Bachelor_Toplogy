@@ -1,0 +1,308 @@
+\chapter{Prohibit connections at edges and corners}
+\label{chapter_prohibit_edge}
+
+The 3D Adapt exhibits results with corner- and edge-connections in the BZ (see figure \ref{fig_edge_edge_connec}
+and \ref{fig_edge_corner_connec}), which
+can be considered as a \emph{3D checker-board}.
+Since such connections are not possible to manufacture in reality, they need to be prohibited. 
+
+\begin{figure}[!h]
+\begin{minipage}{0.45\textwidth}
+\centering
+ \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/edges/edges.png}
+	\caption{Edge connection in 3D, gray Basis.} 
+	\label{fig_edge_edge_connec}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+ \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/edges/corner.png}
+	\caption{Corner connections in 3D, gray Basis.} 
+	\label{fig_edge_corner_connec}
+\end{minipage}
+\end{figure}
+ 
+ To prevent the appearance of edge- and corner-connected elements,
+ the search of the BZ needs to be modified. The 2D discretized
+ element exhibits 4 Nodes and 4 Edges, this results in 4 possible 
+ edge-connections 
+ and 4 possible node-connections. Since the Adapt is 
+ not programmed for letting the Basis directly
+ connected to REs, the BZ needs a reasonable definition.
+ In case $ep = 1$, the distance between the border
+ elements of the Basis and the REs is only one element, which causes corner-connections (see figure \ref{fig_2dcorner_conections}).
+ The Basis is directly connected with the REs at the corners. Therefore the Adapt is not obligated to fill the BZ with material and
+ the BZ-elements can remain void without
+ impacting the overall stiffness.
+ In case $ep = 2$, the distance between the border elements of the Basis and the REs is 2 elements, which forces the Adapt to supply the BZ-elements with material. 
+ The reason for this behaviour can be explained by closer examination of the load-case. Since the Basis was generated with the same load-case as the Adapt, the highest Sensitivities are next to the Basis. Furthermore not only the Adapt, but also the 88 lines of code 
+are written in a way that elements are formed along
+a load path and are connected to each other (requirement of topology
+optimization). No elements
+should generated, which are not bound to other elements.
+The reason, why elements need to be connected to each other
+along a load path is, that this increases the stiffness (see figure \ref{fig_2dcorner_conections}).\\
+
+Up to now, the knowledge about the procedure of \textit{ep} was sufficient in
+ order to get acceptable results and therefore modifications of the BZ-search were
+ not required in 2D. However with the 3D-Adapt two problems, edge-and corner-connection, were encountered, as shown in figure
+ \ref{fig_edge_edge_connec} and \ref{fig_edge_corner_connec}.\\
+
+
+\begin{figure}[!h]
+ \centering
+ \def\svgwidth{\textwidth}
+ \input{path_Image/2d_connections.pdf_tex} 
+ \caption{2D connections by varying  \emph{ep}.} % Label für Verweise 
+ \label{fig_2dcorner_conections}
+ \end{figure}
+ 
+In 3D there are three possible ways to create a connection between two
+ elements: edge-connections, node-connections and surface-connections. The
+ discretized voxel has 8 nodes, 12 edges and 6 surfaces,which can lead to 8 node-connections, 12 edge-connections and 6 surface-connections
+ (figure \ref{fig_edge_3d_search}). This results in 26 possible 
+ connections which can be made by a single element.
+To prohibit the 26 possible connections between all border elements of the Basis
+ and the REs, the 3D BZ-search methods needs to be extended. Instead of
+ only considering right, left, upper, lower, elements in $z + 1$ and $z - 1$ elements
+ as neighbour elements, which represent
+ the 6 potential surface connections
+ (see figure \ref{fig_find_BZ_2D}), the diagonal elements
+ in $z-1, z$ and $z+1$ need also to be counted as neighbour elements. The figure
+ \ref{fig_edge_3d_search} shows the modified 3D BZ-search with $ep =1$, where
+ $\rho_e$ represents the current element and all the green, turquoise and
+ yellow elements defines the search directions in order to find the 3D BZ.\\
+ 
+  By taking the diagonal elements into account, it is possible to perform the Adapt
+ with $ep = 1$ without
+ getting a checkerboard type of connection.
+ A comparison of the modified 3D BZ-search with $ep = 2$
+ and the previous 3D BZ-search method is provided in figure \ref{fig_edges_comp_old_new_ep_1_2}, where the green BZ represents the modified BZ-search with $ep = 1$ and the blue BZ represents the prevoius BZ-search with $ep = 2$.
+ Figure \ref{fig_edges_comp_new_ep_1}
+ shows the modfied 3D BZ-search with $ep = 1$, where 
+ the Basis is gray and the BZ is yellow.
+  However, even if $ep = 2$ in 2D works fine, it is not guaranteed that 
+ it is going to avoid checkerboard like connections for every problem.
+ With a little effort the 
+ 2D BZ-search was then also modified as shown in 
+ figure \ref{fig_edge_2d_search}, where $\rho_e$ represents 
+ the current element and all the yellow elements are
+ the search area in order to find the BZ.
+ With the explained modification, creating a connection
+ at corners, even with $ep = 1$ is not
+ possible any more. This means border elements 
+ of the Basis must be connected to the REs with at least one BZ element in between.\\
+ 
+A comparison between the previous 3D BZ-search and the modified 3D BZ-search can
+ be obtained with the figures \ref{fig_edge_3d_BZsearch_modi} to
+ \ref{fig_edge_3d_2compare_mod_old}.
+ Their results are generated with a mesh resolution 
+ of $100 \times 50 \times 8, r_{min} = r_{b} = 1.5, ep = 2$ and $ volfrac = 0.3$.
+ 
+
+%___________________3D BZ-Search-Modified_________________
+\begin{figure}[!h]
+\centering
+\begin{minipage}{0.8\textwidth}
+ \def\svgwidth{\textwidth}
+ \input{path_Image/3d_diag.pdf_tex} 
+ \caption{Modified BZ-search method for 3D,  \emph{ep} = 1.} % Label für Verweise 
+ \label{fig_edge_3d_search}
+\end{minipage}\\
+\vspace{0.5cm}
+%\end{figure}
+% \begin{figure}[!h]
+ \begin{minipage}{0.45\textwidth}
+ \centering
+ \includegraphics[width= \textwidth]{path_Image/pngs/Aufgabe_1/edges/compare_old_new_ep_1_2.png}
+ 	\caption{ Green modified BZ-search with $ep = 1$ and blue previous BZ-search with $ep = 2$ .} 
+ 	\label{fig_edges_comp_old_new_ep_1_2}
+ \end{minipage}
+ \hfill
+ \begin{minipage}{0.45\textwidth}
+ \centering
+ \includegraphics[width= \textwidth]{path_Image/pngs/Aufgabe_1/edges/basis_new_ep_1.png}
+ 	\caption{ Yellow modified BZ-search with $ep = 1$ and gray Basis.}
+ 	\label{fig_edges_comp_new_ep_1}
+ \end{minipage}
+ \end{figure}   
+ It can be observed that the modified 3D BZ-search exhibits a 
+ bigger BZ. Therefore the 2D and 
+ 3D modified search-methods
+ penalize more elements in the BZ than the previous search methods.\\
+ %____________________________BOUNDARY-3D_search_______________________________
+%________________________________________________________________
+
+\begin{figure}[!h]
+\vspace{0.75cm}
+\begin{minipage}{0.45\textwidth}
+\centering
+ \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/edges/new_BZ_ep_2.png}
+	\caption{Modified 3D BZ-search.} 
+	\label{fig_edge_3d_BZsearch_modi}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+ \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/edges/old_BZ_ep_2.png}
+	\caption{Previous 3D BZ-search.} 
+	\label{fig_edge_3d_BZsearch_ohne}
+\end{minipage}\\
+
+\vspace{0.75 cm}
+\begin{minipage}{0.45\textwidth}
+\centering
+ \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/edges/new_BZ_Basis_ep_2.png}
+	\caption{Modified 3D BZ-search, gray Basis and yellow BZ.} 
+	\label{fig_edge_3d_BZBasissearch_modi}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+ \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/edges/old_BZ_Basis_ep_2.png}
+	\caption{Previous 3D BZ-search, gray Basis and yellow BZ.} 
+	\label{fig_edge_3d_BZBasissearch_ohne}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[!h]
+\vspace{0.75 cm}
+\begin{minipage}{0.45\textwidth}
+\centering
+ \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/edges/compare_old_new_ep_2.png}
+	\caption{Yellow modified 3D BZ-search and blue previous search.} 
+	\label{fig_edge_3d_compare_mod_old}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+ \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/edges/2_compare_old_new_ep_2.png}
+	\caption{Difference between modfied and previous 3D BZ-search.} 
+	\label{fig_edge_3d_2compare_mod_old}
+\end{minipage}
+\end{figure}
+\newpage
+ 
+ \begin{figure} [!h]
+ \vspace{0.75cm}
+\centering
+\begin{minipage}{0.5\textwidth}
+ \def\svgwidth{\textwidth}
+ \input{path_Image/BZ_2_2d.pdf_tex} 
+ \caption{Modified BZ search method for 2D, $ep = 1$.} % Label für Verweise 
+ \label{fig_edge_2d_search}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+Owing to the different penalization factors which are used for the REs and the BZ,
+ the elements are not imposed with equal penalization. The penalization factor for
+ the BZ is set to 3, whereas the penalization factor for the REs is set to 2. To
+ understand the arising difference by using different penalization factors,
+ respectively to see the functions behaviour by means of different penalization
+ factor, see figure \ref{fig_SIMP_sceme_modified}. In 
+ conclusion, due to the more severe penalization in the BZ 
+ and deploying the modified BZ-search-method, not only 
+ more elements are found to be penalized, but also the 
+ penalization is heavier. Therefore even if the modified BZ-search
+ finds a greater BZ than the previous BZ-search, however
+ due to the more servere penalization,
+ the BZ exhibits less elements with a high density.
+ With this combination it is possible 
+ to prohibit corner- and edge-connection to occur. 
+ The described effect can be observed with a comparison, 
+ the figure \ref{fig_edge_3d_micth2_modi} and
+ \ref{fig_edge_3d_micth2_ohne} are obtained 
+ with the same predefining and the modified load-case
+ Cantilever\textsubscript{2} from
+ section \ref{section_3d_loadcases}, which stresses each node in depth.
+\end{minipage}
+\end{figure}
+
+
+%_____Adapt Mitchell-3D_with|edge without_______________________________
+%________________________________________________________________
+
+\begin{figure}[!h]
+\begin{minipage}{0.45\textwidth}
+\centering
+ \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/edges/adapt_mitchel_02_new.png}
+	\caption{Modified 3D BZ-search, gray Basis.} 
+	\label{fig_edge_3d_micth_modi}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+ \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/edges/adapt_mitchel_02_old.png}
+	\caption{Previous 3D BZ-search, gray Basis.} 
+	\label{fig_edge_3d_micth_ohne}
+\end{minipage}\\
+
+\vspace{0.75cm}
+\begin{minipage}{0.45\textwidth}
+\centering
+ \includegraphics[width = 0.75\textwidth]{path_Image/pngs/Aufgabe_1/edges/adapt_mitchel_02_new_2.png}
+	\caption{Modified 3D BZ-search, gray Basis.} 
+	\label{fig_edge_3d_micth2_modi}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+ \includegraphics[width = 0.75\textwidth]{path_Image/pngs/Aufgabe_1/edges/adapt_mitchel_02_old_2.png}
+	\caption{Previous 3D BZ-search, gray Basis.} 
+	\label{fig_edge_3d_micth2_ohne}
+\end{minipage}
+\end{figure}~\\
+
+
+\section{Results with modfied 3D BZ-search method}
+\label{section_results_modified_3D_BZ_search}
+In this section two results with the modified 3D BZ-search method are given. The
+ load-cases are Cantilever\textsubscript{2} and the MBB from section
+ \ref{section_3d_loadcases}. The figures
+ \ref{fig_edge_modi_canti_03} - \ref{fig_edge_modi_mbb_05} are all
+ generated with a mesh resolution of $100 \times 50 \times 8, 
+ \; r_{min} = r_b = 1.5, 
+ \; ep = 2$ and $volfrac = 0.3$. 
+ The figures \ref{fig_edge_modi_canti_03} and \ref{fig_edge_modi_canti_05} are
+	generated with the loadcase Cantilever\textsubscript{2} and are 
+ shown with a display threshold of \emph{0.3} and \emph{0.5}.
+ The figures \ref{fig_edge_modi_mbb_03} and 
+ \ref{fig_edge_modi_mbb_05} are obtained with the load-case 
+ MBB modified and are also shown 
+ with a threshold of \emph{0.3} and \emph{0.5}. The
+ Basis is gray coloured and the AMs have the colormap
+ \emph{Blue to Red Rainbow}.
+
+\begin{figure}[!h]
+\vspace{0.75cm}
+\begin{minipage}{0.45\textwidth}
+\centering
+ \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/edges/mitchell_03.png}
+	\caption{Gray Basis, threshold 0.3.} 
+	\label{fig_edge_modi_canti_03}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+ \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/edges/mitchell_05.png}
+	\caption{Gray Basis, threshold 0.5.} 
+	\label{fig_edge_modi_canti_05}
+\end{minipage}\\
+
+\vspace{0.75 cm}
+\begin{minipage}{0.45\textwidth}
+\centering
+ \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/edges/mbb_03.png}
+	\caption{Gray Basis, threshold 0.3.} 
+	\label{fig_edge_modi_mbb_03}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+ \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/edges/mbb_05.png}
+	\caption{Gray Basis, threshold 0.5.} 
+	\label{fig_edge_modi_mbb_05}
+\end{minipage}
+\end{figure}
+
+

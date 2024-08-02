@@ -1,0 +1,74 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{List of abbreviations}{5}{chapter*.3}%
+\contentsline {chapter}{\numberline {1}Introduction}{7}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Principles of structural optimisation}{8}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Term Definitions}{8}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Types of structual optimisation}{10}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Homogenization method}{11}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Density method}{13}{subsection.2.2.2}%
+\contentsline {section}{\numberline {2.3}Material interpolation}{13}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Solid Isotropic Material with Penalization (SIMP)}{13}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}RAMP- Rational Approximation of Material Properties}{15}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}Objective Function by using SIMP}{15}{section.2.4}%
+\contentsline {section}{\numberline {2.5}FEA - Finite Element Analysis}{16}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}What kind of problems can FEA solve}{19}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}3D finite element analysis}{19}{subsection.2.5.2}%
+\contentsline {section}{\numberline {2.6}Optimality Criteria}{23}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Filtering}{24}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}99 lines of code filter}{25}{subsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.6.3}88 lines of code filter}{26}{subsection.2.6.3}%
+\contentsline {chapter}{\numberline {3}State of art}{27}{chapter.3}%
+\contentsline {section}{\numberline {3.1}99 and 88 lines of code overview}{27}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Preconditions}{30}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Numbering elements, nodes and DOFs in 2D}{30}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Numbering elements, nodes and DOFs in 3D}{33}{subsection.3.2.2}%
+\contentsline {chapter}{\numberline {4}Adapt in 2D}{36}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Terminology of the 2D Adapt}{36}{section.4.1}%
+\contentsline {chapter}{\numberline {5}Expand a existing 2D-adapt code on 3D}{41}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Why expanding the Adapt on 3D?}{41}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Expanding the Adapt on 3D}{41}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Adapt specific parameter}{41}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Finding the \textbf {Basis}}{41}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Finding the \textbf {Design Elements}}{42}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}Finding the \textbf {Boundary Zone}}{42}{subsection.5.2.4}%
+\contentsline {subsection}{\numberline {5.2.5}Finding the \textbf {Remaining Elements}}{43}{subsection.5.2.5}%
+\contentsline {subsection}{\numberline {5.2.6}Sensitivity filter for remaining elements and boundary zone}{43}{subsection.5.2.6}%
+\contentsline {subsection}{\numberline {5.2.7}Sensitivity penalization of the BZ and the REs}{43}{subsection.5.2.7}%
+\contentsline {chapter}{\numberline {6}3D Adapt Results}{46}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Compare 2D and 3D results}{46}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}2D and 3D load-cases}{46}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}2D and 3D comparison results}{47}{subsection.6.1.2}%
+\contentsline {section}{\numberline {6.2}3D Adapt results with more than one elements in depth}{50}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Parameter investigation}{54}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Prohibit connections at edges and corners}{58}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Results with modfied 3D BZ-search method}{64}{section.7.1}%
+\contentsline {chapter}{\numberline {8}Finite element reanalysis}{65}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Finite element analysis with OptiStruct}{65}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Reanalysis of MBB}{65}{section.8.2}%
+\contentsline {chapter}{\numberline {9}Extension of the 2D Adapt for slightly different loads between Basis and Adapt}{68}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Feature 1: control of tangential length connection}{68}{section.9.1}%
+\contentsline {subsection}{\numberline {9.1.1}Geometrical and weighted centre}{71}{subsection.9.1.1}%
+\contentsline {subsection}{\numberline {9.1.2}Penalization of elements within\textit { CZ\textsubscript {mind}} and \textit {CZ\textsubscript {max}}}{72}{subsection.9.1.2}%
+\contentsline {section}{\numberline {9.2}Feature 2: Definition of minimal distance between Connection Zone Groups (CZGs)}{73}{section.9.2}%
+\contentsline {section}{\numberline {9.3}Feature 3: Prohibition of local reinforcements}{76}{section.9.3}%
+\contentsline {section}{\numberline {9.4}Modifications on the BZ-filter}{77}{section.9.4}%
+\contentsline {section}{\numberline {9.5}Comparison results with and without features}{78}{section.9.5}%
+\contentsline {section}{\numberline {9.6}Fundamental terms}{81}{section.9.6}%
+\contentsline {section}{\numberline {9.7}Finite element reanalysis of the Adapt with features}{82}{section.9.7}%
+\contentsline {chapter}{\numberline {10}Topology optimization with an external 2D and 3D Basis}{85}{chapter.10}%
+\contentsline {section}{\numberline {10.1}External Basis}{85}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Discretize external 2D and 3D Basis}{86}{section.10.2}%
+\contentsline {section}{\numberline {10.3}Results with external Basis}{86}{section.10.3}%
+\contentsline {chapter}{\numberline {11}Summary and outlook}{89}{chapter.11}%
+\contentsline {chapter}{\numberline {12}Appendix}{90}{chapter.12}%
+\contentsline {section}{\numberline {12.1}Matlab and 3D displaying}{92}{section.12.1}%
+\contentsline {section}{\numberline {12.2}ParaView as postprocessor}{92}{section.12.2}%
+\contentsline {subsection}{\numberline {12.2.1}ParaView General Features}{93}{subsection.12.2.1}%
+\contentsline {subsection}{\numberline {12.2.2}Load a .vtk in ParaView}{93}{subsection.12.2.2}%
+\contentsline {subsection}{\numberline {12.2.3}ParaView feature 1: Make use of the threshold-filter}{93}{subsection.12.2.3}%
+\contentsline {subsection}{\numberline {12.2.5}ParaView feature 3: Progress-Animation-View}{93}{subsection.12.2.5}%
+\contentsline {subsection}{\numberline {12.2.4}ParaView feature 2: Colormaps}{94}{subsection.12.2.4}%
+\contentsline {subsection}{\numberline {12.2.6}ParaView feature 4: Seeing inner structures, CT-Scan, Cut and Volume}{95}{subsection.12.2.6}%
+\contentsline {subsection}{\numberline {12.2.7}Matlab implementation: Generate .vtk-files}{95}{subsection.12.2.7}%
+\contentsline {chapter}{References}{97}{chapter*.94}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

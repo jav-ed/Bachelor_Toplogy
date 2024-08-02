@@ -1,0 +1,555 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Aage%
+, Andreassen%
+\BCBL {}\ \BBA {} Lazarov%
+}{%
+Aage%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2015}}%
+}]{%
+Aage.2015}
+\APACinsertmetastar {%
+Aage.2015}%
+\begin{APACrefauthors}%
+Aage, N.%
+, Andreassen, E.%
+\BCBL {}\ \BBA {} Lazarov, B\BPBI S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Topology optimization using PETSc: An easy-to-use, fully parallel, open source topology optimization framework} {Topology optimization using petsc: An easy-to-use, fully parallel, open source topology optimization framework}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Structural and Multidisciplinary Optimization}{51}{3}{565--572}.
+\newblock
+\begin{APACrefDOI} \doi{10.1007/s00158-014-1157-0} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Amir%
+, Aage%
+\BCBL {}\ \BBA {} Lazarov%
+}{%
+Amir%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2014}}%
+}]{%
+Amir.2014}
+\APACinsertmetastar {%
+Amir.2014}%
+\begin{APACrefauthors}%
+Amir, O.%
+, Aage, N.%
+\BCBL {}\ \BBA {} Lazarov, B\BPBI S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {On multigrid-CG for efficient topology optimization} {On multigrid-cg for efficient topology optimization}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Structural and Multidisciplinary Optimization}{49}{5}{815--829}.
+\newblock
+\begin{APACrefDOI} \doi{10.1007/s00158-013-1015-5} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Andreassen%
+, Clausen%
+, Schevenels%
+, Lazarov%
+\BCBL {}\ \BBA {} Sigmund%
+}{%
+Andreassen%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2011}}%
+}]{%
+Andreassen.2011}
+\APACinsertmetastar {%
+Andreassen.2011}%
+\begin{APACrefauthors}%
+Andreassen, E.%
+, Clausen, A.%
+, Schevenels, M.%
+, Lazarov, B\BPBI S.%
+\BCBL {}\ \BBA {} Sigmund, O.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2011}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Efficient topology optimization in MATLAB using 88 lines of code} {Efficient topology optimization in matlab using 88 lines of code}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Structural and Multidisciplinary Optimization}{43}{1}{1--16}.
+\newblock
+\begin{APACrefDOI} \doi{10.1007/s00158-010-0594-7} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+\APACcitebtitle {Animating legacy VTK file series - KitwarePublic}}{%
+\APACcitebtitle {Animating legacy VTK file series - KitwarePublic}}{%
+{\protect \APACyear {29.11.2018}}%
+}]{%
+.29.11.2018b}
+\APACinsertmetastar {%
+.29.11.2018b}%
+\APACrefbtitle {Animating legacy VTK file series - KitwarePublic.} {Animating legacy vtk file series - kitwarepublic.}
+\newblock
+\APACrefYearMonthDay{29.11.2018}{}{}.
+\newblock
+\begin{APACrefURL} [{17.12.2018}]\url{https://www.paraview.org/Wiki/Animating_legacy_VTK_file_series} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Bends{\o}e%
+\ \BBA {} Kikuchi%
+}{%
+Bends{\o}e%
+\ \BBA {} Kikuchi%
+}{%
+{\protect \APACyear {1988}}%
+}]{%
+Bendse.1988}
+\APACinsertmetastar {%
+Bendse.1988}%
+\begin{APACrefauthors}%
+Bends{\o}e, M\BPBI P.%
+\BCBT {}\ \BBA {} Kikuchi, N.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1988}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Generating optimal topologies in structural design using a homogenization method} {Generating optimal topologies in structural design using a homogenization method}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Computer Methods in Applied Mechanics and Engineering}{71}{2}{197--224}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/0045-7825(88)90086-2} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Bends{\o}e%
+\ \BBA {} Sigmund%
+}{%
+Bends{\o}e%
+\ \BBA {} Sigmund%
+}{%
+{\protect \APACyear {2004}}%
+}]{%
+Bendse.2004}
+\APACinsertmetastar {%
+Bendse.2004}%
+\begin{APACrefauthors}%
+Bends{\o}e, M\BPBI P.%
+\BCBT {}\ \BBA {} Sigmund, O.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2004}.
+\newblock
+\APACrefbtitle {Topology Optimization} {Topology optimization}.
+\newblock
+\APACaddressPublisher{Berlin, Heidelberg}{{Springer Berlin Heidelberg}}.
+\newblock
+\begin{APACrefDOI} \doi{10.1007/978-3-662-05086-6} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+{CY Y}%
+}{%
+{CY Y}%
+}{%
+{\protect \APACyear {{\protect \bibnodate {}}}}%
+}]{%
+.}
+\APACinsertmetastar {%
+.}%
+\begin{APACrefauthors}%
+{CY Y}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{{\protect \bibnodate {}}}{}{}.
+\newblock
+\APACrefbtitle {vtkwrite : Exports various 2D/3D data to ParaView in VTK file format - File Exchange - MATLAB Central.} {vtkwrite : Exports various 2d/3d data to paraview in vtk file format - file exchange - matlab central.}
+\newblock
+\begin{APACrefURL} [{17.12.2018}]\url{https://de.mathworks.com/matlabcentral/fileexchange/47814-vtkwrite-exports-various-2d-3d-data-to-paraview-in-vtk-file-format} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Dienemann%
+}{%
+Dienemann%
+}{%
+{\protect \APACyear {2018}}%
+}]{%
+Dienemann.2018}
+\APACinsertmetastar {%
+Dienemann.2018}%
+\begin{APACrefauthors}%
+Dienemann, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2018}.
+\newblock
+\APACrefbtitle {Entwicklung einer Optimierungsmethodik f{\"u}r die Form- und Topologieoptimierung von tiefziehbaren Blechstrukturen} {Entwicklung einer optimierungsmethodik f{\"u}r die form- und topologieoptimierung von tiefziehbaren blechstrukturen}\ (\PrintOrdinal{1. Auflage}\ \BEd).
+\newblock
+\APACaddressPublisher{Herzogenrath}{Shaker}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Duarte%
+, Celes%
+, Pereira%
+, {M. Menezes}%
+\BCBL {}\ \BBA {} Paulino%
+}{%
+Duarte%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2015}}%
+}]{%
+Duarte.2015}
+\APACinsertmetastar {%
+Duarte.2015}%
+\begin{APACrefauthors}%
+Duarte, L\BPBI S.%
+, Celes, W.%
+, Pereira, A.%
+, {M. Menezes}, I\BPBI F.%
+\BCBL {}\ \BBA {} Paulino, G\BPBI H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {PolyTop++: an efficient alternative for serial and parallel topology optimization on CPUs {\&} GPUs} {Polytop++: an efficient alternative for serial and parallel topology optimization on cpus {\&} gpus}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Structural and Multidisciplinary Optimization}{52}{5}{845--859}.
+\newblock
+\begin{APACrefDOI} \doi{10.1007/s00158-015-1252-x} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Hvejsel%
+\ \BBA {} Lund%
+}{%
+Hvejsel%
+\ \BBA {} Lund%
+}{%
+{\protect \APACyear {2011}}%
+}]{%
+Hvejsel.2011}
+\APACinsertmetastar {%
+Hvejsel.2011}%
+\begin{APACrefauthors}%
+Hvejsel, C\BPBI F.%
+\BCBT {}\ \BBA {} Lund, E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2011}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Material interpolation schemes for unified topology and multi-material optimization} {Material interpolation schemes for unified topology and multi-material optimization}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Structural and Multidisciplinary Optimization}{43}{6}{811--825}.
+\newblock
+\begin{APACrefDOI} \doi{10.1007/s00158-011-0625-z} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Lazarov%
+\ \BBA {} Sigmund%
+}{%
+Lazarov%
+\ \BBA {} Sigmund%
+}{%
+{\protect \APACyear {2011}}%
+}]{%
+Lazarov.2011}
+\APACinsertmetastar {%
+Lazarov.2011}%
+\begin{APACrefauthors}%
+Lazarov, B\BPBI S.%
+\BCBT {}\ \BBA {} Sigmund, O.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2011}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Filters in topology optimization based on Helmholtz-type differential equations} {Filters in topology optimization based on helmholtz-type differential equations}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{International Journal for Numerical Methods in Engineering}{86}{6}{765--781}.
+\newblock
+\begin{APACrefDOI} \doi{10.1002/nme.3072} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Liu%
+\ \BBA {} Tovar%
+}{%
+Liu%
+\ \BBA {} Tovar%
+}{%
+{\protect \APACyear {2014}}%
+}]{%
+Liu.2014}
+\APACinsertmetastar {%
+Liu.2014}%
+\begin{APACrefauthors}%
+Liu, K.%
+\BCBT {}\ \BBA {} Tovar, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {An efficient 3D topology optimization code written in Matlab} {An efficient 3d topology optimization code written in matlab}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Structural and Multidisciplinary Optimization}{50}{6}{1175--1196}.
+\newblock
+\begin{APACrefDOI} \doi{10.1007/s00158-014-1107-x} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Mart{\'i}nez-Frutos%
+, Mart{\'i}nez-Castej{\'o}n%
+\BCBL {}\ \BBA {} Herrero-P{\'e}rez%
+}{%
+Mart{\'i}nez-Frutos%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+MartinezFrutos.2017}
+\APACinsertmetastar {%
+MartinezFrutos.2017}%
+\begin{APACrefauthors}%
+Mart{\'i}nez-Frutos, J.%
+, Mart{\'i}nez-Castej{\'o}n, P\BPBI J.%
+\BCBL {}\ \BBA {} Herrero-P{\'e}rez, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Efficient topology optimization using GPU computing with multilevel granularity} {Efficient topology optimization using gpu computing with multilevel granularity}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Advances in Engineering Software}{106}{}{47--62}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.advengsoft.2017.01.009} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+\APACcitebtitle {Matrix Indexing in MATLAB}}{%
+\APACcitebtitle {Matrix Indexing in MATLAB}}{%
+{\protect \APACyear {16.02.2019}}%
+}]{%
+.matlab_index_ref}
+\APACinsertmetastar {%
+.matlab_index_ref}%
+\APACrefbtitle {Matrix Indexing in MATLAB.} {Matrix indexing in matlab.}
+\newblock
+\APACrefYearMonthDay{16.02.2019}{}{}.
+\newblock
+\begin{APACrefURL} [{17.02.2019}]\url{https://de.mathworks.com/company/newsletters/articles/matrix-indexing-in-matlab.html} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Olason%
+\ \BBA {} Tidman%
+}{%
+Olason%
+\ \BBA {} Tidman%
+}{%
+{\protect \APACyear {2010}}%
+}]{%
+Olason.2010}
+\APACinsertmetastar {%
+Olason.2010}%
+\begin{APACrefauthors}%
+Olason, A.%
+\BCBT {}\ \BBA {} Tidman, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2010}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Methodology for topology and shpe optimization in the design process} {Methodology for topology and shpe optimization in the design process}.{\BBCQ}
+\newblock
+
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+\APACcitebtitle {ParaView/Users Guide/List of readers - KitwarePublic}}{%
+\APACcitebtitle {ParaView/Users Guide/List of readers - KitwarePublic}}{%
+{\protect \APACyear {29.11.2018}}%
+}]{%
+.29.11.2018}
+\APACinsertmetastar {%
+.29.11.2018}%
+\APACrefbtitle {ParaView/Users Guide/List of readers - KitwarePublic.} {Paraview/users guide/list of readers - kitwarepublic.}
+\newblock
+\APACrefYearMonthDay{29.11.2018}{}{}.
+\newblock
+\begin{APACrefURL} [{17.12.2018}]\url{https://www.paraview.org/Wiki/ParaView/Users_Guide/List_of_readers#Legacy_VTK_Reader} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Schmidt%
+\ \BBA {} Schulz%
+}{%
+Schmidt%
+\ \BBA {} Schulz%
+}{%
+{\protect \APACyear {2011}}%
+}]{%
+Schmidt.2011}
+\APACinsertmetastar {%
+Schmidt.2011}%
+\begin{APACrefauthors}%
+Schmidt, S.%
+\BCBT {}\ \BBA {} Schulz, V.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2011}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A 2589 line topology optimization code written for the graphics card} {A 2589 line topology optimization code written for the graphics card}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Computing and Visualization in Science}{14}{6}{249--256}.
+\newblock
+\begin{APACrefDOI} \doi{10.1007/s00791-012-0180-1} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Schumacher%
+}{%
+Schumacher%
+}{%
+{\protect \APACyear {2013}}%
+}]{%
+Schumacher.2013}
+\APACinsertmetastar {%
+Schumacher.2013}%
+\begin{APACrefauthors}%
+Schumacher, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2013}.
+\newblock
+\APACrefbtitle {Optimierung mechanischer Strukturen: Grundlagen und industrielle Anwendungen} {Optimierung mechanischer strukturen: Grundlagen und industrielle anwendungen}\ (\PrintOrdinal{2., aktual. u. erg. Aufl. 2013}\ \BEd).
+\newblock
+\APACaddressPublisher{Berlin and Heidelberg}{Springer}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1007/978-3-642-34700-9} \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1007/978-3-642-34700-9} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Sigmund%
+}{%
+Sigmund%
+}{%
+{\protect \APACyear {2001}}%
+}]{%
+Sigmund.2001}
+\APACinsertmetastar {%
+Sigmund.2001}%
+\begin{APACrefauthors}%
+Sigmund, O.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2001}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A 99 line topology optimization code written in Matlab} {A 99 line topology optimization code written in matlab}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Structural and Multidisciplinary Optimization}{21}{2}{120--127}.
+\newblock
+\begin{APACrefDOI} \doi{10.1007/s001580050176} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Sigmund%
+}{%
+Sigmund%
+}{%
+{\protect \APACyear {2007}}%
+}]{%
+Sigmund.2007}
+\APACinsertmetastar {%
+Sigmund.2007}%
+\begin{APACrefauthors}%
+Sigmund, O.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2007}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Morphology-based black and white filters for topology optimization} {Morphology-based black and white filters for topology optimization}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Structural and Multidisciplinary Optimization}{33}{4-5}{401--424}.
+\newblock
+\begin{APACrefDOI} \doi{10.1007/s00158-006-0087-x} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Sigmund%
+\ \BBA {} Maute%
+}{%
+Sigmund%
+\ \BBA {} Maute%
+}{%
+{\protect \APACyear {2013}}%
+}]{%
+Sigmund.2013}
+\APACinsertmetastar {%
+Sigmund.2013}%
+\begin{APACrefauthors}%
+Sigmund, O.%
+\BCBT {}\ \BBA {} Maute, K.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Topology optimization approaches} {Topology optimization approaches}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Structural and Multidisciplinary Optimization}{48}{6}{1031--1055}.
+\newblock
+\begin{APACrefDOI} \doi{10.1007/s00158-013-0978-6} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Stolpe%
+\ \BBA {} Svanberg%
+}{%
+Stolpe%
+\ \BBA {} Svanberg%
+}{%
+{\protect \APACyear {2001}}%
+}]{%
+Stolpe.2001}
+\APACinsertmetastar {%
+Stolpe.2001}%
+\begin{APACrefauthors}%
+Stolpe, M.%
+\BCBT {}\ \BBA {} Svanberg, K.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2001}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {An alternative interpolation scheme for minimum compliance topology optimization} {An alternative interpolation scheme for minimum compliance topology optimization}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Structural and Multidisciplinary Optimization}{22}{2}{116--124}.
+\newblock
+\begin{APACrefDOI} \doi{10.1007/s001580100129} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}

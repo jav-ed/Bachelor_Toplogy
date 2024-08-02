@@ -1,0 +1,675 @@
+
+\chapter{3D Adapt Results}
+In the field of 3D topology optimization,
+visualization of the optimization progress and results is very important
+in order to understand how a set of parameter influences
+the evolution of the optimization and to evaluate the result in a qualitative way. Matlab as a post processor is not suitable for this, reasons for this
+statement and advantages which are offered by the chosen post processor ParaView are described along with handling instructions in the section
+ \ref{section_paraview}. 
+All shown results were generated with Maltab and displayed with ParaView. 
+First of all, it will be shown how the Adapt
+was extended from 2D to 3D. For this purpose, a 2D load case has been
+defined in 3D with on element in the depth in order to be
+similar to each other. To show the results,
+ one 2D result, one 3D result, one overlap
+ and the inverse of an overlap are shown with 
+ the usage of two different thresholds . Afterwards results with more than
+ one element in the depth will be presented in section
+  \ref{section_3d_loadcases}.
+
+\section{Compare 2D and 3D results }
+In order to find, whether the Adapt is correctly extended to 3D some investigations were made. A reasonable assumption is, that a 3D mesh with only one element in the depth-direction (\textbf{z}) should lead
+to similar results to those obtained with
+a 2D mesh.
+A comparison between a 2D mesh and a
+ 3D mesh with only one depth- element was tested 
+ with three different load-cases.
+
+\subsection{2D and 3D load-cases}
+
+The first load-case is known as the Cantilever,
+where the left
+ lower edge and the left upper edge is clamped and a force is applied vertically. In figure \ref{fig_loadcase_canti_2d} a force is applied at 80\% of the horizontally length at the bottom in vertical direction. In order to be able to get similar results, the 3D load-case is defined as follow:
+ the length-details remains unchanged, however, two forces with the half magnitude of the origin force magnitude are applied, see figure \ref{fig_loadcase_canti_3d}.
+
+\begin{figure}[!h]
+\begin{minipage}{0.45\textwidth}
+\centering
+ \def\svgwidth{\textwidth}
+\input{path_Image/load_case_2d_canti.pdf_tex} 
+\caption{Load-case Cantilever in 2D.}  
+\label{fig_loadcase_canti_2d}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+ \def\svgwidth{\textwidth}
+\input{path_Image/load_case_3d_canti.pdf_tex} 
+\caption{Adjusted load-case Cantilever for 3D.}  
+\label{fig_loadcase_canti_3d}
+\end{minipage}
+\end{figure}
+
+The second for this purpose used load-case is similar to the the first one, therefore this load-case will be defined as Cantilever\textsubscript{2}. The force is applied vertically at 50\% of the whole vertically length and at 100\% of the horizontally length, see figure \ref{fig_loadcase_canti2_2d}. In figure \ref{fig_loadcase_canti2_3d} is shown which load-case was used to approximate the 2D load-case for 3D.\\
+
+\begin{figure}[!h]
+\begin{minipage}{0.45\textwidth}
+\centering
+ \def\svgwidth{\textwidth}
+\input{path_Image/load_case_2d_canti2.pdf_tex} 
+\caption{Load-case Cantilever\textsubscript{2} in 2D.}  
+\label{fig_loadcase_canti2_2d}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+ \def\svgwidth{\textwidth}
+\input{path_Image/load_case_3d_canti2.pdf_tex} 
+\caption{Adjusted load-case Cantilever\textsubscript{2} for 3D.}  
+\label{fig_loadcase_canti2_3d}
+\end{minipage}
+\end{figure}
+
+The last load-case is called MBB (Messerschmitt-Bölkow-Blohm),
+where a force is applied at the top center. See figure \ref{fig_loadcase_mbb_2d} for the 2D load-case and the used 3D load case in figure \ref{fig_loadcase_mbb_3d}.
+\begin{figure}[!h]
+\begin{minipage}{0.45\textwidth}
+\centering
+ \def\svgwidth{\textwidth}
+\input{path_Image/load_case_2d_mbb.pdf_tex} 
+\caption{Load-case MBB in 2D.}  
+\label{fig_loadcase_mbb_2d}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+ \def\svgwidth{\textwidth}
+\input{path_Image/load_case_3d_mbb.pdf_tex} 
+\caption{Adjusted load-case MBB for 3D.}  
+\label{fig_loadcase_mbb_3d}
+\end{minipage}
+\end{figure}
+
+\newpage
+\subsection{2D and 3D comparison results}
+The upcoming figures, which are presented from figure \ref{fig_2dbasis_03} to
+ figure \ref{fig_3dbasis_re_03}, show the 2D Basis, the 3D Basis, an overlapping of
+ the 2D and 3D Basis and also one figure with highlighted elements which
+ are not common in both models.
+ The 2D Basis (figure \ref{fig_2dbasis_03}) is generated with the 88
+  lines of code by \cite{Andreassen.2011} and the 3D Basis (figure \ref{fig_3dbasis_03}) is
+  obtained with the 169 lines of code by \cite{Liu.2014}. 
+  Since it is hardly possible 
+   to see the difference between the both Bases without any support of a tool, an
+ overlapping figure \ref{fig_3dbasis_overl_03} and a figure, which highlights
+ especially the not matching elements (figure \ref{fig_3dbasis_re_03}), which
+ are coloured yellow.  
+  Both Bases
+  are obtained with a $volfrac = 0.2$, a mesh-resolution of $100 \times 50$
+  respectively $100 \times 50 \times 1$, $r_{min} = 1.5,\; r_{b} = 1.5,\; ep = 2$, with a
+   penal-exponent of $p = 3$ and the load-case Cantilever, 
+   2D-(see figure
+   \ref{fig_loadcase_canti_2d}) respectively 3D-load case (see figure
+ \ref{fig_loadcase_canti_3d}).
+  All the shown figures starting from figure \ref{fig_2dbasis_03} to figure \ref{fig_3dbasis_re_03}
+  are presented with the restriction of a threshold of 0.3
+ (see subsection \ref{subsection_paraview_threshold} for more details about thresholds).
+It can be observed that, there is a difference between the 2D Basis
+(figure \ref{fig_2dbasis_03}) and the 3D Basis (figure \ref{fig_3dbasis_03}).
+The reason for that lies in the
+optimization procedure or optimization history of each element
+and furthermore the simulations accuracy is limited to the computers numerically precision. \\
+
+With the same working procedure the extension from the 2D Adapt to 3D is examined. Figure \ref{fig_2dadapt_03} shows a 2D Adapt, generated with the 2D optimiser Adapt, figure \ref{fig_3dbadapt_03} shows a 3D Adapt,
+with only
+ one element in the third axis (\textbf{z}), the figure \ref{fig_3dadapt_overl_03}
+ shows an overlapping and figure \ref{fig_3dadapt_re_03} shows the difference
+  between the 2D and 3D Adapt. It can be observed, that the difference
+  between the 2D Adapt and 3D Adapt is similar to the difference between the 2D Basis and 3D Basis.
+  Note that, the figures \ref{fig_2dbasis_03} - 
+  \ref{fig_3dadapt_re_03} are presented with a threshold of 0.3 and the figures \ref{fig_2dbasis_05} - \ref{fig_3dadapt_re_05} are
+presented 
+ with a threshold of 0.5.\\
+
+The reason, why
+  some results
+  with a threshold of \emph{0.5} show elements, which 
+  are completely alone in the space without being connected with
+   other elements is the threshold. The purpose of a threshold is to prohibit the display
+   of elements which do not satisfy the value of the threshold.
+   A threshold of 0.5 means that every element in the matrix, which do not fulfil the
+    criteria of exhibiting a density value, which is $\rho_e \geq 0.5$ is not going to
+    be displayed. \\
+       
+     The comparison of the 2D and 3D Adapts with the other two load-cases Cantilever\textsubscript{2} and MBB exhibits a smaller difference. The least difference, with only 5 elements was observed with Cantilever\textsubscript{2} as the load-case.
+   
+%:::::::::::::::::2D and 3D comparison :::::::::::::::
+\begin{figure}[!h]
+\begin{minipage}{0.45\textwidth}
+%_____2D BASIS_________
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Uberlappungen/2d_basi_3D_basis/2d_basis_03.png}
+	\caption{Threshold: 0.3, 2D green Basis generated with 88 lines of code \protect\cite{Andreassen.2011}} 
+	\label{fig_2dbasis_03}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+%K____3D_Basis__________________
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Uberlappungen/2d_basi_3D_basis/3d_basis_03.png}
+	\caption{Threshold: 0.3, 3D red Basis generated with 169 lines of code \protect\cite{Liu.2014}.} 
+	\label{fig_3dbasis_03}
+\end{minipage}
+\end{figure}
+\begin{figure}[!h]
+\begin{minipage}{0.45\textwidth}
+%______2D und 3D Basis Uberlappung______
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Uberlappungen/2d_basi_3D_basis/2d_3d_basi_ov_03.png}
+    \vspace*{-10mm}
+	\caption{Threshold: 0.3, overlapped green 2D and yellow 3D Basis.} 
+	\label{fig_3dbasis_overl_03}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+%______2D und 3D Basis RE______
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Uberlappungen/2d_basi_3D_basis/2d_3d_basi_re_03.png}
+    \vspace*{-10mm}
+	\caption{Threshold: 0.3, overlapping 2D and 3D Basis.} 
+	\label{fig_3dbasis_re_03}
+	\end{minipage}
+\end{figure}
+
+%
+%__________________ADAPT --- 0.3________________________________________
+%
+%
+\begin{figure}[!h]
+\begin{minipage}{0.45\textwidth}
+%_____2D BASIS_________
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Uberlappungen/2D_Adapt_2DBasis_Adapt/2d_adapt_03.png}
+  \vspace*{-10mm}
+	\caption{Threshold: 0.3, 2D green Adapt generated with the 2D Adapt.} 
+	\label{fig_2dadapt_03}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+%K____3D_Basis__________________
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Uberlappungen/2D_Adapt_2DBasis_Adapt/3d_adapt_03.png}
+    \vspace*{-10mm}
+	\caption{Threshold: 0.3, current 3D Adapt.}
+	\label{fig_3dbadapt_03}
+\end{minipage}
+\end{figure}
+\begin{figure} [H]
+\begin{minipage}{0.45\textwidth}
+%______2D und 3D Basis Uberlappung______
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Uberlappungen/2D_Adapt_2DBasis_Adapt/2d_3d_adapt_th_03_ov.png}
+    \vspace*{-10mm}
+	\caption{Threshold: 0.3, overlapped green 2D and yellow 3D Adapt.} 
+	\label{fig_3dadapt_overl_03}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+%______2D und 3D Basis RE______
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Uberlappungen/2D_Adapt_2DBasis_Adapt/2d_3d_adapt_th_03_re.png}
+    \vspace*{-10mm}
+	\caption{Threshold: 0.3, overlapping 2D and 3D Adapt.} 
+	\label{fig_3dadapt_re_03}
+	\end{minipage}
+\end{figure}
+
+%_______________________________BASIS 2D 3D 0.5___________________________
+\begin{figure}[!h]
+\begin{minipage}{0.45\textwidth}
+%_____2D BASIS_________
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Uberlappungen/2d_basi_3D_basis/2d_basis_05.png}
+      \vspace*{-10mm}
+	\caption{Threshold: 0.5, 2D green Basis generated with 88 lines of code \protect\cite{Andreassen.2011}} 
+	\label{fig_2dbasis_05}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+%K____3D_Basis__________________
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Uberlappungen/2d_basi_3D_basis/3d_basis_05.png}
+      \vspace*{-10mm}
+	\caption{Threshold: 0.5, 3D red Basis generated with 169 lines of code \protect\cite{Liu.2014}.} 
+	\label{fig_3dbasis_05}
+\end{minipage}
+\end{figure}
+\begin{figure}[!h]
+\begin{minipage}{0.45\textwidth}
+%______2D und 3D Basis Uberlappung______
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Uberlappungen/2d_basi_3D_basis/2d_3d_basi_ov_05.png}
+      \vspace*{-10mm}
+	\caption{Threshold: 0.5, overlapped green 2D and yellow 3D Basis.} 
+	\label{fig_3dbasis_overl_05}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+%______2D und 3D Basis RE______
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Uberlappungen/2d_basi_3D_basis/2d_3d_basi_re_05.png}
+      \vspace*{-10mm}
+	\caption{Threshold: 0.5, overlapping 2D and 3D Basis.} 
+	\label{fig_3dbasis_re_05}
+	\end{minipage}
+\end{figure}
+
+%
+%__________________ADAPT --- 0.5________________________________________
+%
+%
+\begin{figure}[H]
+\begin{minipage}{0.45\textwidth}
+%_____2D BASIS_________
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Uberlappungen/2D_Adapt_2DBasis_Adapt/2d_adapt_05.png}
+      \vspace*{-10mm}
+	\caption{Threshold: 0.5, 2D green Adapt generated with the 2D Adapt.} 
+	\label{fig_2dadapt_05}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+%K____3D_Basis__________________
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Uberlappungen/2D_Adapt_2DBasis_Adapt/3d_adapt_05.png}
+	\caption{Threshold: 0.5, current 3D Adapt.}
+	\label{fig_3dbadapt_05}
+\end{minipage}
+\end{figure}
+\begin{figure} [!h]
+\begin{minipage}{0.45\textwidth}
+%______2D und 3D Basis Uberlappung______
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Uberlappungen/2D_Adapt_2DBasis_Adapt/2d_3d_adapt_th_05_ov.png}
+      \vspace*{-10mm}
+	\caption{Threshold: 0.5, overlapped green 2D and yellow 3D Adapt.} 
+	\label{fig_3dadapt_overl_05}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+%______2D und 3D Basis RE______
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Uberlappungen/2D_Adapt_2DBasis_Adapt/2d_3d_adapt_th_05_re.png}
+      \vspace*{-10mm}
+	\caption{Threshold: 0.5, overlapping 2D and 3D Adapt.} 
+	\label{fig_3dadapt_re_05}
+	\end{minipage}
+\end{figure}
+
+%____________3D results with more than one depth-elemt________________-
+
+\section{3D Adapt results with more than one elements in depth}
+\label{section_3d_loadcases}
+
+Before presenting the main 3D Adapt results,
+some new 3D load cases are introduced.
+ Figure \ref{fig_load_case_clamped_cant} 
+ shows the load-case Cantilever\textsubscript{3}. The difference between the Cantilever and
+ Cantilever\textsubscript{3} is in the boundary 
+conditions. The Cantilever\textsubscript{3}'s left side is 
+ clamped fully, whereas the Cantilever has only 4 corner  
+ nodes, which are clamped. The second difference 
+ is that, the applied force is not multiplied by the 
+ factor $\frac{1}{2}$, each node in the depth (\textbf{z}),
+  is stressed with the same force \textbf{$F = 1$}. The 
+ topology will not change by increasing the 
+ magnitude of $F$, however, the compliance will increase.
+ The second 3D load-case is a modified version 
+ (see figure \ref{fig_load_case_MBB_modified}) of the 
+ MBB load-case (figure \ref{fig_loadcase_mbb_3d}).
+ Each node in the depth (z) is clamped, which means
+ that the DOFs are blocked in all three axes. Furthermore
+ the force equals $F = 1$, instead of $F = \frac{1}{2}$ and is applied on
+ each node in the depth. The 
+ load-case Cantilever\textsubscript{2} 
+ (figure \ref{fig_loadcase_canti2_3d}) is also 
+ deployed with some modifications for this section. 
+ The boundary conditions for this lode-cases remains 
+ unchanged, however the applied magnitude of the 
+ forces are not going to be reduced by half and also 
+ the force is applied on each 
+ node in the depth (\textbf{z}). Therefore the 
+ modified MBB, Cantilever\textsubscript{2} and
+  Cantilever\textsubscript{3}  will be 
+ defined as depth load-cases.\\
+ 
+ The 3D Adapt results are shown 
+in figure \ref{fig_load_canti_02} - \ref{fig_load_mitchell_04_t} 
+ with two different thresholds,
+ where the left figure is presented with a displaying threshold of
+ \emph{0.2} and the right figure has a threshold of
+ \emph{0.4}. The Basis is gray coloured and the
+ added AMs are coloured with the colormap 
+ \emph{Blue to Red Rainbow} with
+ blue representing the lowest densitiy respectively
+ red the highest. The table \ref{tabe_3d_load_cases} 
+ offers more informations about
+ the figures \ref{fig_load_canti_02} - \ref{fig_load_mitchell_04_t}.
+ The compliance \emph{c} of the Basis and of
+ the Adapt from table \ref{tabe_3d_load_cases}
+ are not completely correct for their presented threshold.
+ The reason for this is, if a threshold is
+  defined, then all elements that do not fulfil this threshold
+   are considered as non-existent elements (no material) and 
+   all elements with a density above this threshold are set to \emph{1}.
+    This means that several elements are completely lost, but 
+    also that the density of many elements is artificially 
+    increased to \emph{1}. 
+    Increasing the density to 1 is necessary because
+     in practice there are no intermediate densities. 
+     There is either material or there is none. In order 
+     to be able to give an exact c-value, it would be
+      essential to load each Adapt result with
+       the desired threshold into e.g. Optistruct and 
+       perform a recalculation. However, in order to provide a comparison value, 2 
+       Adapt results with different thresholds were 
+       loaded and the variation to the \emph{c}-values given in 
+       the table
+       \ref{tabe_3d_load_cases}
+        is about 2\%. To emphasize it again,
+        the values in the table
+        \ref{tabe_3d_load_cases} 
+        are not entirely 
+        correct for their thresholds and therefore no guarantee is given on 
+        the accuracy of the \emph{c}-values.
+
+ 
+ 
+% _______________Load-Case______________________
+ \begin{figure} [!h]
+\begin{minipage}{0.45\textwidth}
+ \centering
+ \def\svgwidth{\textwidth}
+ \input{path_Image/load_case_3d_canti_voll.pdf_tex}
+ \caption{3D load-case: Cantilever\textsubscript{3}.}    % Bildunterschrift 
+ \label{fig_load_case_clamped_cant}          % Label für Verweise f
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+ \centering
+ \def\svgwidth{\textwidth}
+ \input{path_Image/load_case_3d_mbb_2.pdf_tex}
+ \vspace*{6mm}
+ \caption{3D load-case: MBB modified.}    % Bildunterschrift 
+ \label{fig_load_case_MBB_modified}          % Label für Verweise f
+\end{minipage}
+\end{figure} ~\\
+
+% __________________::::::::::::::::::::::The 3D Results_________________________-
+\begin{figure}[!h]
+\begin{minipage}{0.45\textwidth}
+%________________CANTIlever______________________
+\centering
+  \includegraphics[width=  \textwidth]{path_Image/pngs/Aufgabe_1/3D_Ergebnisse/canti.png}
+	\caption{Cantilever\textsubscript{3}, threshold 0.2, $100\times 50 \times 8$.}  
+	\label{fig_load_canti_02}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+  \includegraphics[width= \textwidth]{path_Image/pngs/Aufgabe_1/3D_Ergebnisse/canti_04.png}
+	\caption{Cantilever\textsubscript{3}, threshold 0.4, $100\times 50 \times 8$.} 
+	\label{fig_load_canti_04}
+\end{minipage}\\
+
+\vspace{0.75cm}
+%____________________Cantilever_2________________
+\begin{minipage}{0.45\textwidth}
+\centering
+  \includegraphics[width=  \textwidth]{path_Image/pngs/Aufgabe_1/3D_Ergebnisse/mitchell.png}
+	\caption{Cantilever\textsubscript{2}, threshold 0.2, $100\times 50 \times 8$.} 
+	\label{fig_load_mitchell_02}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+  \includegraphics[width= \textwidth]{path_Image/pngs/Aufgabe_1/3D_Ergebnisse/mitchell_04.png}
+	\caption{Cantilever\textsubscript{2}, threshold 0.4, $100\times 50 \times 8$.} 
+	\label{fig_load_mitchell_04}
+\end{minipage}\\
+
+\vspace{0.75cm}
+%______________________MBB_________________
+\begin{minipage}{0.45\textwidth}
+\centering
+  \includegraphics[width=  \textwidth]{path_Image/pngs/Aufgabe_1/3D_Ergebnisse/mbb.png}
+	\caption{MBB modified, threshold 0.2, $100\times 50 \times 8$.} 
+	\label{fig_load_mbb_02}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+  \includegraphics[width= \textwidth]{path_Image/pngs/Aufgabe_1/3D_Ergebnisse/mbb_04.png}
+	\caption{MBB modified, threshold 0.4, $100\times 50 \times 8$.} 
+	\label{fig_load_mbb_04}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[!h]
+%_______________________Canti1 -Tiefen________________
+\begin{minipage}{0.45\textwidth}
+\centering
+  \includegraphics[width=  \textwidth]{path_Image/pngs/Aufgabe_1/3D_Ergebnisse/canti_t.png}
+	\caption{Cantilever\textsubscript{3}, threshold 0.2, $100\times 50 \times 14$.} 
+	\label{fig_load_canti_02_t}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+  \includegraphics[width= \textwidth]{path_Image/pngs/Aufgabe_1/3D_Ergebnisse/canti_t_04.png}
+	\caption{Cantilever\textsubscript{3}, threshold 0.4, $100\times 50 \times 14$.} 
+	\label{fig_load_canti_04_t}
+\end{minipage}\\
+
+\vspace{0.75cm}
+%%______________________CANTI 2_Tiefen__________________--
+\begin{minipage}{0.45\textwidth}
+\centering
+  \includegraphics[width=  \textwidth]{path_Image/pngs/Aufgabe_1/3D_Ergebnisse/mitchell_t.png}
+	\caption{Cantilever\textsubscript{2}, threshold 0.2, $100\times 50 \times 14$.} 
+	\label{fig_load_mitchell_02_t}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+  \includegraphics[width= \textwidth]{path_Image/pngs/Aufgabe_1/3D_Ergebnisse/mitchell_t_04.png}
+	\caption{Cantilever\textsubscript{2}, threshold 0.4, $100\times 50 \times 14$.}
+\label{fig_load_mitchell_04_t}
+\end{minipage}
+\end{figure}
+%%::::::::::::::::::::.3D REsults-Table::::::::::::::::::::::::::::::::::
+With the table from the table \ref{tabe_3d_load_cases} it
+ can be observed that each \emph{c}-Basis is higher than 
+ \emph{c}-Adapt. This proves that with the usage of the
+Adapt the compliance is reduced, or the stiffness
+is increased. Furthermore it can be seen that the
+improvement regarding stiffness is highly depended on the
+load-case, e.g. in case of the load-case Cantilever\textsubscript{3} the
+stiffness is increased by the factor \emph{1.57}, whereas the
+the load-case Cantilever\textsubscript{2} exhibits an improvement
+of the factor \emph{1.19}.\\
+
+\begin{table}[!h]
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline 
+\rowcolor{Green}
+Figure & Mesh resolution & TA & \emph{c} Basis &
+\emph{c} Adapt& NI & sec/iteration \\ 
+\hline 
+\ref{fig_load_canti_02} &$100\times 50 \times 8$&0.2& 448.9 &286.34 &  167& 34 \\ 
+\hline 
+\ref{fig_load_canti_04} &$100\times 50 \times 8$&0.4& 448.9&  286.34 & 167 & 34 \\ 
+\hline 
+\ref{fig_load_mitchell_02}  &$100\times 50 \times 8$& 0.2&874.28 &  737.775 & 250 & 42 \\ 
+\hline 
+\ref{fig_load_mitchell_04} &$100\times 50 \times 8$& 0.4 &874.28 &  737.775  & 250 & 42 \\ 
+\hline 
+\ref{fig_load_mbb_02} &$100\times 50 \times 8$& 0.2&72.15& 59.5 & 146 & 32 \\ 
+\hline 
+\ref{fig_load_mbb_04} &$100\times 50 \times 8$&0.4&72.15 &  59.5 & 146 & 32 \\ 
+\hline 
+\ref{fig_load_canti_02_t}  &$100\times 50 \times 14$&0.2& 2699.62&1750.9 & 250 & 36 \\ 
+\hline 
+\ref{fig_load_canti_04_t} &$100\times 50 \times 14$&0.4&2699.62& 1750.9 & 250 & 36 \\ 
+\hline 
+\ref{fig_load_mitchell_02_t} &$100\times 50 \times 14$& 0.2 & 7930.95 & 7084.74 & 193 & 38 \\ 
+\hline 
+\ref{fig_load_mitchell_04_t} &$100\times 50 \times 14$& 0.4&7930.95& 7084.74 & 193 & 38 \\ 
+\hline 
+\end{tabular} 
+\caption{Shows the compliance \emph{c} with the usage of the optimiser Adapt and without (Basis).\\
+TA = Threshold Adapt
+NI = Number of iterations.\\
+\emph{c} = compliance\\
+Parameters of the figures \protect\ref{fig_load_canti_02} to \protect\ref{fig_load_mitchell_04_t}\\
+Basis-volfrac = 0.2, Adapt-volfrac = 0.3, ep = 2, r\textsubscript{min} = r\textsubscript{b} = 1.5.
+}
+\label{tabe_3d_load_cases}
+\end{table}
+
+%______________________________________________________________________________________________________
+%::::::::::::::::::::::3D Results -- Parameter::::::::::::::::::::::::::::::::::::::::::::::::
+\section{Parameter investigation}
+
+This section will investigate how changing Adapt specific parameters
+ affects the compliance and display the Adapt results.
+  For this,
+the figure \ref{fig_comp_orig} is defined as the
+origin Adapt result, which serves for comparison.
+The load case is named as the Cantilever\textsubscript{3} (see figure
+\ref{fig_load_case_clamped_cant}), the mesh resolution is 
+defined as $100 \times 50 \times 8$, $ep = 2$, $r_{min} = r_b = 1.5$, the \textit{volfrac}
+ of the Basis is \emph{0.2} and the \textit{volfrac} of the Adapt is
+ \emph{0.3}. 
+ However, the
+ Re-filter radius r\textsubscript{min} and the BZ-filter 
+ radius r\textsubscript{b} have always the same value. First 
+ the influence of the parameter \emph{ep} is shown. Afterwards with
+  constant \emph{ep}-value the filter radii are changed. The results
+  are shown in figures \ref{fig_comp_ep_3} - \ref{fig_comp_re_3},
+  all with a display threshold of \emph{0.2}.
+  A summary of these results can be obtained from the
+  table \ref{tabel_compare_parameters}. \\
+  
+  The figures \ref{fig_comp_orig} - \ref{fig_comp_ep_5} exhibit an increasing \emph{ep}-value.
+  It can be observed that with the 
+  increase of \emph{ep} the distance of the \emph{AMs}
+  and the Basis is increased as expected. This effect can be seen in
+  the left upper area of the figures 
+  \ref{fig_comp_orig} - \ref{fig_comp_ep_5}.
+  The reason for this occurrence is that, \emph{ep}
+  defines the thickness of the BZ, in which the elements
+  are penalized with the higher exponent of \emph{3}. This
+  means only the elements with a high sensitivity can remain in the
+  BZ. In case of the actual Basis and the Adapt, the Basis load-case
+  and the Adapt load-case are equal, which
+  signifies that the sensitivity around the Basis is 
+  higher than elsewhere. With increasing distance to the
+  Basis the sensitivity decreases. However, in conclusion it
+  can be stated that, because
+  of the penalization exponent of 
+  \emph{3} only few elements with a high
+  sensitivity can remain and 
+most of the elements are penalized to void. Furthermore, in case of 
+  a too high 
+ penal exponent, it may be that, the AMs cannot
+  connect to the Basis. Therefore the penalization exponent
+  of \emph{3} is recommended for the BZ.\\
+  
+   The figures
+  \ref{fig_comp_re_2} - \ref{fig_comp_re_3} exhibits
+  a variation of the sensitivity filter radii wit a common vlue of
+  \emph{ep}. The filter defines the
+  minimal member size of the AMs. With an increasing 
+  filter radius the minimal member size is also increased, which can
+  be seen well, by comparing the figures \ref{fig_comp_re_2} and
+  \ref{fig_comp_re_3}. Narrow bars in the lower middle area
+  are removed and the already existing bars are thickened.
+  Another comprehension that can be obtained by
+comparing the figures \ref{fig_comp_re_2} - \ref{fig_comp_re_3}
+  is that many small struts have a positive impact 
+  for high stiffness then few wide struts. This can be stated, since
+  the compliance (see table \ref{tabel_compare_parameters}) 
+  increases with an increase of the filter radii.\\
+ 
+%_____________Parameter-INvestigation-Table__________________----  
+\begin{table}[!h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline 
+Figure & ep & r\textsubscript{min} = r\textsubscript{b} &
+\emph{c} &NI & sec/iteration  \\ 
+\hline 
+\ref{fig_comp_orig} & 2 & 1.5  & 286.34 & 168 & 33 \\ 
+\hline 
+\ref{fig_comp_ep_3} & 3 & 1.5 & 284.6 & 198 & 40 \\ 
+\hline 
+\ref{fig_comp_ep_4} & 4 & 1.5  & 291.78 & 195 & 45 \\ 
+\hline 
+\ref{fig_comp_ep_5} & 5 & 1.5  & 293.62 & 215 & 48 \\ 
+\hline 
+\ref{fig_comp_re_2} & 2 & 2  & 237.95 & 102 & 35 \\ 
+\hline 
+\ref{fig_comp_re_2_5} & 2 & 2.5  & 298.57 & 128 & 41 \\ 
+\hline 
+\ref{fig_comp_re_3} & 2 & 3  & 313.8 & 74 & 36 \\ 
+\hline 
+\end{tabular} 
+\caption{Shows the impact of the parameter \emph{ep, r\textsubscript{min}
+and r\textsubscript{b}}
+on the compliance.\\
+NI = Number of Iterations.}
+\label{tabel_compare_parameters}
+\end{table}
+
+\begin{figure}[!h]
+\centering
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Parameter/orig.png}
+	\caption{$ep = 2\; r_{min} = r_{b}=1.5$.} 
+	\label{fig_comp_orig}
+\end{figure}
+
+%________________________________________________________________
+\begin{figure}[!h]
+\begin{minipage}{0.45\textwidth}
+%EPS
+\centering
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Parameter/re15_ep3.png}
+	\caption{$ep = 3\; r_{min} = r_{b}=1.5$.} 
+	\label{fig_comp_ep_3}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Parameter/re15_ep4.png}
+	\caption{$ep = 4\; r_{min} = r_{b}=1.5$.} 
+	\label{fig_comp_ep_4}
+	\end{minipage}
+	\vspace{1cm}
+	\begin{minipage}{0.45\textwidth}
+	\centering
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Parameter/re15_ep5.png}
+	\caption{$ep = 5\; r_{min} = r_{b}=1.5$.} 
+	\label{fig_comp_ep_5}
+\end{minipage}
+\hfill
+%_______________________RES__________________________________
+\begin{minipage}{0.45\textwidth}
+\centering
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Parameter/re2_ep2.png}
+	\caption{$ep = 2\; r_{min} = r_{b}=2$.} 
+	\label{fig_comp_re_2}
+	\end{minipage}\\
+	
+	\begin{minipage}{0.45\textwidth}
+	\centering
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Parameter/re25_ep2.png}
+	\caption{$ep = 2\; r_{min} = r_{b}=2.5$.} 
+	\label{fig_comp_re_2_5}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.45\textwidth}
+	\centering
+  \includegraphics[width = \textwidth]{path_Image/pngs/Aufgabe_1/Parameter/re3_ep2.png}
+	\caption{$ep = 2\; r_{min} = r_{b}=3$.} 
+	\label{fig_comp_re_3}
+\end{minipage}\\
+\end{figure}~\\
+
+
+
+

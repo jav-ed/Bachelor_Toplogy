@@ -1,0 +1,126 @@
+\chapter{Finite element reanalysis}
+\label{chapter_fea_reanalysis}
+In order to find out whether the 3D Adapt delivers
+ meaningful reinforcements, a FE calculation is carried out
+ in this section with 
+a commercial software in order to obtain
+access to further output values,
+such as stress distribution. The selected commercial  
+software is \emph{Hyperworks OptiStruct}.
+However, the structures, which are added by the Adapt, the Adapt Members (AMs),
+are to be understood as meaningful extension, if the AMs
+lead to an increase of the stiffness of the entire structure. 
+ 
+\section{Finite element analysis with OptiStruct}
+For applying a FE reanalysis with OptiStruct 
+ a function called \emph{OSSmooth} is used. 
+ It takes two input parameter,
+ one is a 
+ \emph{.fem}-file and the other is a \emph{.sh}-file.
+These files are required in order to load a topology
+optimized structure from Matlab into \emph{Hyperworks} by
+using \emph{OSSmooth}.
+ The \emph{.fem}-file stores information 
+ about the discretization e.g. mesh size and type of element to discretize.
+ The \emph{.sh}-file is composed of
+ the obtained density
+ values from the optimization,
+ which are between \emph{0} and \emph{1}.
+ Each finite element from the \emph{.fem}-file obtains its belonging  density from the \emph{.sh}-file. 
+  Furthermore the OSSmooth function offers a selectable OSSmooth threshold
+  in order to select the elements which will be considered
+  for the interpretation and smoothing og the geometry.\\
+ 
+ Through some investigations it was
+ determines that not all value of OSSmooth threshold lead to reasonable results.
+ In case of a 
+ high OSSmooth threshold, e.g. 0.9, most of the elements 
+ are not included in the smoothing process. 
+  This leads to elements, which have no connection with other elements, an example can be
+  obtained by the figure \ref{fig_2dadapt_05}. 
+  These isolated elements lead to an increase in compliance and also distort the grid.
+  A OSSmooth threshold $\leq 0.25$ was found to be
+  a value, which delivered interpreted geometries
+  close to the results obtained from the optimization.\\
+  
+    As mentioned, the\emph{ .sh}- and\emph{ .fem}-files are required in
+     order to make use of the OSSmooth and
+  to generate a \emph{.fem}-file. It is necessary to be familiar with
+  \emph{OptiStructs} node numbering convention,
+  which can be obtained through the figure
+   \ref{fig_optistruct_node_1}.
+   To make sure that each element in the \emph{.fem} file is assigned the correct density, the command from Listing \ref{lst_sh_data} for Matlab
+   is used, where \textit{density\_matrix} can be a 2D or 3D Matlab default matrix which contains the density values. 
+ 
+ \begin{figure} [!h]
+ \centering
+ \def\svgwidth{0.70\textwidth}
+ \input{path_Image/3d_nodes_opti.pdf_tex}
+ \caption{OptiStruct node numbering convention.}    % Bildunterschrift 
+ \label{fig_optistruct_node_1}          % Label für Verweise 
+\end{figure} 
+%______________matlab 3d BZ_____________
+\begin{lstlisting}[
+style=Matlab-editor,
+basicstyle=\mlttfamily,
+escapechar=`,
+label=lst_sh_data,
+caption={Helpful command for generating a .sh-file.}
+]
+sh_densities = (density_matrix(:))';
+\end{lstlisting} 
+
+\section{Reanalysis of MBB}
+In this section an example for a reanalysis is given. The chosen Adapt for this purpose is generated with modified MBB version, see figure
+\ref{fig_load_case_MBB_modified}.
+This \textit{ MBB Adapt} is loaded into OptiStruct using OSSmooth and a 
+OSSmooth threshold of \emph{0.5} is used.
+ However note that a threshold of 0.5
+ for most other Adapt results, is going to be too high. A OSSmooth 
+ threshold greater than \emph{0.25} will most likely cause a distorted grid.\\
+
+ The element size was selected to 0.5, the feature angle to 30,
+  the force equals 1000, the discretization was 
+  selected to \textit{mixed}, and the options \textit{connection detect} and \textit{iso surface}
+  were chosen. The results can be obtained
+  from the figures
+ \ref{fig_mbb_re_1} and \ref{fig_mbb_re_2}.
+One requirement that the Adapt has to meet is that it should not 
+show any local stress peaks. Continuous stress curves, which should be in the middle range of the stress-range, are
+ desired. In principle, the
+ higher the stress in the Adapt Members (AMs), the greater their
+ influence on increasing stiffness, or deceasing the compliance. A high
+ stress in the AMs would ensure that
+ placement of the AMs increases the stiffness of the whole
+ structure. It can be observed that the Basis 
+ (gray coloured in figure \ref{fig_edge_modi_mbb_05}) 
+is exposed to a lower stress in most places than the AMs. The reason for
+this occurrence is that, the added AMs take over a part of the total load. Therefore the Basis has to take up a lower load. Furthermore, it can be 
+seen that the stress distribution 
+does not show any erratic behaviour, the transitions
+ from low to high stress are clear and the the AMs 
+ are mostly not stressed to the red
+ maximum stress level (see figures \ref{fig_mbb_re_1} and \ref{fig_mbb_re_2}).
+  Because the stress in the AMs is clearly visible, the
+  Adapt performed a useful material distribution in order to support
+  the Basis.
+
+\begin{figure}[!h]
+ \centering
+ \begin{minipage}{\textwidth}
+  \centering
+    \includegraphics[width= 0.8 \textwidth]{path_Image/pngs/Aufgabe_2/alles.png}
+ 	\caption{FEA renalysis of MBB Adapt.} 
+ 	\label{fig_mbb_re_1}
+ \end{minipage}\\
+ 
+ \vspace{0.75cm}
+  \begin{minipage}{\textwidth}
+ \centering
+   \includegraphics[width= 0.6 \textwidth]{path_Image/pngs/Aufgabe_2/Schnitt.png}
+ 	\caption{FEA renalysis of MBB Adapt, cut view.} 
+ 	\label{fig_mbb_re_2}
+ \end{minipage}
+
+ \end{figure}
+

@@ -1,0 +1,98 @@
+%% Creator: Inkscape inkscape 0.92.3, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file '88_lines_visio.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{327.01808545bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.2072593)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{88_lines_visio.pdf}}%
+    \put(0.66368007,0.97484557){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Start topology optimiser\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{88_lines_visio.pdf}}%
+    \put(0.71789185,1.11633437){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Preconditions\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{88_lines_visio.pdf}}%
+    \put(0.769442,0.83335684){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}FEA\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{88_lines_visio.pdf}}%
+    \put(0.69337701,0.6972177){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensitivity analysis\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{88_lines_visio.pdf}}%
+    \put(0.76928139,0.02596816){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}End\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{88_lines_visio.pdf}}%
+    \put(0.34902549,1.15096583){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}nelx\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{88_lines_visio.pdf}}%
+    \put(0.34877848,1.03183528){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}nely\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{88_lines_visio.pdf}}%
+    \put(0.34179882,0.90001641){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}penal\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{88_lines_visio.pdf}}%
+    \put(0.3438247,0.76819744){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Rmin \end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{88_lines_visio.pdf}}%
+    \put(0.02785057,1.08591486){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Discretiztion\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{88_lines_visio.pdf}}%
+    \put(0.02932685,0.95071592){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Penalisation\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{88_lines_visio.pdf}}%
+    \put(0.03980866,0.83069743){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensitivity\end{tabular}}}}%
+    \put(0.06557131,0.80033727){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Filter\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{88_lines_visio.pdf}}%
+    \put(0.06743672,0.69549853){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Load \end{tabular}}}}%
+    \put(0.06808484,0.66513835){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Case\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{88_lines_visio.pdf}}%
+    \put(0.7070091,0.56107851){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensitivity Filter\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{88_lines_visio.pdf}}%
+    \put(0.73175282,0.44011977){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Optimalitiy\end{tabular}}}}%
+    \put(0.74353089,0.40975959){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Criterion\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=16]{88_lines_visio.pdf}}%
+    \put(0.71411254,0.26017701){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Statisfy Cancel\end{tabular}}}}%
+    \put(0.75078909,0.22981684){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Criteria\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=17]{88_lines_visio.pdf}}%
+    \put(0.97068557,0.55635042){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}No\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=18]{88_lines_visio.pdf}}%
+    \put(0.77134499,0.10513059){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Yes\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=19]{88_lines_visio.pdf}}%
+  \end{picture}%
+\endgroup%

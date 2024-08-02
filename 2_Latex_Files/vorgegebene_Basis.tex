@@ -1,0 +1,204 @@
+
+\chapter{Topology optimization with an external 2D and 3D Basis}
+\label{chapter_external_basis}
+
+Until now, it was only possible to
+ take structures created with
+  Matlab as a Basis. Since the Adapt is
+  supposed to optimise an entire vehicle, it 
+  is desirable
+   to include  any given  structure as
+   the Basis. For this purpose, it is going to be explained, how to
+    import a 2D or 3D structure, generated with a common
+     CAD sofwares, e.g.CATIA , into Matlab and use the imported
+     structure as the Basis. Afterwards it is going to be clarified,
+     why optimising with an external Basis requires
+     the already presented features and finally 
+     two applications are shown.
+     Note that the CAD program must be able to save the CAD drawing as
+      a .stl file and the discretization takes place exclusively as
+      squared elements in 2D and as voxels in 3D. 
+      
+      \section{External Basis}
+      \begin{figure}[H]
+      \begin{minipage}{0.45\textwidth}
+            In the previous chapter \ref{chapter_features_adapt} three Adapt
+      features were presented. These features enable to get the control
+      of the maximal tangential thickness of the CZGs, remove
+      locally reinforcements and define a minimal distance between
+      the CZGs. The reason why these features were implemented,
+      is because, it was desired to use the Adapt for slightly different and 
+      new load cases, which can be seen in figures
+      \ref{fig_slighlty_different_load} and
+      \ref{fig_new_load}. An external Basis as shown in figure
+      \ref{fig_ext_bas_1} is obtained without any predefined load-case.
+      The Basis, which was used up to now, was always
+      generated with a Basis load-case though the topology
+      optimisation codes \cite{Andreassen.2011} and \cite{Liu.2014}.
+          \end{minipage}
+      \hfill
+            \begin{minipage}{0.45\textwidth}
+      	\centering
+  \includegraphics[width= \textwidth]{path_Image/pngs/Aufgabe_3/grbegri_5.png}
+	\caption{Random external Basis.} 
+	\label{fig_ext_bas_1}
+      \end{minipage}
+      \end{figure}
+      
+      \begin{figure}[!h]
+      \begin{minipage}{0.45\textwidth}
+\centering
+  \includegraphics[width= \textwidth]{path_Image/pngs/Aufgabe_3/grbegri_6.png}
+	\caption{Load close to loadpaths.} 
+	\label{fig_ext_bas_2}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+	\centering
+  \includegraphics[width= \textwidth]{path_Image/pngs/Aufgabe_3/grbegri_7.png}
+	\caption{Load far from loadpaths.} 
+	\label{fig_ext_bas_3}
+\end{minipage}
+      \end{figure}
+	An external
+      Basis is not generated
+      though topology optimisation and
+      therefore it does not have a load-case and also there is no such
+      event, in which the Adapt could have the same load-case and loadpaths as
+      an external Basis. However, there is something similar to
+      a slightly different load-case, the event is called
+     \emph{ load close to the load paths} and can be seen in
+      the figure \ref{chapter_external_basis}.
+      The 
+      previous new load is similar to a load, which is\emph{ far
+      away from the load paths} of the external Basis, which
+      can be obtained from the figure
+      \ref{fig_ext_bas_3}. Since in case of a slightly different load-case
+      and without the features,
+      the Adapt produces
+      results with wide connections and local reinforcements
+      and therefore a calculation with an external Basis
+      is requiring the features in order to prohibit the
+      occurrence of wide connections and local reinforcements.
+	The following sections are going to explain
+	which method is used
+      in order to load an external Basis into Matlab.
+      
+\section{Discretize external 2D and 3D Basis}
+The idea for working with an external Basis is to load any
+\emph{.stl}-file in Matlab. This is done by
+discretizing the \emph{.stl} 2D or 3D object.
+The code for this
+purpose is called Mesh voxelisation and 
+ is available free of charge on MathWorks File Exchange. Note
+ the Mesh voxelisation is not written by the author of this bachelor thesis.
+ MathWorks File Exchange also explains  the principles of the code,
+ therefore the reader is referred to it.
+  In order to use Mesh voxelisation in Adapt, 
+  the Matrix-Ouput, which is 
+  obtained after running
+  Mesh voxelisation,
+  must be converted from the type  \textit{Boolean}
+   to type \textit{Double}. The
+    matrix can then be regarded as a
+    completely usual Matlab matrix consisting 
+    exclusively of 0 and 1. 
+    In order to discretize in 2D, the depth parameter must be set to \textit{1}.
+
+\section{Results with external Basis}
+  \begin{figure}[!h]
+  \begin{minipage}{0.45\textwidth}
+  The selected external 2D and 3D Basis
+ have been drawn with CATIA. The 3D Basis
+ is extruded in the depth, which is the only difference between
+ the 2D and the 3D Basis. The 2D Basis
+ is presented in
+ \ref{fig_externe_2d_basis}.
+  It consists of a frame, which occupies 20\%
+   of the available construction space 
+  in both 2D and 3D. 
+  \end{minipage}
+  \hfill
+    \begin{minipage}{0.5\textwidth}
+    \centering
+    \includegraphics[width=  \textwidth]
+    {path_Image/pngs/Aufgabe_4/externe2d_basis.png}
+  	\caption{Gray external 2D Basis.} 
+  	\label{fig_externe_2d_basis}
+  \end{minipage}
+  \end{figure}
+  
+  The figures \ref{fig_externe_basis_02} and
+  \ref{fig_externe_basis_04} are obtained with the 
+  load case in figure \ref{fig_loadcase_canti_2d} and the
+  use of the features, where \ref{fig_externe_basis_02}
+  show the results with a display threshold of \emph{0.2} and
+  the figure \ref{fig_externe_basis_04} show the
+  results with a threshold of \emph{0.4}. The Basis is gray and 
+  the AMs are coloured with
+  the colormap \emph{Blue to Red Rainbow}. Since the features are
+  not implemented in 3D,
+  the latest 3D Adapt, which prohibits the appearance of
+  connections at the edges is employed. The load case is
+  similar to Cantilever\textsubscript{3}, with the sole difference,
+  that the force is applied on only the central node in the depth
+  direction.
+  The figures \ref{fig_externe_basis3d_02}
+  and \ref{fig_externe_basis3d_02_2} show the results
+  with a threshold of \emph{0.2} and
+  the figures \ref{fig_externe_basis3d_04_2}
+  and \ref{fig_externe_basis3d_04_2}
+  show the figure with a threshold of \emph{0.4}.
+  
+    \begin{figure}[!h]
+  \begin{minipage}{0.45\textwidth}
+  \centering
+    \includegraphics[width= \textwidth]
+    {path_Image/pngs/Aufgabe_4/externe2d_basis_th_02.png}
+  	\caption{Threshold: 02, gray external 2D Basis.} 
+  	\label{fig_externe_basis_02}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\textwidth}
+  \centering
+    \includegraphics[width= \textwidth]
+        {path_Image/pngs/Aufgabe_4/externe2d_basis_th_04.png}
+  	\caption{Threshold: 04, gray external 2D Basis.} 
+  	\label{fig_externe_basis_04}
+  \end{minipage}\\
+  
+  \vspace{0.5cm}
+  \begin{minipage}{0.45\textwidth}
+  \centering
+    \includegraphics[width= \textwidth]
+    {path_Image/pngs/Aufgabe_4/externe3d_basis_th_02.png}
+  	\caption{Threshold: 02, gray external 3D Basis..} 
+  	\label{fig_externe_basis3d_02}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\textwidth}
+  \centering
+    \includegraphics[width= \textwidth]
+        {path_Image/pngs/Aufgabe_4/externe3d_basis_th_04.png}
+  	\caption{Threshold: 04, gray external 3D Basis.} 
+  	\label{fig_externe_basis3d_04}
+  \end{minipage}
+    \end{figure}
+  
+      \begin{figure}[!h]
+    \begin{minipage}{0.35\textwidth}
+  \centering
+    \includegraphics[width= \textwidth]
+    {path_Image/pngs/Aufgabe_4/externe3d_basis_th_02_2.png}
+  	\caption{Threshold: 02, gray external 3D Basis..} 
+  	\label{fig_externe_basis3d_02_2}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.35\textwidth}
+  \centering
+    \includegraphics[width= \textwidth]
+        {path_Image/pngs/Aufgabe_4/externe3d_basis_th_04_2.png}
+  	\caption{Threshold: 04, gray external 3D Basis..} 
+  	\label{fig_externe_basis3d_04_2}
+  \end{minipage}
+  \end{figure}~\\

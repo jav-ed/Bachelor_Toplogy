@@ -1,0 +1,1003 @@
+%Explain, why the current 2d adpt does not work for our purpouses
+%Explain what we want to have
+\chapter{Extension of the 2D Adapt for slightly different loads between Basis and Adapt}
+\label{chapter_features_adapt}
+ The Adapt was created to strengthen already existing structures, which are called Basis. 
+ The Basis must not be changed, only new structures are allowed to be added to ensure  that the Basis gains stiffness.
+ The connections of the added structures may 
+ only be created at the border of the Basis (in the BZ).  
+ Desired are small connections between Basis and the AMs.
+  Up to now, the Basis and the AMs are obtained with the same load case.
+  This means that the Basis was obtained with a load-case, as shown in
+  figure \ref{fig_equal_load} and the Adapt was then
+  obtained with the same load case, which only differs in the higher
+  requirement as shown in figure
+  \ref{fig_equal_load_adapt}.
+  If the load case for the Adapt is slightly changed,
+  few and large-area connections are created between Basis
+   and AMs, which are unwanted and can be
+   seen in figure 
+   \ref{fig_adapt_large_Connec}.
+   The following section introduces and describes further restrictions and parameters 
+   that provide more control over the Adapt in
+    order to obtain small connections between the Basis and the AMs.
+    These restrictions are going to be called \emph{features} and are going to
+    be presented in the upcoming sections. The first feature
+    (section \ref{section_feature_1})
+    enables the control of the tangential thickness of
+    a connection between Basis and the AMs.
+    The second feature enables to define
+    the minimal distance between each found
+    connection
+    (see section \ref{section_dealing_with_overlap})
+    and the third feature enables it
+    to remove local reinforcements
+    (see section \ref{section_feature_3}).
+    Why these features are
+    needed and how they work is explained in their
+    respective section. After having discussed the features
+    a table with the brief explanations of
+    the new Adapt specific terms is provided in
+    the section
+    \ref{section_fundamentals}.
+    Finally in
+    section \ref{section_fea_features} one
+     Adapt result with these features is
+    used for a FE reanalysis.\\
+    
+     In order to explain, what slightly
+     different load-case means,
+    the figure \ref{fig_slighlty_different_load} 
+    gives an overview about the definitions of slightly different load-case,
+    where the origin Basis load-case
+    can be seen in figure \ref{fig_equal_load}.
+    A slightly different Adapt load-case results in an additional force or
+    slightly shift of the original load and a new Adapt load-case can
+    be obtained from figure \ref{fig_new_load}.
+
+ 
+\begin{figure}[!h]
+\begin{minipage}{0.45\textwidth}
+\centering
+  \includegraphics[width= \textwidth]{path_Image/pngs/Aufgabe_3/grbegri_1.png}
+	\caption{Resulting from optimization.} 
+	\label{fig_equal_load}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+  \includegraphics[width= \textwidth]
+  {path_Image/pngs/Aufgabe_3/grbegri_2.png}
+	\caption{Same loadcase, higher requirements.} 
+	\label{fig_equal_load_adapt}
+\end{minipage}\\
+
+\vspace{0.75cm}
+\begin{minipage}{0.45\textwidth}
+\centering
+  \includegraphics[width= \textwidth]{path_Image/pngs/Aufgabe_3/grbegri_3.png}
+	\caption{Slightly different load.} 
+	\label{fig_slighlty_different_load}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+  \includegraphics[width= \textwidth]{path_Image/pngs/Aufgabe_3/grbegri_4.png}
+	\caption{New load.} 
+	\label{fig_new_load}
+\end{minipage}\\
+
+\vspace{0.75cm}
+\centering
+\begin{minipage}{0.7\textwidth}
+   \includegraphics[width= \textwidth]
+   {path_Image/pngs/Aufgabe_3/last_pos_79_ohne.png}
+ 	\caption {Adapt with slightly different load-case.} 
+ 	\label{fig_adapt_large_Connec}
+ 	\end{minipage}
+\end{figure}
+
+    
+\section{Feature 1: control of tangential length connection}
+\label{section_feature_1}
+
+    The goal of the Adapt is to generate small connections
+    between the Basis and the Adapt while increasing
+    the stiffness of the whole structure. To create thin
+    connections, it is necessary to control both the normal
+     and tangential width of the
+    connection. The figure \ref{fig_ep_cz_tangen} shows a gray coloured Basis
+    and the yellow zone represents elements of a generated
+    connection. Furthermore, it  
+    can be observed that the parameter \textit{ep} defines the 
+     normal length and the parameter \textit{CZ\textsubscript{mind}}
+      controls the tangential length of the connection.
+      \newpage
+ 
+ \begin{figure} [!h]
+ \begin{minipage}{0.45 \textwidth}
+The idea to define a connections tangential thickness
+is shown in the figure 
+\ref{fig_penal_domain}.
+ Within  \textit{CZ\textsubscript{mind}}, which
+ is the parameter that defines the
+ maximal thickness of a connection,
+ the sensitivity of the elements
+ will not be reduced or the elements will not be penalized.
+  However, every element between \textit{CZ\textsubscript{mind}} and
+    \textit{CZ\textsubscript{max}} will be punished. Note that only
+    elements
+     whose centre lies within \textit{CZ\textsubscript{mind}} will be penalized (compare with figure \ref{fig_rmin}).
+     This ensures that no connection is larger than \textit{CZ\textsubscript{mind}}.
+     In order to be able to apply this process, it is first necessary to find out where the individual connections arise. Each connection consist of elements and
+      because the Adapt consist of multiple connections, the 
+      term \emph{Connection Zone Group} is introduced (CZG).
+      A CZG can only contain elements, which is
+      located in the BZ, because the BZ is the zone in which a
+      possible connection can be made. However a CZG only contains
+      those elements from the BZ, which lead to a connection.
+ \end{minipage}
+ \hfill
+  \begin{minipage}{0.45 \textwidth}
+  \centering
+ \def\svgwidth{\textwidth}
+ \input{path_Image/cz_ep_tangential.pdf_tex}
+ \caption{Gray Basis, yellow CZG elements, $ep = 3, CZ_{mind} = 4$.}    % Bildunterschrift 
+ \label{fig_ep_cz_tangen}          % Label für Verweise 
+ \end{minipage}
+\end{figure} 
+%
+ \begin{figure} [!h]
+ \begin{minipage}{0.45 \textwidth}
+  The
+      sum of all the CZGs is going to be called
+      the Connection Zone (CZ), which also has
+      to be located within the BZ. \\
+      
+             After two technical terms have 
+      been explained, it shall be mentioned
+      that the CZGs are extracted after 10 iterations,
+      in order to give enough time for
+      the CZGs to arise, before identifying them and
+      manipulating their
+      properties.
+      With that being said,
+      the procedure of finding CZGs shall be introduced.
+            Since the CZ lies within the BZ, it is only required to consider the BZ elements during the search.
+       Furthermore a \textit{CZ-threshold} is employed: if the
+        considered BZ element fulfils the \textit{CZ-threshold} it
+         is taken as a CZ-element.
+         Next it must be checked, if the considered
+          element is a neighbour of an element that is already in a CZG.
+            In case it is the first element, which was found, a new CZG
+            for himmust be generated and in every 
+ \end{minipage}
+ \hfill
+  \begin{minipage}{0.45 \textwidth}
+ \centering
+ \def\svgwidth{\textwidth}
+ \input{path_Image/cz_mind_max.pdf_tex}
+ \caption{Orange CZ\textsubscript{max}, purple CZ\textsubscript{mind} and
+ gray penal area \emph{AVA}.}    % Bildunterschrift 
+ \label{fig_penal_domain}          % Label für Verweise 
+ \end{minipage}
+\end{figure}
+ other case, the elements must be examined.
+ This examination
+      is 
+      as already mentioned
+      based on neighbourhood: it verifies whether the current element is a 
+      neighbour element of the already found elements, which are stored in
+      CZGs.
+       By taking advantage of the numbering convention
+       (square and regular mesh)
+        of the elements, which is from left to right and top to bottom, only 
+        maximal 4 search directions need to be taken into 
+       account. The search directions can be obtained in figure \ref{fig_look_around},
+       where the gray
+       element can be taken as the current element in the BZ
+       and the green arrows as the 4 search directions-neighbour-elements.
+       Each of the neighbour element is obligated to be 
+       within the BZ and  meet the \textit{CZ-threshold}.
+       
+       The reason why only maximal 
+       4 search directions need to be taken into account,
+       is that two for loops are used, the first one changes the x-number 
+       of the element
+       and the second loop changes the y-number of the considered element
+       in the matrix. 
+       Because the x-loop comes first and the y-loop comes second, the column 
+       stays constant and after all rows with the constant column
+       were examined the column will change to $column_{new} = column +1$.
+       Thus, the elements without arrows inside
+       (figure \ref{fig_look_around})
+        have not been checked ye and rhus can not be
+        n any CZG and therefore 
+       there is no need for a neighbourhood-examination. In case the
+       current element was assigned to a group with the
+       first direction of the neighbourhood search, the remaining
+       search directions are not going to be considered any more
+       in order to save computational time. Neighbour groups will
+       be merged subsequently. 
+            \begin{figure}[!h]
+ \centering
+ \def\svgwidth{0.45\textwidth}
+ \input{path_Image/look_around.pdf_tex}
+ \caption{Search directions for the CZG examination }    % Bildunterschrift 
+ \label{fig_look_around}          % Label für Verweise 
+      \end{figure}
+
+       \subsection{Geometrical and weighted centre}
+       \label{subsection_geometrical_weighted}
+       After it is possible to save the CZGs, the centre of the CZG needs to be 
+       located
+       in order to define the maximal tangential thickness 
+       CZ\textsubscript{mind}.
+       The centre of a 
+       CZG is the point, where the two radii
+       CZ\textsubscript{mind} and CZ\textsubscript{max} are
+       generated in order to penalize all the elements
+       within CZ\textsubscript{max} and outside CZ\textsubscript{}mind
+       ( \emph{AVA}, see figure \ref{fig_penal_domain}).
+       There are two possible ways, which are going to be described.\\
+       
+       The first method in order to calculate the centre of
+       each CZG can be expressed as 
+       the geometrical centre. To calculate the geometrical centre, two mean 
+       values are required. Each CZG consists of elements, which
+       have x and y-coordinates and with this coordinates the x-mean
+       and y-mean can be obtained.
+       \begin{align*}
+       x_{mean} = \dfrac{1}{N} \sum_{i=1}^N x_i, \quad 
+       y_{mean} = \dfrac{1}{N} \sum_{i=1}^N y_i,
+       \end{align*}
+       where \textbf{$N$} is the number of the elements which are stored
+       in the considered CZG\textsubscript{i}, 
+       \textbf{$x_i$} and \textbf{$y_i$} are the x- and 
+       y-coordinates of the CZG elements.\\
+       
+       The second method is a weighted average method and can be expressed
+       as follows:
+          \begin{align*}
+       x_{mean} = \dfrac{1}{\sum_{i=1}^N \rho_i} \sum_{i=1}^N x_i  \rho_i, \quad 
+       y_{mean} = \dfrac{1}{\sum_{i=1}^N \rho_i} \sum_{i=1}^N y_i \rho_i,
+       \end{align*}
+		where \textbf{$N$} is the number of the elements which are stored
+       in the considered CZG\textsubscript{i},
+        \textbf{$x_i$} and \textbf{$y_i$} are the x- and 
+       y-coordinates of the CZG elements and \textbf{$\rho_i$} are their
+       densities.
+       The advantage of the weighted average method is, that the elements 
+       densities are considered in order to calculate the mean x- and y-coordinates.
+       Therefore the weighted average method allows to come
+       closer to the centre of the elements with a higher density. The
+       elements with a higher density have a bigger impact on increasing
+       the stiffness then the low densities. Since the
+       maximal tangential thickness is defined with CZ\textsubscript{mind},
+       and the elements outside of CZ\textsubscript{mind} and
+       inside CZ\textsubscript{max} are penalized,
+       the closer CZ\textsubscript{mind} gets to the centre of the
+       densities with higher values the better the impact
+       on increasing the stiffness becomes. 
+      
+       \subsection{Penalization of elements within\textit{ CZ\textsubscript{mind}} and \textit{CZ\textsubscript{max}}}
+       \label{subsection_distance_i}
+       
+       After having found the CZGs and their centre ($x_{mean}$ and $y_{mean}$)
+       all elements which
+       lie between \textit{CZ\textsubscript{mind}} and
+        \textit{CZ\textsubscript{max}}
+        or within AVA
+       must be penalized (see figure \ref{fig_penal_domain}. The
+       reason why there is no difference between penalizing
+       between \textit{CZ\textsubscript{mind}} and
+        \textit{CZ\textsubscript{max}} and AVA is based
+        on the definition of
+        $CZ_{max} = AVA + CZ_{mind}$, where
+        CZ\textsubscript{mind} and AVA are
+        parameter which are defined by the operator of
+        the Adapt and CZ\textsubscript{max} is calculated
+        then by a summation. In case of $AVA = 0$,
+        $CZ_{max} = CZ_{mind}$ and then the penalization area
+        would not exist (see figure
+        \ref{fig_penal_domain}).\\
+
+       However, to reduce the sensitivities
+       within AVA, the
+       penalization task needs to be 
+       accomplished after the sensitivity analysis and
+       it must be performed 
+       for each CZG with its respective x- and y-mean
+        coordinates. In order to penalize the AVA 
+        elements
+		the distance ($dist_i$) between each element in
+		 CZG and the centre$(x_{mean}|y_{mean})$ of the CZG needs
+		to be $CZ_{mind} < dist_i \leq CZ_{max}$.
+		
+		\begin{align*}
+		dist_i = \sqrt{(x_{mean_i}-x_i)^2+(y_{mean_i}-y_i)^2} \quad,
+		\end{align*}
+where \textbf{$x_{mean_{i}}$} and\textbf{ $y_{mean_{i}}$} are the centre coordinates 
+in x- respectively
+y-direction of the current CZG\textsubscript{i},  \textbf{$x_i$ }
+and \textbf{$y_i$} are the coordinates in x- and y-direction of the
+ current CZG\textsubscript{i} element.\\
+ 
+ To penalize the AVA elements $(CZ_{mind} < dist_i \leq CZ_{max})$ the penalization function from
+\cite{Dienemann.2018} is deployed.
+
+\begin{align*}
+P_i(d_i) = \dfrac{1- \tanh(a \; [2 \; d_i / CZ_{mind} -1)}{1+ \tanh(a)} \quad,
+\end{align*}
+
+where \textbf{$d_i = \dfrac{CZ_{mind}}{2}$}
+and a defines the discreetness of the function. A low discreetness leads to
+insufficient penalization. A value of $a = 4$ will be used
+as recommended in \cite{Dienemann.2018}.\\
+
+
+Analogously to finding elements between \textit{CZ\textsubscript{mind} }
+and \textit{CZ\textsubscript{max}}, elements 
+within \textit{CZ\textsubscript{mind}} can be
+located with $dist_i \leq  CZ_{mind}$ with
+a if statement that checks, whether the distance $d_i < CZ_{mind}$.
+This can be useful, when it is desired to increase the sensitivity of
+the mentioned elements.
+However, there was no need to implement the former yet.
+
+\section{Feature 2: Definition of minimal distance between Connection Zone Groups (CZGs)}
+\label{section_dealing_with_overlap}
+In this section it is going to be explained how to control
+the minimal distance between all CZGs. The idea is it to
+find overlapping CZGs and in case of an overlapping, the
+overlapping CZGs are combined to one CZG. In
+case the CZGs do not overlap, the distance between the
+CZGs is greater then the minimal distance between 
+CZGs parameter.\\
+
+It can be observed that some overlapping CZGs can
+cause unintentional penalization.
+In general a distinction between two types of 
+overlapping can be made. To provide a good understanding, the figure \ref{fig_CZG_overlapping_1}
+  shows two CZGs, which do not overlap. 
+  The figure \ref{fig_CZG_overlapping_2} shows the first type
+  of an overlapping of two CZGs. The first case results in penalizing the elements twice, once by the
+left CZG and once by the right CZG within AVA.
+\vspace{0.2cm}
+ \begin{figure} [!h]
+ \def\svgwidth{\textwidth}
+ \input{path_Image/overlapping_1.pdf_tex}
+ \caption{Overlapping of CZGs type 1.}    % Bildunterschrift 
+ \label{fig_CZG_overlapping_1}          % Label für Verweise 
+\end{figure} 
+%
+ \begin{figure} [!h]
+ \centering
+ \def\svgwidth{\textwidth}
+ \input{path_Image/overlapping_2.pdf_tex}
+ \caption{Two CZGs with no overlapping.}    % Bildunterschrift 
+ \label{fig_CZG_overlapping_2}          % Label für Verweise 
+\end{figure} 
+ \begin{figure} [!h]
+ \centering
+ \def\svgwidth{\textwidth}
+ \input{path_Image/overlapping_3.pdf_tex}
+ \caption{Overlapping of CZGs type 2 and calcualting new centre of two overlapped CZGs.}    % Bildunterschrift 
+ \label{fig_CZG_overlapping_3}          % Label für Verweise 
+\end{figure} 
+However, since no \textit{CZ\textsubscript{mind}} element is punished,
+ the maximum tangential thickness of the CZGs
+is not changed. The AVA elements of each CZG is 
+penalized, in case of a complete identical AVA
+as shown in figure \ref{fig_CZG_overlapping_2}.
+The complete AVA
+is the whole overlapping area, which is then penalized twice
+and in case only some parts of the AVAs overlaps 
+only these overlapping parts are penalized twice,
+the rest of the AVAs is penalized once.
+The second type of overlapping CZG occurs, when the \textit{CZ\textsubscript{max}} of at least two CZGs overlaps,
+which would penalize elements within \textit{CZ\textsubscript{mind}} (see figure \ref{fig_CZG_overlapping_3}). Penalizing \textit{CZ\textsubscript{mind}} elements affects
+the maximum tangential thickness of the CZG. In this way the parameter \textit{CZ\textsubscript{mind}} is not respected
+any more and does not describe the maximum tangential thickness of a CZG. In order to avoid
+such an occurrence, the distance ($dist_{cz}$) of all CZGs is calculated. If
+$dist_i < 2 \; CZ_{mind} +AVA $
+at least two \textit{CZ\textsubscript{max}} are overlapping,
+which results in penalizing \textit{CZ\textsubscript{mind}} elements. Therefore if
+$dist_i < 2 \; CZ_{mind} +AVA$,
+new $x_{mean}$ and $y_{mean}$ of the overlapping CZGs are calculated.
+Because of the mentioned $dist_i$-condition
+it is possible to define a minimal distance
+between CZGs. The defining parameter is 
+  This \emph{AVA}, which lets define
+  \emph{AVA} not only the penalization area,
+  but also the minimal distance between CZGs.
+  The calculation of the centre
+can be accomplished by means of the geometrical or weighted centre,
+ introduced in subsection \ref{subsection_geometrical_weighted}.
+Again, because of the already 
+named benefits the calculation is suggested with the weighted centre.\\
+
+Due to its simple comprehension, the figure 
+\ref{fig_CZG_overlapping_3} shows a geometrical centre calculation of a new
+CZG\textsubscript{mind\textsubscript{1\_2}} and a
+ new CZG\textsubscript{max\textsubscript{1\_2}} of two overlapped CZGs. The new CZG\textsubscript{1\_2} is replaced in the
+working storage by the two overlapped CZGs,
+CZG1 and CZG2 in order to save memory space,
+keep a better overview of the CZGs and it also facilitates the later required modifications on the
+BZ-filter, which will be explained in section 
+\ref{section_cgz_bz_filter}.
+ The new CZG\textsubscript{1\_2} contains all the informations
+of the two overlapped CZGS, CZG\textsubscript{1}
+ and CZG\textsubscript{2}, with the difference that it is one CZG and its centre
+of gravity consists of the coordinates of the overlapping CZGs. \\
+
+The figure \ref{fig_matlab_1_CZG} shows a struct from
+Matlab, which stores all the found CZGs with
+ the names of the CZGs (\textit{Gruppe\_\textsubscript{i}}),
+  the x-, y-coordinates and 
+ the densities of their elements as a vector and the center 
+of gravity in x and y-direction of each found CZG as \emph{Doubles}
+named \textit{X\_mean}
+and \textit{Y\_mean}. These informations are sufficient in order to
+collect all essential information about the elements
+in a CZG\textsubscript{i}. The figure \ref{fig_matlab_2_CZG} shows
+the same struct after finding overlapping CZGs: in this case
+three overlapping CZGS are found. Therefore CZGS, CZG\textsubscript{4},
+CZG\textsubscript{5} and CZG\textsubscript{6} were replaced by the 
+CZG\textsubscript{4\_5\_6}.
+
+\begin{figure}[!h]
+\begin{minipage}{0.45\textwidth}
+\centering
+  \includegraphics[width= \textwidth]
+  {path_Image/pngs/Aufgabe_3/matlab_1.png}
+	\caption{List of found CZGs.} 
+	\label{fig_matlab_1_CZG}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+  \includegraphics[width= \textwidth]
+  {path_Image/pngs/Aufgabe_3/matlab_2_overlapped.png}
+	\caption{List of found CZGs after overlapping examination.} 
+	\label{fig_matlab_2_CZG}
+\end{minipage}
+\end{figure} 
+%
+In order to get a better overview of
+the progress Matlabs plot function
+in 2D is used.
+This allows to project 
+\textit{CZ\textsubscript{mind}} and 
+\textit{CZ\textsubscript{max}} on the Adapt at the centre of gravity of
+ CZGs, which
+is shown in figure \ref{fig_circles_CZG}. The dark gray coloured structure
+represents the Basis, the lighter gray color stands for the BZ
+($\rho_e < 0.1$), the Adapt without
+the Basis is rainbow coloured, where dark blue stands for
+void material.
+
+\begin{figure}[!h]
+\centering
+  \includegraphics[width = 0.75\textwidth]
+  {path_Image/pngs/Aufgabe_3/czgs_bsp_1.png}
+	\caption{Circles for \textit{CZ\textsubscript{mind}} and 
+	\textit{CZ\textsubscript{max}}.} 
+	\label{fig_circles_CZG}
+\end{figure}
+
+\section{ Feature 3: Prohibition of local reinforcements}
+\label{section_feature_3}
+The Adapt is coded in order to create connections
+between the Basis and the AMs.
+ As a further restriction, the Adapt will be given to apply material 
+ within the BZ, only if it contributes to a \emph{used} connection.
+ A \emph{used} connection does not cause local
+ reinforcements and is given when the Basis is connected to
+ the REs through the BZ, wherein the REs have a
+ struts like developed AMs structure.
+  The aim is to allow material to be applied to the BZ,
+  if there 
+  is a  struts like developed AM structure in the vicinity of the found CZG.
+  The reason for the extension of this feature is:
+  in practise it would be an additional effort to
+  manufacture local reinforcements.
+  In case there is no formed AM structure, this would only result
+  into thickening of the Basis. The term \emph{unused connection}
+  is going to be used as local reinforcement.\\
+  
+  In order to find an unused connection the centre of the
+  CZGs is required. This serves as the starting point of the examination,
+  because it makes investigations within \textit{AVA} easier.
+  Within \textit{AVA} of the CZGs each element must
+  be tested, whether it belongs to the REs and in case it does, 
+ the density of the matching element needs to be compared
+ with a user predefined RE-threshold. If the densities of the matched 
+ elements are lower then the RE-threshold, then all the elements inside
+ the CZG or the CZG itself needs to be penalized in order
+ to prohibit its development. Because \textit{AVA} is a small area, it is 
+ sufficient to find one single element, which does not fulfil
+ the RE-threshold in order to penalize the CZG.
+To make certain that the penalization is 
+sufficient, the penalization factor is held variable. With some
+if statement it is possible to implement a method, which
+can perform the penalization after a number of iterations and
+change the beginning magnitude of the penalization repeatedly.
+Such if statements are beneficial when the Adapt
+faces
+unused connections in which elements exhibits high sensitivities.
+Therefore high and variable increasable penalisation factors
+are required in order to remove unused connections.
+The beginning penalisation
+of the sensitivity is set to 0.5, which is
+performed after having found CZGs. As mentioned the search for
+CZGs is performed from the 10th iteration and after each 5 iterations
+the RE penalization factor is increased by the factor \emph{0.5} or 
+the penalization is increased by the factor 2
+(decreasing the 
+sensitivity results in a increasing punishment).\\
+
+The figures \ref{fig_nr_iteration_13} to \ref{fig_nr_iteration_16} shows
+a topology optimization by the Adapt employing the explained 
+method in order to prohibit the occurrence of unused CZGs. 
+The small circles represents \textit{CZ\textsubscript{mind}}, the
+big circles are \textit{CZ\textsubscript{max}}.
+The figures shows that the unused connections 
+or the CZGS are removed
+in iteration 16 (figure \ref{fig_nr_iteration_16}).
+ 
+\begin{figure}[!h]
+\begin{minipage}{0.48\textwidth}
+\centering
+  \includegraphics[width= \textwidth]{path_Image/pngs/Aufgabe_3/13.png}
+	\caption{Iteration number 13.} 
+	\label{fig_nr_iteration_13}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+  \includegraphics[width= \textwidth]{path_Image/pngs/Aufgabe_3/14.png}
+	\caption{Iteration number 14.} 
+	\label{fig_nr_iteration_14}
+\end{minipage}\\
+
+\vspace{0.3cm}
+\begin{minipage}{0.48\textwidth}
+\centering
+  \includegraphics[width= \textwidth]{path_Image/pngs/Aufgabe_3/14.png}
+	\caption{Iteration number 15.} 
+	\label{fig_nr_iteration_15}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+  \includegraphics[width= \textwidth]{path_Image/pngs/Aufgabe_3/16.png}
+	\caption{Iteration number 16.} 
+	\label{fig_nr_iteration_16}
+\end{minipage}
+\end{figure}
+
+\section{Modifications on the BZ-filter}
+\label{section_cgz_bz_filter}
+Since all the CZGs are located in the BZ, the BZ-filter needs to be modified.
+The important parameter for the filtering is 
+\textit{CZ\textsubscript{mind}}: it defines the maximal
+tangential thickness of the CZGs. As long as $CZ_{mind} \geq ep$ 
+the rest of BZ elements, which are within AVA or even further away
+ can be neglected. It is also essential not to filter the 
+ CZGs which consist a unused connection. This can be performed
+ by removing these CZGs or explicitly not including them in
+ the filtering process. Furthermore a CZG can exhibit elements, which
+ are located within \textit{CZ\textsubscript{mind}}, however,
+ are not stored in the CZG. The reason is that, these missing elements
+ do not fulfil the CZ-threshold.\\
+ To avoid a checkerboard,
+    each element within \textit{CZ\textsubscript{mind}} is filtered.
+   To find these elements, the distance between the centre of gravity
+    of the CZG\textsubscript{i} and its elements is required. 
+    The calculation already has been explained in 
+    subsection \ref{subsection_distance_i}.
+   
+   
+\section{Comparison results with and without features}
+\label{section_compare_results_with_without_feature}
+
+This section shows results with 2D adapts
+ with and without the implemented features.
+ In particular, it is examined what the Adapt
+  performs when its load differs from that of the Basis. 
+  For this purpose two versions were presented, 
+  the Adapt version with the 
+  features and the Adapt version without the features. 
+ In order to compare the Adapt versions
+  all parameters, such as \textit{ep, r\textsubscript{min}, r\textsubscript{b}},
+ the  mesh resolution and the load-case, 
+  are equal for the examination with and without the 
+  features. However, it is important to understand,
+  that the load cases are only equally selected 
+  for the two versions of the Adapts, not 
+  for the Basis and the Adapt, since the main
+  object of this section is to see, what
+  the Adapt performs in case its load
+  case is not equal with the
+  Basis load case. However, the Basis is equal
+  for all the Adapt results.\\
+  
+ The figures on the left show the results without
+   the integration of the features and the figures on the
+    right show the results with the integration of the features.
+    The Basis is gray, the blue elements
+    represents void material and the AMs are
+    rainbow coloured.\\
+    
+Figure \ref{fig_comp_fea_l10_o} and \ref{fig_comp_fea_l10_m}: 
+ the Basis and the Adapts are obtained with the 
+same load in y direction (see figure \ref{fig_loadcase_canti_2d}),
+ in x direction, where x represents the
+ \emph{horizontal} direction and y stands for
+ the \emph{vertical} direction. 
+ The Adapts, however, receive a different load. 
+The load in x direction is defined as +10\% (tensile load) of the x load,
+which results in an increase of the resulting load.
+The left figure \ref{fig_comp_fea_l10_o}  shows the result
+ without the features and the right figure 
+ \ref{fig_comp_fea_l10_m} with the features.\\
+ 
+The sole difference 
+between figures \ref{fig_comp_fea_l10_o} and 
+\ref{fig_comp_fea_l10_m} to
+the figures \ref{fig_comp_fea_ln10_o} and \ref{fig_comp_fea_ln10_m} 
+is that the load in the figures
+\ref{fig_comp_fea_ln10_o} and
+\ref{fig_comp_fea_ln10_m}
+ is selected in negative x direction.
+ The figures \ref{fig_comp_fea_l50_o} and
+\ref{fig_comp_fea_l50_m} are obtained with nearly the same
+conditions as in the introductory load case
+(figures \ref{fig_comp_fea_l10_o} 
+and \ref{fig_comp_fea_l10_m},
+ however, the only
+difference is that the load in x direction is defined as 50\% of the y load
+(tensile load).
+ The figures \ref{fig_comp_fea_ln50_o} and
+\ref{fig_comp_fea_ln50_m} show the latter Adapts (50\%)
+with a negative x-direction. \\
+
+The figures \ref{fig_comp_fea_l79_o} to \ref{fig_comp_fea_l81_m}
+ present the results for slightly changing the 
+ load position, but with the same load magnitude. The results from figure
+ \ref{fig_comp_fea_l79_o} and \ref{fig_comp_fea_l79_m} are obtained 
+ with the a load position of $0.79 L$ instead of $0.8 L$,
+ which is the load position for the Basis
+  (see figure \ref{fig_loadcase_canti_2d}) and the
+ figures \ref{fig_comp_fea_l81_o} and
+ \ref{fig_comp_fea_l81_m} are obtained with
+ a load position of $0.81 L$. This change of the position
+ is performed in x-direction.\\
+ 
+It can be observed that the features fulfil their purpose.
+The keeping of the maximum tangential
+connection thickness can be seen especially well
+when comparing the figures \ref{fig_comp_fea_l10_o}
+and \ref{fig_comp_fea_l10_m} .
+ At the upper left area, can be seen how
+ the area of the connection from the figure
+ \ref{fig_comp_fea_l10_o}
+decreases in figure
+\ref{fig_comp_fea_l10_m}.
+The work of the third feature,
+removing local reinforcements can be
+seen when comparing, the two figures
+\ref{fig_comp_fea_ln10_o} and
+\ref{fig_comp_fea_ln10_m}.
+The upper left local reinforcement in
+figure \ref{fig_comp_fea_ln10_o}
+disappears in figure \ref{fig_comp_fea_ln10_m}, because of the
+usage of the features. The same observations are made for the
+other examples\\
+
+\vspace{0.75cm}
+
+ \begin{figure}[!h]
+ \begin{minipage}{0.45\textwidth}
+ \centering
+   \includegraphics[width= \textwidth]
+   {path_Image/pngs/Aufgabe_3/last_10_ohne.png}
+ 	\caption{Without features, +10\%.} 
+ 	\label{fig_comp_fea_l10_o}
+ \end{minipage}
+ \hfill
+ \begin{minipage}{0.45\textwidth}
+ \centering
+   \includegraphics[width= \textwidth]
+   {path_Image/pngs/Aufgabe_3/last_10_mit.png}
+ 	\caption{With features, +10\%.} 
+ 	\label{fig_comp_fea_l10_m}
+ \end{minipage}\\
+ 
+ \vspace{0.75 cm}
+  \begin{minipage}{0.45\textwidth}
+ \centering
+   \includegraphics[width= \textwidth]
+   {path_Image/pngs/Aufgabe_3/last_n10_ohne.png}
+ 	\caption{Without features, -10\%.} 
+ 	\label{fig_comp_fea_ln10_o}
+ \end{minipage}
+ \hfill
+ \begin{minipage}{0.45\textwidth}
+ \centering
+   \includegraphics[width= \textwidth]
+   {path_Image/pngs/Aufgabe_3/last_n10_mit.png}
+ 	\caption{With features, -10\%.} 
+ 	\label{fig_comp_fea_ln10_m}
+ \end{minipage}
+ \end{figure}
+ \begin{figure}[!h]
+ \vspace{0.75 cm}
+  \begin{minipage}{0.45\textwidth}
+ \centering
+   \includegraphics[width= \textwidth]
+   {path_Image/pngs/Aufgabe_3/last_50_ohne.png}
+ 	\caption{Without features, +50\%.} 
+ 	\label{fig_comp_fea_l50_o}
+ \end{minipage}
+ \hfill
+ \begin{minipage}{0.45\textwidth}
+ \centering
+   \includegraphics[width= \textwidth]
+   {path_Image/pngs/Aufgabe_3/last_50_mit.png}
+ 	\caption{With features, +50\%.} 
+ 	\label{fig_comp_fea_l50_m}
+ \end{minipage}\\
+
+  \vspace{0.75 cm}
+    \begin{minipage}{0.45\textwidth}
+ \centering
+   \includegraphics[width= \textwidth]
+   {path_Image/pngs/Aufgabe_3/last_n50_ohne.png}
+ 	\caption{Without features, -50\%.} 
+ 	\label{fig_comp_fea_ln50_o}
+ \end{minipage}
+ \hfill
+ \begin{minipage}{0.45\textwidth}
+ \centering
+   \includegraphics[width= \textwidth]
+   {path_Image/pngs/Aufgabe_3/last_n50_mit.png}
+ 	\caption{With features, -50\%.} 
+ 	\label{fig_comp_fea_ln50_m}
+ \end{minipage}\\
+  \end{figure}~\\
+  
+  
+  \begin{figure} [!h]
+  \begin{minipage}{0.45\textwidth}
+ \centering
+   \includegraphics[width= \textwidth]
+   {path_Image/pngs/Aufgabe_3/last_pos_79_ohne.png}
+ 	\caption {Without features.} 
+ 	\label{fig_comp_fea_l79_o}
+ \end{minipage}
+ \hfill
+ \begin{minipage}{0.45\textwidth}
+ \centering
+   \includegraphics[width= \textwidth]
+   {path_Image/pngs/Aufgabe_3/last_pos_79_mit.png}
+ 	\caption{With features.} 
+ 	\label{fig_comp_fea_l79_m}
+ \end{minipage}\\
+ 
+   \vspace{0.75 cm}
+  \begin{minipage}{0.45\textwidth}
+ \centering
+   \includegraphics[width= \textwidth]
+   {path_Image/pngs/Aufgabe_3/last_pos_81_ohne.png}
+ 	\caption{Without features.} 
+ 	\label{fig_comp_fea_l81_o}
+ \end{minipage}
+ \hfill
+ \begin{minipage}{0.45\textwidth}
+ \centering
+   \includegraphics[width= \textwidth]
+   {path_Image/pngs/Aufgabe_3/last_pos_81_mit.png}
+ 	\caption{With features.} 
+ 	\label{fig_comp_fea_l81_m}
+ \end{minipage}
+ \end{figure}
+
+ 
+ \section{Fundamental terms}
+ \label{section_fundamentals}
+Since the previous presented 
+three new
+features required some new technical words, the table \ref{table_third_task}
+shall serve as a short and fast Information source. 
+%_____________________TABELLE 1 ________________________________________
+\begingroup
+\renewcommand{\arraystretch}{2} % Default value: 1
+ \begin{longtable}{L{0.2\textwidth} L{0.8\textwidth}}
+ \caption{Brief explanations about often used terms in this chapter.}\\
+  \hline 
+  \rowcolor{Green}
+ \multicolumn{1}{c}{Term}  &  \multicolumn{1}{c}{Explanation}  \\ 
+ \hline
+   \rowcolor{Gray1}  
+ Connection-Zone (CZ) & The CZ is the domain in which the Adapt generates
+ connections to the Basis. It is located within the BZ and 
+ represents the sum of all the generated connections.
+  In order to be regarded as a CZ-element, it must must 
+  fulfil the CZ-threshold. Each CZ-element is also a BZ-element, but
+  not vice versa.
+  Note, 
+ BZ elements can have a density smaller than the CZ-threshold \\ 
+\hline
+ CZ-threshold &  The CZ-threshold is a density-threshold
+ parameter, which defines, whether the
+ elements in the BZ can be considered as CZ elements or not.\\
+ \hline 
+    \rowcolor{Gray1}  
+ RE-threshold & The RE-threshold is a density-threshold
+ parameter, which defines, whether 
+ the REs exhibit a local reinforcement, see section
+ \ref{section_feature_3}.\\
+ \hline 
+ Connection-Zone-Group (CZG) & The Adapt generates multiple
+ connections in order to connect the AMs to the Basis. In order to
+ be able to modify single connections, CZGs are introduced. 
+ A CZG is one single connection, which consists of all the elements
+ which are in the CZ and
+are required to build one connection between
+ the Basis and the AMs.  The yellow elements or the yellow zone in figure 
+ \ref{fig_ep_cz_tangen} represents a CZG.
+ The sum of
+ all the CZGs is the CZ.\\
+
+ \hline
+     \rowcolor{Gray1}  
+CZ\textsubscript{mind} and CZ\textsubscript{max} & \textit{CZ\textsubscript{mind}}
+defines the maximal tangential thickness of the connection between AMs and Basis. $CZ_{max} = AVA + CZ_{mind}$ (see figure \ref{fig_penal_domain})
+is required in order to penalize all the 
+elements between \textit{CZ\textsubscript{max}} and 
+\textit{CZ\textsubscript{mind}} or
+within \textit{AVA}.
+With the two parameter \textit{CZ\textsubscript{max}} and \textit{CZ\textsubscript{mind}} it is possible to control the tangential thickness of 
+the connection between AMs and Basis, where
+CZ\textsubscript{mind} and AVA are user provided parameter and
+CZ\textsubscript{max} is calculated with $CZ_{max} = AVA + CZ_{mind}$ .
+
+It is important to choose $CZ_{mind} \geq ep$, otherwise
+BZ elements which
+are normal to the Basis and  
+ form the connection between
+Basis, BZ and AMs, are penalized unintentionally.
+
+The figure \ref{fig_ep_geq_ep} shows a gray coloured Basis,
+yellow  elements, which are normal to the Basis and
+lies between the Basis and the red AM elements. 
+$CZ_{mind} < ep$ and the dark green  coloured area presents the 
+penalization area. In case $CZ_{mind} < ep$ a connection
+between Basis, BZ elements and AM elements might
+be disturbed with void elements, because of the
+penalization. Therefore the following must
+chosen: $CZ_{mind} \geq ep$.\\
+
+     \rowcolor{Gray1}  
+ CZ\textsubscript{mind} and CZ\textsubscript{max} & Without \textit{CZ\textsubscript{max}}  the elements around 
+\textit{CZ\textsubscript{mind}} can not be penalized (gray colored in
+figure \ref{fig_penal_domain}),
+which results in none control over the tangential connection thickness.
+
+Note: the normal thickness or length of the
+a CZG is defined by the parameter \textit{ep}. 
+\\
+ \hline 
+AVA & \textit{AVA} (see figure \ref{fig_penal_domain})
+ represents the penalization area, within \textit{AVA}, elements
+from CZGs will be penalized in order to achieve demanded maximal
+tangential CZ thickness \textit{CZ\textsubscript{mind}}. It
+is a user predefined parameter and since 
+the $dist_i $-condition from 
+section \ref{section_dealing_with_overlap}, is defined as 
+$dist_i < 2 \; CZ_{mind} +AVA $
+\textit{AVA} controls the minimal distance between all
+overlapped CZGs.
+The effect of \textit{AVA} can be seen in figure 
+\ref{fig_CZG_overlapping_2} .  \\
+\hline
+\label{table_third_task}
+\end{longtable}
+\endgroup 
+
+\begin{figure}[!h]
+  \centering
+ \def\svgwidth{0.45\textwidth}
+ \input{path_Image/cz_geq_ep.pdf_tex}
+ \caption{ $ CZ_{mind} < ep$.}    % Bildunterschrift 
+ \label{fig_ep_geq_ep}          % Label für Verweise 
+\end{figure}
+
+%_______________
+ 
+  
+ \section{Finite element reanalysis of the Adapt with features}
+ \label{section_fea_features}
+ 
+The reasons why a FE reanalysis can be considered as meaningful 
+were already mentioned in chapter \ref{chapter_fea_reanalysis}
+and will therefore not be discussed again. Section
+\ref{section_compare_results_with_without_feature} offers
+6 different load cases, however, one Adapt with features
+will be used for the FE reanalysis. Since the figures
+\ref{fig_comp_fea_l79_o} and \ref{fig_comp_fea_l79_m} exhibit
+the strongest influence of the implemented features, these
+Adapt results will
+be used for
+the FE reanalysis.\\
+
+ The Adapt is restricted to three features.
+These features help to increase the manufacturability
+ of the Adapt structures in practice.
+ The restrictions can have a positive as 
+ well as a negative effect on the compliance.
+ In case of the requirement of a maximum tangential
+  thickness of the CZGs, a connection larger than
+   \textit{CZ\textsubscript{mind }} is usually broken down into several 
+   smaller connections, whereby it must meet the
+    minimum distance of \textit{AVA}. The reason why 
+    one thick connection is broken into several smaller
+     ones instead of applying the obtained material 
+     elsewhere is that the sensitivity in the vicinity of 
+     the connection location may be higher than in another location.
+     Furthermore, this requirement does not prohibit 
+     the appearance of any structure completely, it is limited in 
+     its tangential thickness by  \textit{CZ\textsubscript{mind }} and
+      in its normal thickness by \textit{ep}. 
+      Thus it is possible that several smaller 
+      formed compounds increase stiffness. \\
+       
+       In the case of the requirement that no unused 
+       connection should be created or that the 
+       base should not only be thickened, the 
+       creation of a local reinforcement is completely
+        forbidden. Since these structures, due to 
+        their high sensitivities, have required high
+         punishment factors to be removed, it is 
+         very likely that the obtained material
+          cannot be applied in a better place . 
+          Therefore, the application of this feature
+           is expected to result in a loss of stiffness.\\
+                        
+       Both figure \ref{fig_comp_fea_rean_alt} and 
+       \ref{fig_comp_fea_rean_neu} do not  exhibit any obvious
+       differences in the maximum strain (red areas).
+        Both also  display no sharp transitions from high to low 
+        stress and vice versa. Furthermore, the stress
+         curves are in the middle range of the
+         stress range, which 
+         is  desirable.
+          Through the two figures it  can be 
+          observed that both AMs, with and without the features,
+           are exposed to stress, 
+           which leads to the conclusion that they 
+           reduce the compliance of the Adapt structure.\\
+           
+  \begin{figure} [!h]
+ \centering
+   \includegraphics[width= \textwidth]
+   {path_Image/pngs/Aufgabe_3/079_nachrech_alt.png}
+ 	\caption {FE reanalysis of a Adapt without features.} 
+ 	\label{fig_comp_fea_rean_alt}
+ 	 \end{figure}
+ 
+  \begin{figure} [!h]
+ \centering
+   \includegraphics[width= \textwidth]
+   {path_Image/pngs/Aufgabe_3/079_nachrech_neu.png}
+ 	\caption{FE reanalysis of a Adapt with features.} 
+ 	\label{fig_comp_fea_rean_neu}
+ \end{figure}
+ 
+% _______________________________________
+
+
+
+

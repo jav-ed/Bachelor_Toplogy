@@ -44,9 +44,9 @@ Both types of files are included in the `path_Image/` directory for completeness
 
 ## Important Notes
 
-1. This repository can be used as a template for similar projects.
-2. The PDF file in `100_Compiled/` is the original, unmodified version as submitted. Any mistakes found post-submission have not been corrected to maintain the integrity of the original work.
-3. We all learn and grow. I acknowledge that mistakes were made in the past, and inshallah, I will continue to learn from future experiences. Only the Acknowledgement section has been slightly modified in this version. This modification does not affect the academic content of the thesis.
+1. The PDF file in `100_Compiled/` is the original, Mistakes found post-submission have not been corrected. The reason for the latter is: the goal is to authentically show the original state that contains mistakes. Editing these mistakes afterwards would pretend to have had knowledge that I did not possess back then. All in all, it shall show that I am human, I made mistakes back then, am doing them now and will make them in upcoming projects. Inshallah I will learn from them. Acknowledging my mistakes is something I learned from the Quran and I think it is a good practice to stay honest. Only the Acknowledgement section has been slightly modified in this version. However, this modification does not affect the academic content of the thesis.
+2. This repository can be used as a template for your projects.
+
 
 ## Compilation
 

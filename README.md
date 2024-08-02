@@ -2,9 +2,10 @@
 
 ## About This Repository
 
-This repository contains the complete LaTeX source, figures, and compiled PDF of my bachelor thesis, submitted on 19.02.2019 to the Bergische Universität Wuppertal, Germany, in cooperation with BMW in Munich.
+This repository contains the complete LaTeX source, figures, and compiled [PDF](100_Compiled/main.pdf) of my bachelor thesis , submitted on 19.02.2019 to the Bergische Universität Wuppertal, Germany, in cooperation with BMW in Munich.
 
 ![Gradient Model 28](path_Image/pngs/Aufgabe_1/3D_Ergebnisse/canti.png)
+
 
 ## Thesis Overview
 
@@ -23,9 +24,10 @@ This bachelor thesis focuses on extending a 2D topology optimization method (Ada
 * Conducted parameter studies to evaluate the impact of different optimization parameters on results
 * Demonstrated application of the extended method on multiple 2D and 3D test cases, including automotive-inspired geometries
 
-## Repository Structure
 
-- `100_Compiled/`: Contains the final compiled PDF of the thesis
+## Repository Structure
+- Inshallah [Final compiled PDF](100_Compiled/main.pdf)
+- `100_Compiled/`: Contains log, auxiliary files, and the compiled PDF itself
 - `2_Latex_Files/`: LaTeX source files and potentially related resources
 - `path_Image/`: Figures and images used in the thesis
 - `main.tex`: The main LaTeX file for the thesis
